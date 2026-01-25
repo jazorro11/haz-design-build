@@ -12,6 +12,7 @@ import Clients from "./pages/Clients";
 import Press from "./pages/Press";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import DesignSystem from "./pages/DesignSystem";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,8 @@ const App = () => (
           <Route path="/clientes" element={<Clients />} />
           <Route path="/prensa" element={<Press />} />
           <Route path="/contacto" element={<Contact />} />
+          {/* Internal route - not listed in navigation */}
+          <Route path="/_internal/design-system" element={<DesignSystem />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
