@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
 import { ProjectCard } from '@/components/projects/ProjectCard';
+import { OptimizedImage } from '@/components/OptimizedImage';
 import { getFeaturedProjects } from '@/data/projects';
 import { getFeaturedClients } from '@/data/clients';
 import { services, processSteps } from '@/data/services';
