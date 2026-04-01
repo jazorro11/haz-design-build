@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ProjectFilters } from '@/components/projects/ProjectFilters';
 import { getProjectsByFilter, ProjectType, ProjectRole, ProjectStatus } from '@/data/projects';
@@ -33,6 +34,11 @@ export default function Projects() {
 
   return (
     <Layout>
+      <SEO
+        title="Proyectos"
+        description="Catálogo de proyectos de arquitectura: residencial, comercial, institucional e industrial. Más de 30 años de experiencia en diseño y ejecución."
+        path="/proyectos"
+      />
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">

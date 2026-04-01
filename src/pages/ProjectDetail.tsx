@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar, Ruler, Users } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { getProjectById, Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
@@ -42,6 +43,11 @@ export default function ProjectDetail() {
 
   return (
     <Layout>
+      <SEO
+        title={project.name}
+        description={`${project.name} — ${project.location}. Proyecto de ${typeLabels[project.type] || project.type} por HAZ Arquitectura.`}
+        path={`/proyectos/${project.id}`}
+      />
       {/* Back link */}
       <div className="container-wide py-6">
         <Link

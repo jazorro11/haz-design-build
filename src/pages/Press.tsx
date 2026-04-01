@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { pressItems } from '@/data/press';
 import { getProjectById } from '@/data/projects';
 import { ArrowUpRight } from 'lucide-react';
@@ -7,6 +8,11 @@ import { ArrowUpRight } from 'lucide-react';
 export default function Press() {
   return (
     <Layout>
+      <SEO
+        title="Prensa"
+        description="Publicaciones y menciones de HAZ Arquitectura en medios especializados de arquitectura y construcción."
+        path="/prensa"
+      />
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">

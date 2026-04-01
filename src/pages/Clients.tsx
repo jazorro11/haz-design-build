@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { getFeaturedClients, getAllClients } from '@/data/clients';
 import { cn } from '@/lib/utils';
@@ -12,6 +13,11 @@ export default function Clients() {
 
   return (
     <Layout>
+      <SEO
+        title="Clientes"
+        description="Empresas y organizaciones que confían en HAZ Arquitectura. Relaciones de largo plazo con equipos locales y globales."
+        path="/clientes"
+      />
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">
