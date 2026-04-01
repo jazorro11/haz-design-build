@@ -34,6 +34,11 @@ const values = [
 export default function About() {
   return (
     <Layout>
+      <SEO
+        title="Sobre HAZ"
+        description="Conozca a HAZ Arquitectura: más de 30 años integrando diseño y ejecución de obra. Nuestra historia, filosofía y equipo."
+        path="/sobre-haz"
+      />
       {/* Header */}
       <section className="section-padding bg-card border-b border-border">
         <div className="container-wide">
