@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ProjectFilters } from '@/components/projects/ProjectFilters';
 import { getProjectsByFilter, ProjectType, ProjectRole, ProjectStatus } from '@/data/projects';
