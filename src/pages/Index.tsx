@@ -5,6 +5,7 @@ import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { OptimizedImage } from '@/components/OptimizedImage';
+import { ScrollReveal } from '@/components/ScrollReveal';
 import { getFeaturedProjects } from '@/data/projects';
 import { getFeaturedClients } from '@/data/clients';
 import { services, processSteps } from '@/data/services';
@@ -86,15 +87,17 @@ export default function Index() {
         <div className="container-wide py-12 md:py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
-                <div className="text-xl md:text-2xl font-semibold text-foreground mb-1">
-                  {stat.value}
+              <ScrollReveal key={index} delay={index * 100}>
+                <div className="text-center">
+                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
+                  <div className="text-xl md:text-2xl font-semibold text-foreground mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-caption text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-caption text-muted-foreground">
-                  {stat.label}
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -137,15 +140,17 @@ export default function Index() {
       {/* Differentiator - Process */}
       <section className="section-padding bg-card">
         <div className="container-wide">
-          <div className="text-center mb-16">
-            <h2 className="text-display-md font-semibold mb-4">
-              Del concepto a la obra
-            </h2>
-            <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-              Nuestro proceso integrado garantiza coherencia entre la visión 
-              arquitectónica y la realidad construida.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-display-md font-semibold mb-4">
+                Del concepto a la obra
+              </h2>
+              <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+                Nuestro proceso integrado garantiza coherencia entre la visión 
+                arquitectónica y la realidad construida.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
             {processSteps.map((step, index) => (
@@ -179,13 +184,15 @@ export default function Index() {
       {/* Services */}
       <section className="section-padding">
         <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-display-md font-semibold mb-4">Servicios</h2>
-            <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-              Ofrecemos servicios completos de arquitectura y construcción, 
-              adaptados a las necesidades de cada proyecto.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-display-md font-semibold mb-4">Servicios</h2>
+              <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+                Ofrecemos servicios completos de arquitectura y construcción, 
+                adaptados a las necesidades de cada proyecto.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.slice(0, 3).map((service) => {
@@ -227,14 +234,16 @@ export default function Index() {
       {/* Clients */}
       <section className="section-padding bg-card">
         <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-display-md font-semibold mb-4">
-              Clientes que confían en nosotros
-            </h2>
-            <p className="text-body-lg text-muted-foreground">
-              Relaciones de largo plazo con equipos locales y globales.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-display-md font-semibold mb-4">
+                Clientes que confían en nosotros
+              </h2>
+              <p className="text-body-lg text-muted-foreground">
+                Relaciones de largo plazo con equipos locales y globales.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
             {featuredClients.slice(0, 12).map((client) => (
@@ -298,23 +307,25 @@ export default function Index() {
 
       {/* Final CTA */}
       <section className="section-padding bg-foreground text-background">
-        <div className="container-narrow text-center">
-          <h2 className="text-display-md font-semibold mb-4">
-            ¿Tiene un proyecto en mente?
-          </h2>
-          <p className="text-body-lg text-background/70 mb-8 max-w-xl mx-auto">
-            Conversemos sobre cómo podemos ayudarle a materializar su visión 
-            arquitectónica con la solidez de más de tres décadas de experiencia.
-          </p>
-          <Button
-            variant="hero-outline"
-            size="xl"
-            className="border-background/40 text-background hover:bg-background hover:text-foreground"
-            asChild
-          >
-            <Link to="/contacto">Cotizar / Hablemos</Link>
-          </Button>
-        </div>
+        <ScrollReveal>
+          <div className="container-narrow text-center">
+            <h2 className="text-display-md font-semibold mb-4">
+              ¿Tiene un proyecto en mente?
+            </h2>
+            <p className="text-body-lg text-background/70 mb-8 max-w-xl mx-auto">
+              Conversemos sobre cómo podemos ayudarle a materializar su visión 
+              arquitectónica con la solidez de más de tres décadas de experiencia.
+            </p>
+            <Button
+              variant="hero-outline"
+              size="xl"
+              className="border-background/40 text-background hover:bg-background hover:text-foreground"
+              asChild
+            >
+              <Link to="/contacto">Cotizar / Hablemos</Link>
+            </Button>
+          </div>
+        </ScrollReveal>
       </section>
     </Layout>
   );
