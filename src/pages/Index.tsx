@@ -311,23 +311,25 @@ export default function Index() {
 
       {/* Final CTA */}
       <section className="section-padding bg-foreground text-background">
-        <div className="container-narrow text-center">
-          <h2 className="text-display-md font-semibold mb-4">
-            ¿Tiene un proyecto en mente?
-          </h2>
-          <p className="text-body-lg text-background/70 mb-8 max-w-xl mx-auto">
-            Conversemos sobre cómo podemos ayudarle a materializar su visión 
-            arquitectónica con la solidez de más de tres décadas de experiencia.
-          </p>
-          <Button
-            variant="hero-outline"
-            size="xl"
-            className="border-background/40 text-background hover:bg-background hover:text-foreground"
-            asChild
-          >
-            <Link to="/contacto">Cotizar / Hablemos</Link>
-          </Button>
-        </div>
+        <ScrollReveal>
+          <div className="container-narrow text-center">
+            <h2 className="text-display-md font-semibold mb-4">
+              ¿Tiene un proyecto en mente?
+            </h2>
+            <p className="text-body-lg text-background/70 mb-8 max-w-xl mx-auto">
+              Conversemos sobre cómo podemos ayudarle a materializar su visión 
+              arquitectónica con la solidez de más de tres décadas de experiencia.
+            </p>
+            <Button
+              variant="hero-outline"
+              size="xl"
+              className="border-background/40 text-background hover:bg-background hover:text-foreground"
+              asChild
+            >
+              <Link to="/contacto">Cotizar / Hablemos</Link>
+            </Button>
+          </div>
+        </ScrollReveal>
       </section>
     </Layout>
   );
