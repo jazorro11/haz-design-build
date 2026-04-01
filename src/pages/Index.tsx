@@ -185,11 +185,15 @@ export default function Index() {
       {/* Services */}
       <section className="section-padding">
         <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-display-md font-semibold mb-4">Servicios</h2>
-            <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-              Ofrecemos servicios completos de arquitectura y construcción, 
-              adaptados a las necesidades de cada proyecto.
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-display-md font-semibold mb-4">Servicios</h2>
+              <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+                Ofrecemos servicios completos de arquitectura y construcción, 
+                adaptados a las necesidades de cada proyecto.
+              </p>
+            </div>
+          </ScrollReveal>
             </p>
           </div>
 
