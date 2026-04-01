@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar, Ruler, Users } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
+import { OptimizedImage } from '@/components/OptimizedImage';
 import { Button } from '@/components/ui/button';
 import { getProjectById, Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
@@ -61,10 +62,11 @@ export default function ProjectDetail() {
 
       {/* Hero */}
       <section className="relative h-[50vh] md:h-[60vh] bg-muted">
-        <img
+        <OptimizedImage
           src={project.coverImage}
           alt={project.name}
           className="image-cover"
+          eager
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 container-wide pb-8 md:pb-12">
@@ -151,7 +153,7 @@ export default function ProjectDetail() {
                         key={index}
                         className="relative aspect-project rounded-lg overflow-hidden bg-muted"
                       >
-                        <img
+                        <OptimizedImage
                           src={image.url}
                           alt={image.caption || `${project.name} - Imagen ${index + 1}`}
                           className="image-cover"

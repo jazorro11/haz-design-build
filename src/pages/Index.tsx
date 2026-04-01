@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
 import { ProjectCard } from '@/components/projects/ProjectCard';
+import { OptimizedImage } from '@/components/OptimizedImage';
 import { getFeaturedProjects } from '@/data/projects';
 import { getFeaturedClients } from '@/data/clients';
 import { services, processSteps } from '@/data/services';
@@ -47,10 +48,11 @@ export default function Index() {
       <section className="relative min-h-[90vh] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img
+          <OptimizedImage
             src={heroImage}
             alt="Arquitectura moderna - HAZ Arquitectura"
             className="image-cover"
+            eager
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
         </div>
