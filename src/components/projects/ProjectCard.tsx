@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
+import { OptimizedImage } from '@/components/OptimizedImage';
 
 interface ProjectCardProps {
   project: Project;
