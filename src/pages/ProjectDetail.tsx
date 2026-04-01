@@ -62,10 +62,11 @@ export default function ProjectDetail() {
 
       {/* Hero */}
       <section className="relative h-[50vh] md:h-[60vh] bg-muted">
-        <img
+        <OptimizedImage
           src={project.coverImage}
           alt={project.name}
           className="image-cover"
+          eager
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 container-wide pb-8 md:pb-12">
