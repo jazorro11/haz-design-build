@@ -237,13 +237,16 @@ export default function Index() {
       {/* Clients */}
       <section className="section-padding bg-card">
         <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-display-md font-semibold mb-4">
-              Clientes que confían en nosotros
-            </h2>
-            <p className="text-body-lg text-muted-foreground">
-              Relaciones de largo plazo con equipos locales y globales.
-            </p>
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-display-md font-semibold mb-4">
+                Clientes que confían en nosotros
+              </h2>
+              <p className="text-body-lg text-muted-foreground">
+                Relaciones de largo plazo con equipos locales y globales.
+              </p>
+            </div>
+          </ScrollReveal>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
