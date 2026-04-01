@@ -140,14 +140,17 @@ export default function Index() {
       {/* Differentiator - Process */}
       <section className="section-padding bg-card">
         <div className="container-wide">
-          <div className="text-center mb-16">
-            <h2 className="text-display-md font-semibold mb-4">
-              Del concepto a la obra
-            </h2>
-            <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-              Nuestro proceso integrado garantiza coherencia entre la visión 
-              arquitectónica y la realidad construida.
-            </p>
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <h2 className="text-display-md font-semibold mb-4">
+                Del concepto a la obra
+              </h2>
+              <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+                Nuestro proceso integrado garantiza coherencia entre la visión 
+                arquitectónica y la realidad construida.
+              </p>
+            </div>
+          </ScrollReveal>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
