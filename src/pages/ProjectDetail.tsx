@@ -153,7 +153,7 @@ export default function ProjectDetail() {
                         key={index}
                         className="relative aspect-project rounded-lg overflow-hidden bg-muted"
                       >
-                        <img
+                        <OptimizedImage
                           src={image.url}
                           alt={image.caption || `${project.name} - Imagen ${index + 1}`}
                           className="image-cover"

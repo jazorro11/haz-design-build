@@ -33,11 +33,10 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
     >
       {/* Image */}
       <div className="relative aspect-project overflow-hidden bg-muted">
-        <img
+        <OptimizedImage
           src={project.coverImage}
           alt={`${project.name} - ${project.status === 'in-progress' ? 'en obra' : 'terminado'}`}
           className="image-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
         />
         
         {/* Tags overlay */}
