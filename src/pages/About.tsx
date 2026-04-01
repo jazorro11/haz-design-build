@@ -147,9 +147,9 @@ export default function About() {
             Agende una reunión para conocer nuestro equipo y metodología de trabajo.
           </p>
           <Button
-            variant="outline"
+            variant="hero-outline"
             size="xl"
-            className="border-background/30 text-background hover:bg-background hover:text-foreground"
+            className="border-background/40 text-background hover:bg-background hover:text-foreground"
             asChild
           >
             <Link to="/contacto">Agendar reunión</Link>
