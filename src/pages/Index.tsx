@@ -303,9 +303,9 @@ export default function Index() {
             arquitectónica con la solidez de más de tres décadas de experiencia.
           </p>
           <Button
-            variant="outline"
+            variant="hero-outline"
             size="xl"
-            className="border-background/30 text-background hover:bg-background hover:text-foreground"
+            className="border-background/40 text-background hover:bg-background hover:text-foreground"
             asChild
           >
             <Link to="/contacto">Cotizar / Hablemos</Link>
