@@ -8,6 +8,11 @@ import { ArrowUpRight } from 'lucide-react';
 export default function Press() {
   return (
     <Layout>
+      <SEO
+        title="Prensa"
+        description="Publicaciones y menciones de HAZ Arquitectura en medios especializados de arquitectura y construcción."
+        path="/prensa"
+      />
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">

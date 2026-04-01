@@ -16,6 +16,11 @@ const iconMap: Record<string, React.ElementType> = {
 export default function Services() {
   return (
     <Layout>
+      <SEO
+        title="Servicios"
+        description="Servicios integrales de arquitectura: diseño arquitectónico, ejecución de obra, gerencia de proyectos, consultoría técnica y remodelaciones."
+        path="/servicios"
+      />
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">

@@ -30,6 +30,11 @@ export default function Contact() {
 
   return (
     <Layout>
+      <SEO
+        title="Contacto"
+        description="Contáctenos para cotizar su proyecto. HAZ Arquitectura: diseño y ejecución de obra con más de 30 años de experiencia."
+        path="/contacto"
+      />
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">

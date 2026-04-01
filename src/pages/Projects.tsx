@@ -34,6 +34,11 @@ export default function Projects() {
 
   return (
     <Layout>
+      <SEO
+        title="Proyectos"
+        description="Catálogo de proyectos de arquitectura: residencial, comercial, institucional e industrial. Más de 30 años de experiencia en diseño y ejecución."
+        path="/proyectos"
+      />
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">

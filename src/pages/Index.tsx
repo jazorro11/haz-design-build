@@ -42,6 +42,7 @@ export default function Index() {
 
   return (
     <Layout>
+      <SEO path="/" />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center">
         {/* Background Image */}

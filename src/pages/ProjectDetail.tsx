@@ -43,6 +43,11 @@ export default function ProjectDetail() {
 
   return (
     <Layout>
+      <SEO
+        title={project.title}
+        description={`${project.title} — ${project.location}. Proyecto de ${typeLabels[project.type] || project.type} por HAZ Arquitectura.`}
+        path={`/proyectos/${project.id}`}
+      />
       {/* Back link */}
       <div className="container-wide py-6">
         <Link
