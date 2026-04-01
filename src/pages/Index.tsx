@@ -244,7 +244,6 @@ export default function Index() {
               </p>
             </div>
           </ScrollReveal>
-          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
             {featuredClients.slice(0, 12).map((client) => (
