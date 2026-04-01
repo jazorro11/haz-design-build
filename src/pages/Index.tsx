@@ -151,7 +151,6 @@ export default function Index() {
               </p>
             </div>
           </ScrollReveal>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
             {processSteps.map((step, index) => (
