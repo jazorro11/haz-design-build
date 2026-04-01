@@ -87,15 +87,17 @@ export default function Index() {
         <div className="container-wide py-12 md:py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
-                <div className="text-xl md:text-2xl font-semibold text-foreground mb-1">
-                  {stat.value}
+              <ScrollReveal key={index} delay={index * 100}>
+                <div className="text-center">
+                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
+                  <div className="text-xl md:text-2xl font-semibold text-foreground mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-caption text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-caption text-muted-foreground">
-                  {stat.label}
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
