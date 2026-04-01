@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar, Ruler, Users } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
+import { OptimizedImage } from '@/components/OptimizedImage';
 import { Button } from '@/components/ui/button';
 import { getProjectById, Project } from '@/data/projects';
 import { cn } from '@/lib/utils';
