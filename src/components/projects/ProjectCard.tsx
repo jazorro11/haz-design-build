@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Project } from '@/data/projects';
+import { Project, ProjectStatus } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import { OptimizedImage } from '@/components/OptimizedImage';
 
@@ -8,10 +8,14 @@ interface ProjectCardProps {
   className?: string;
 }
 
-const statusLabels: Record<string, { label: string; className: string }> = {
-  completed: { label: 'Terminado', className: 'bg-primary/10 text-primary' },
-  'in-progress': { label: 'En obra', className: 'bg-accent/10 text-accent' },
-  published: { label: 'Publicado', className: 'bg-primary/10 text-primary' },
+const overlayChipBase = 'px-2 py-1 text-micro font-medium rounded';
+
+const statusLabels: Record<
+  ProjectStatus,
+  { label: string; className: string }
+> = {
+  completed: { label: 'Terminado', className: 'bg-primary/90 text-primary-foreground' },
+  'in-progress': { label: 'En obra', className: 'bg-accent/90 text-accent-foreground' },
 };
 
 const roleLabels: Record<string, string> = {
@@ -21,6 +25,8 @@ const roleLabels: Record<string, string> = {
 };
 
 export function ProjectCard({ project, className }: ProjectCardProps) {
+  const statusChip = statusLabels[project.status];
+
   return (
     <Link
       to={`/proyectos/${project.id}`}
@@ -41,18 +47,8 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
         
         {/* Tags overlay */}
         <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-          {project.published && (
-            <span className="px-2 py-1 text-micro font-medium rounded bg-background/90 text-foreground">
-              Publicado
-            </span>
-          )}
-          <span
-            className={cn(
-              'px-2 py-1 text-micro font-medium rounded',
-              statusLabels[project.status].className
-            )}
-          >
-            {statusLabels[project.status].label}
+          <span className={cn(overlayChipBase, statusChip.className)}>
+            {statusChip.label}
           </span>
         </div>
       </div>

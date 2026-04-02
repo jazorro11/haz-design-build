@@ -4,10 +4,10 @@ import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Button } from '@/components/ui/button';
-import { getProjectById, Project } from '@/data/projects';
+import { getProjectById, ProjectStatus } from '@/data/projects';
 import { cn } from '@/lib/utils';
 
-const statusLabels: Record<string, string> = {
+const statusLabels: Record<ProjectStatus, string> = {
   completed: 'Terminado',
   'in-progress': 'En obra',
 };
@@ -83,11 +83,6 @@ export default function ProjectDetail() {
             <span className="px-3 py-1 text-caption font-medium rounded-full bg-muted text-foreground">
               {statusLabels[project.status]}
             </span>
-            {project.published && (
-              <span className="px-3 py-1 text-caption font-medium rounded-full bg-accent text-accent-foreground">
-                Publicado
-              </span>
-            )}
           </div>
         </div>
       </section>
