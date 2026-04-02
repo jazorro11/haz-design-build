@@ -4,6 +4,9 @@ import centroCulturalImg from '@/assets/projects/centro-cultural.jpg';
 import bodegaIndustrialImg from '@/assets/projects/bodega-industrial.jpg';
 import hotelBoutiqueImg from '@/assets/projects/hotel-boutique.jpg';
 import techHubImg from '@/assets/projects/tech-hub.jpg';
+import aposentos8Img from '@/assets/projects/aposentos-8.png';
+import arturoCalle7Img from '@/assets/projects/arturo-calle-7.png';
+import celta7Img from '@/assets/projects/celta-7.png';
 
 export type ProjectStatus = 'completed' | 'in-progress' | 'published';
 export type ProjectRole = 'design' | 'execution' | 'design-execution';
@@ -269,6 +272,62 @@ export const projects: Project[] = [
     area: '650 m²',
     description: 'Restaurante frente al mar con diseño que maximiza vistas y ventilación natural.',
     deliverables: ['Diseño interior', 'Construcción'],
+  },
+  {
+    id: 'aposentos',
+    name: 'Aposentos',
+    location: 'Colombia',
+    year: 2024,
+    type: 'residential',
+    role: 'design-execution',
+    status: 'completed',
+    featured: true,
+    published: true,
+    coverImage: aposentos8Img,
+    images: [
+      { url: aposentos8Img, caption: 'Interior principal', stage: 'completed' },
+    ],
+    description:
+      'Proyecto residencial que articula la luz natural, los materiales y la circulación para crear espacios habitables cálidos y funcionales, con un enfoque en el detalle constructivo y la continuidad visual entre ambientes.',
+    deliverables: ['Diseño arquitectónico', 'Interiorismo', 'Dirección de obra'],
+  },
+  {
+    id: 'arturo-calle',
+    name: 'Arturo Calle',
+    location: 'Colombia',
+    year: 2024,
+    type: 'commercial',
+    role: 'design-execution',
+    status: 'completed',
+    featured: true,
+    published: true,
+    coverImage: arturoCalle7Img,
+    images: [
+      { url: arturoCalle7Img, caption: 'Interior comercial — zona de exhibición y accesorios', stage: 'completed' },
+    ],
+    client: 'Arturo Calle',
+    description:
+      'Diseño de espacio comercial para la marca: circuito de exhibición, materiales y luminarias que refuerzan la identidad retail y mejoran la experiencia de compra en zonas de ropa y accesorios.',
+    deliverables: ['Diseño de interior comercial', 'Ejecución', 'Coordinación de mobiliario y vitrinas'],
+  },
+  {
+    id: 'celta',
+    name: 'Celta',
+    location: 'Colombia',
+    year: 2024,
+    type: 'commercial',
+    role: 'design-execution',
+    status: 'completed',
+    featured: true,
+    published: true,
+    coverImage: celta7Img,
+    images: [
+      { url: celta7Img, caption: 'Interior comercial — exhibición y circulación', stage: 'completed' },
+    ],
+    client: 'Celta',
+    description:
+      'Diseño y ejecución de espacio comercial para la marca: layout de exhibición, iluminación y materiales que ordenan la experiencia de compra y refuerzan la identidad del punto de venta.',
+    deliverables: ['Diseño de interior comercial', 'Ejecución', 'Coordinación de mobiliario y señalética'],
   },
 ];
 
