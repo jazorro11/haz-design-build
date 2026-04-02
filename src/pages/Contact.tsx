@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { Layout } from "@/components/layout/Layout";
-import { SEO } from "@/components/SEO";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { submitContactForm } from "@/lib/contactSubmit";
+import { useState } from 'react';
+import { Layout } from '@/components/layout/Layout';
+import { SEO } from '@/components/SEO';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 
 export default function Contact() {
   const { toast } = useToast();
@@ -15,42 +14,17 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-
-    const name = String(fd.get("name") ?? "").trim();
-    const company = String(fd.get("company") ?? "").trim();
-    const email = String(fd.get("email") ?? "").trim();
-    const phone = String(fd.get("phone") ?? "").trim();
-    const projectTypeRaw = String(fd.get("project-type") ?? "").trim();
-    const message = String(fd.get("message") ?? "").trim();
-
-    try {
-      await submitContactForm({
-        name,
-        company: company || undefined,
-        email,
-        phone: phone || undefined,
-        project_type: projectTypeRaw || undefined,
-        message,
-      });
-      toast({
-        title: "Mensaje enviado",
-        description: "Nos pondremos en contacto con usted pronto.",
-      });
-      form.reset();
-    } catch (err) {
-      toast({
-        variant: "destructive",
-        title: "No se pudo enviar",
-        description:
-          err instanceof Error
-            ? err.message
-            : "Intente de nuevo más tarde o use otro canal de contacto.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    toast({
+      title: "Mensaje enviado",
+      description: "Nos pondremos en contacto con usted pronto.",
+    });
+    
+    setIsSubmitting(false);
+    (e.target as HTMLFormElement).reset();
   };
 
   return (
@@ -65,7 +39,7 @@ export default function Contact() {
         <div className="container-wide">
           <h1 className="text-display-md font-semibold mb-4">Contacto</h1>
           <p className="text-body-lg text-muted-foreground max-w-2xl">
-            ¿Tiene un proyecto en mente? Cuéntenos sobre él y le responderemos
+            ¿Tiene un proyecto en mente? Cuéntenos sobre él y le responderemos 
             a la brevedad.
           </p>
         </div>
@@ -76,13 +50,6 @@ export default function Contact() {
         <div className="container-wide">
           <div className="max-w-2xl">
             <h2 className="text-2xl font-semibold mb-6">Envíenos un mensaje</h2>
-            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-              Los datos que envíe con este formulario se usan solo para
-              responder a su consulta y se registran de forma segura en nuestros
-              sistemas. No los compartimos con terceros para fines comerciales.
-              Puede solicitar corrección o eliminación escribiéndonos al correo
-              de contacto del estudio.
-            </p>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -154,7 +121,7 @@ export default function Contact() {
               </div>
 
               <Button type="submit" size="lg" disabled={isSubmitting}>
-                {isSubmitting ? "Enviando..." : "Enviar mensaje"}
+                {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
               </Button>
             </form>
           </div>

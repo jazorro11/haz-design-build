@@ -18,12 +18,10 @@ Servicio **FastAPI** que recibe el formulario del portafolio y añade una fila a
 |----------|-------------|
 | `SPREADSHEET_ID` | ID del documento (obligatorio). |
 | `SHEET_RANGE` | Rango para append, p. ej. `Leads!A:G` (default en código: `Leads!A:G`). |
-| `ALLOWED_ORIGINS` | Orígenes permitidos para CORS, separados por coma (obligatorio para el navegador). En producción use solo el origen real del sitio (p. ej. `https://tudominio.com`), sin comodines. Para desarrollo local puede incluir `http://localhost:8080` además del dominio de producción. |
+| `ALLOWED_ORIGINS` | Orígenes permitidos para CORS, separados por coma (obligatorio para el navegador). Ej.: `https://tudominio.com` |
 | `RECAPTCHA_SECRET_KEY` | Opcional. Si está definida, el `POST /contact` exige `recaptcha_token` válido (reCAPTCHA v3). |
 
 En Cloud Run, asigna la **misma cuenta de servicio** que tiene acceso a la hoja al servicio; no subas el JSON al repositorio. Para desarrollo local puedes usar `gcloud auth application-default login` o `GOOGLE_APPLICATION_CREDENTIALS` apuntando al JSON.
-
-En el repositorio del front, copie [`.env.example`](../.env.example) a `.env` y defina `VITE_CONTACT_API_URL` con la URL base del servicio desplegado (sin `/contact`).
 
 ## Desarrollo local
 
