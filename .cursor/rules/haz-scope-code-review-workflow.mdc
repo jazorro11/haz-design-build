@@ -1,0 +1,64 @@
+---
+description: Subagentes haz-scope-code-review (alcance MVP) y qa-test-engineer (calidad/tests) en features, bugs y cierre de cambios
+alwaysApply: true
+---
+
+# Revisión de alcance y calidad (workflow)
+
+Para que los cambios encajen con el contrato del portafolio y con la calidad verificable (tests, lint, build), **invoca los subagentes** según el flujo siguiente. No sustituyas su criterio con una revisión manual superficial salvo que el cambio entre en la excepción de trivialidad.
+
+## Subagentes (rutas)
+
+| Rol | Archivo |
+|-----|---------|
+| **Revisor de alcance (MVP / brief)** | `.cursor/agents/haz-scope-code-review.md` |
+| **QA / calidad de código nuevo** | `.cursor/agents/qa-test-engineer.md` |
+
+**Brief:** `.cursor/docs/technical-brief-haz-arquitectura-v6.md`
+
+## Revisor de alcance (`haz-scope-code-review`)
+
+### Cuándo invocarlo
+
+| Situación | Acción |
+|-----------|--------|
+| **Nuevo feature** | Antes de implementar: plan contra el brief. **Después de generar o modificar código** para el feature: revisión con el **formato obligatorio** del subagente (Resumen, Alineación, Cambios recomendados, Fuera de este cambio, Verificación). |
+| **Arreglo de bug** | Igual: **tras** el código del fix, revisión con el mismo formato (alcance, regresiones, rutas/datos/SEO si aplica). |
+| **Revisión de código / PR** | Revisar contra el brief usando el formato **obligatorio** del subagente. |
+| **Triage o dudas de alcance** | Clasificar MVP vs post-MVP y señalar conflictos con el brief. |
+
+### Excepción (revisor)
+
+Cambios triviales que no tocan contrato ni superficie pública (p. ej. typo interno, comentario sin impacto) no requieren invocar al revisor. **Si hay duda**, invócalo.
+
+## QA / calidad (`qa-test-engineer`)
+
+### Cuándo invocarlo
+
+| Situación | Acción |
+|-----------|--------|
+| **Código nuevo o modificado para un feature** | **Antes de dar el trabajo por cerrado**, invoca al subagente QA para revisar la calidad del cambio: ejecución de pruebas (`npm run test` / comandos del repo), `lint` y `build` cuando proceda, e **informe estructurado** según el formato del subagente. |
+| **Código nuevo o modificado para un bug** | Igual: invocación obligatoria al cerrar el fix salvo excepción de trivialidad. |
+| **Revisión de calidad explícita** | Si el usuario (o tú) piden validar calidad de un diff recién generado, usa el subagente QA aunque no sea cierre formal de tarea. |
+
+El subagente QA **pregunta confirmación** antes de añadir o cambiar tests o código solo para tests; respeta esa regla al integrarlo en el flujo.
+
+### Excepción (QA)
+
+Cambios triviales sin impacto en comportamiento, tipos ni rutas (p. ej. comentario, formato cosmético sin lógica) pueden omitir la invocación. **Si hay duda**, invoca QA.
+
+## Orden sugerido al implementar feature o bug
+
+1. Plan breve vs brief (puede incluir revisor al inicio si el alcance es ambiguo).
+2. Implementar el código.
+3. **Revisor de alcance** — salvo trivial.
+4. **QA** — salvo trivial.
+5. Entregar al usuario con ambos informes integrados o enlazados cuando ambos aplicaron.
+
+## Formato del revisor
+
+Cuando entregues una revisión formal (feature, bug, PR), usa la estructura que exige `haz-scope-code-review` (Resumen, Alineación con alcance, Cambios recomendados, Fuera de este cambio, Verificación con checklists).
+
+## Formato del QA
+
+Cuando entregues el resultado del QA, respeta las secciones obligatorias del subagente (Resumen ejecutivo, Estado de la suite, Cobertura frente al cambio, Propuestas de tests, Verificación manual, Notas).
