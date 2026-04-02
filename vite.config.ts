@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     {
       name: "inject-site-default-page-title",
-      transformIndexHtml(html) {
+      transformIndexHtml(html: string) {
         return html.replaceAll(
           "__SITE_DEFAULT_PAGE_TITLE__",
           SITE_DEFAULT_PAGE_TITLE,

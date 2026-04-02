@@ -13,18 +13,54 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Mensaje enviado",
-      description: "Nos pondremos en contacto con usted pronto.",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+
+    const fd = new FormData(form);
+    const payload = {
+      name: String(fd.get("name") ?? "").trim(),
+      company: String(fd.get("company") ?? "").trim(),
+      email: String(fd.get("email") ?? "").trim(),
+      phone: String(fd.get("phone") ?? "").trim(),
+      projectType: String(fd.get("project-type") ?? "").trim(),
+      message: String(fd.get("message") ?? "").trim(),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+
+      if (!res.ok || !data.ok) {
+        toast({
+          variant: "destructive",
+          title: "No se pudo enviar",
+          description:
+            data.error ?? "Intente de nuevo más tarde o use los datos de contacto directos.",
+        });
+        return;
+      }
+
+      toast({
+        title: "Mensaje enviado",
+        description: "Nos pondremos en contacto con usted pronto.",
+      });
+      form.reset();
+    } catch {
+      toast({
+        variant: "destructive",
+        title: "No se pudo enviar",
+        description: "Compruebe su conexión e intente de nuevo.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
