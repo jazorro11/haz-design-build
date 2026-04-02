@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+
+# Backend contact API (secretos locales)
+contact-api/.env
 
 # Editor directories and files
 .vscode/*

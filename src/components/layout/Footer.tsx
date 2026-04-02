@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SITE_TAGLINE } from '@/lib/site';
 
 const navigation = {
   main: [
@@ -27,7 +28,7 @@ export function Footer() {
               entregar proyectos sólidos y funcionales.
             </p>
             <p className="text-caption text-background/50">
-              Diseño que se construye.
+              {SITE_TAGLINE}.
             </p>
           </div>
 

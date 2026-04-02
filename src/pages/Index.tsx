@@ -17,9 +17,10 @@ import { SEO } from '@/components/SEO';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { SITE_NAME, SITE_TAGLINE } from '@/lib/site';
 import { getFeaturedProjects } from '@/data/projects';
 import { services, processSteps } from '@/data/services';
-import heroImage from '@/assets/hero-architecture.jpg';
+import heroImage from '@/assets/portada-1.png';
 
 const iconMap: Record<string, React.ElementType> = {
   Compass,
@@ -59,9 +60,9 @@ export default function Index() {
         <div className="container-wide relative z-10 py-20">
           <div className="max-w-2xl">
             <h1 className="text-display-lg md:text-display-xl font-semibold mb-6 animate-fade-in-up">
-              HAZ Arquitectura —
+              {SITE_NAME} -
               <br />
-              <span className="text-primary">Diseño que se construye.</span>
+              <span className="text-primary">{SITE_TAGLINE}.</span>
             </h1>
             <p className="text-body-lg text-muted-foreground mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               Más de 30 años integrando arquitectura y ejecución para entregar 

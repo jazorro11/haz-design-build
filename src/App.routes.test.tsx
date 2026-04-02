@@ -38,4 +38,24 @@ describe("App routes (MVP y post-MVP)", () => {
       screen.getByRole("heading", { name: /HAZ Design System/i }),
     ).toBeInTheDocument();
   });
+
+  it("ruta /proyectos/:id válida muestra el nombre del proyecto en h1", () => {
+    render(<AppTestShell initialPath="/proyectos/aposentos" />);
+    expect(
+      screen.getByRole("heading", { level: 1, name: /^Aposentos$/ }),
+    ).toBeInTheDocument();
+  });
+
+  it("ruta /proyectos/:id inválida muestra estado no encontrado", () => {
+    render(<AppTestShell initialPath="/proyectos/id-inexistente" />);
+    expect(
+      screen.getByRole("heading", {
+        level: 1,
+        name: /Proyecto no encontrado/i,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Volver a proyectos/i }),
+    ).toHaveAttribute("href", "/proyectos");
+  });
 });
