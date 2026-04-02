@@ -7,10 +7,6 @@ const navigation = {
     { name: 'Sobre HAZ', href: '/sobre-haz' },
     { name: 'Contacto', href: '/contacto' },
   ],
-  secondary: [
-    { name: 'Clientes', href: '/clientes' },
-    { name: 'Prensa', href: '/prensa' },
-  ],
 };
 
 export function Footer() {
@@ -54,24 +50,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* More Links */}
+          {/* Contact */}
           <div>
             <h4 className="text-caption font-semibold uppercase tracking-wider mb-4 text-background/50">
-              Más
+              Contacto
             </h4>
-            <ul className="space-y-3">
-              {navigation.secondary.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    to={item.href}
-                    className="text-background/70 hover:text-background transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8">
+            <div>
               <p className="text-caption text-background/50 mb-2">Bogotá, Colombia</p>
               <a
                 href="mailto:contacto@hazarquitectura.com"

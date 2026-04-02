@@ -1,5 +1,16 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Compass,
+  FileStack,
+  HardHat,
+  Users,
+  Wrench,
+  Building2,
+  Globe,
+  Award,
+  Clock,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/components/layout/Layout';
 import { SEO } from '@/components/SEO';
@@ -7,20 +18,7 @@ import { ProjectCard } from '@/components/projects/ProjectCard';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { getFeaturedProjects } from '@/data/projects';
-import { getFeaturedClients } from '@/data/clients';
 import { services, processSteps } from '@/data/services';
-import { pressItems } from '@/data/press';
-import { 
-  Compass, 
-  FileStack, 
-  HardHat, 
-  Users, 
-  Wrench,
-  Building2,
-  Globe,
-  Award,
-  Clock
-} from 'lucide-react';
 import heroImage from '@/assets/hero-architecture.jpg';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -40,7 +38,6 @@ const stats = [
 
 export default function Index() {
   const featuredProjects = getFeaturedProjects();
-  const featuredClients = getFeaturedClients();
 
   return (
     <Layout>
@@ -227,80 +224,6 @@ export default function Index() {
             <Button variant="outline" asChild>
               <Link to="/servicios">Ver todos los servicios</Link>
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Clients */}
-      <section className="section-padding bg-card">
-        <div className="container-wide">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-display-md font-semibold mb-4">
-                Clientes que confían en nosotros
-              </h2>
-              <p className="text-body-lg text-muted-foreground">
-                Relaciones de largo plazo con equipos locales y globales.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
-            {featuredClients.slice(0, 12).map((client) => (
-              <div
-                key={client.id}
-                className="h-16 flex items-center justify-center px-4 rounded bg-background border border-border"
-              >
-                <span className="text-caption font-medium text-muted-foreground text-center">
-                  {client.name}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Link
-              to="/clientes"
-              className="text-primary font-medium hover:underline"
-            >
-              Ver lista completa →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Press */}
-      <section className="section-padding">
-        <div className="container-wide">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-display-md font-semibold mb-3">Prensa</h2>
-              <p className="text-body-lg text-muted-foreground">
-                Nuestros proyectos en publicaciones especializadas.
-              </p>
-            </div>
-            <Link
-              to="/prensa"
-              className="hidden md:inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
-            >
-              Ver todas <ArrowRight size={18} />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {pressItems.slice(0, 3).map((item) => (
-              <div
-                key={item.id}
-                className="p-6 rounded-lg border border-border bg-card hover:shadow-elevated transition-shadow"
-              >
-                <div className="text-micro text-muted-foreground mb-2">
-                  {item.publication} • {item.year}
-                </div>
-                <h3 className="text-lg font-medium line-clamp-2">
-                  {item.title}
-                </h3>
-              </div>
-            ))}
           </div>
         </div>
       </section>
