@@ -14,7 +14,15 @@ const compat = new FlatCompat({
 });
 
 export default tseslint.config(
-  { ignores: [".next/**", "node_modules/**", "dist/**"] },
+  {
+    ignores: [
+      ".next/**",
+      "node_modules/**",
+      "dist/**",
+      // Generado por Next; incluye /// <reference path="./.next/types/routes.d.ts" />
+      "next-env.d.ts",
+    ],
+  },
   ...compat.extends("next/core-web-vitals"),
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
