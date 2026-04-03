@@ -56,7 +56,7 @@ export function Header() {
               width={logoMark.width}
               height={logoMark.height}
               priority
-              className="h-8 w-auto md:h-9 shrink-0 object-contain"
+              className="h-7 w-auto md:h-8 shrink-0 object-contain"
             />
             <span>
               HAZ
