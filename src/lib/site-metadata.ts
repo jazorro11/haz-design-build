@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { SITE_DEFAULT_PAGE_TITLE, SITE_NAME } from "@/lib/site";
 
-export const BASE_URL = "https://hazarquitectura.com";
+export const BASE_URL = "https://www.haz-arquitectura.com";
 
 export const DEFAULT_PAGE_DESCRIPTION =
-  "Más de 30 años integrando arquitectura y ejecución para entregar obras sólidas y funcionales. Diseño + Ejecución bajo un solo techo.";
+  "Más de 30 años integrando arquitectura y ejecución en Colombia para entregar obras sólidas y funcionales. Diseño + Ejecución bajo un solo techo.";
 
 /** Metadatos por ruta (Next Metadata API). */
 export function buildPageMetadata(options: {

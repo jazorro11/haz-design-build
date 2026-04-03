@@ -9,8 +9,8 @@ import {
   Users,
   Wrench,
   Building2,
-  Globe,
-  Award,
+  MapPinPlus,
+  Slice,
   Clock,
 } from 'lucide-react';
 import { OptimizedImage } from '@/components/OptimizedImage';
@@ -33,9 +33,9 @@ const iconMap: Record<string, React.ElementType> = {
 
 const stats = [
   { icon: Clock, value: '+30', label: 'años de experiencia' },
-  { icon: Building2, value: 'Diseño + Ejecución', label: 'servicio integral' },
-  { icon: Globe, value: 'Clientes', label: 'internacionales' },
-  { icon: Award, value: 'Proyectos', label: 'publicados' },
+  { icon: Slice, value: 'Diseño + Ejecución', label: 'servicio integral' },
+  { icon: MapPinPlus, value: '+20 Ciudades', label: 'Proyectos en todo el territorio nacional' },
+  { icon: Building2, value: 'Grandes compañías', label: 'Arturo Calle, Alcaldía de Bogotá, etc.' },
 ];
 
 export default function Index() {
@@ -66,7 +66,7 @@ export default function Index() {
               <span className="text-primary">{SITE_TAGLINE}.</span>
             </h1>
             <p className="text-body-lg text-muted-foreground mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              Más de 30 años integrando arquitectura y ejecución para entregar 
+              Más de 30 años integrando arquitectura y ejecución en Colombia para entregar 
               obras sólidas y funcionales.
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
