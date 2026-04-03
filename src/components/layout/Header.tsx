@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import logoMark from '@/assets/logo.png';
 
 const navigation = [
   { name: 'Proyectos', href: '/proyectos' },
@@ -43,13 +45,23 @@ export function Header() {
     >
       <div className="container-wide">
         <nav className="flex items-center justify-between h-18 md:h-22">
-          {/* Logo */}
+          {/* Marca: pictograma + texto */}
           <Link
             href="/"
-            className="text-xl md:text-2xl font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
+            className="flex items-center gap-2 md:gap-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
           >
-            HAZ
-            <span className="font-light ml-1">Arquitectura</span>
+            <Image
+              src={logoMark}
+              alt=""
+              width={logoMark.width}
+              height={logoMark.height}
+              priority
+              className="h-8 w-auto md:h-9 shrink-0 object-contain"
+            />
+            <span>
+              HAZ
+              <span className="font-light ml-1">Arquitectura</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
