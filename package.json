@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "verify:contact-api": "node scripts/verify-contact-api.mjs"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
