@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { Button } from '@/components/ui/button';
 
 const milestones = [
@@ -32,20 +33,18 @@ const values = [
 export default function About() {
   return (
     <>
-      {/* Header */}
-      <section className="section-padding bg-card border-b border-border">
-        <div className="container-wide">
-          <div className="max-w-3xl">
-            <h1 className="text-display-md font-semibold mb-6">Sobre HAZ</h1>
-            <p className="text-body-lg text-muted-foreground leading-relaxed">
-              HAZ Arquitectura es una firma colombiana con más de 30 años de experiencia 
-              integrando diseño arquitectónico y ejecución de obra. Nuestra propuesta 
-              de valor se centra en la capacidad de llevar proyectos desde el concepto 
-              hasta la entrega, garantizando coherencia, calidad y control.
-            </p>
-          </div>
-        </div>
-      </section>
+      <InteriorPageHero
+        title="Sobre HAZ"
+        textClassName="max-w-3xl"
+        description={
+          <p className="leading-relaxed">
+            HAZ Arquitectura es una firma colombiana con más de 30 años de experiencia
+            integrando diseño arquitectónico y ejecución de obra. Nuestra propuesta de
+            valor se centra en la capacidad de llevar proyectos desde el concepto hasta
+            la entrega, garantizando coherencia, calidad y control.
+          </p>
+        }
+      />
 
       {/* Differentiator */}
       <section className="section-padding">

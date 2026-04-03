@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ProjectFilters } from '@/components/projects/ProjectFilters';
 import { getProjectsByFilter, ProjectType, ProjectRole, ProjectStatus } from '@/data/projects';
@@ -34,16 +35,15 @@ export default function Projects() {
 
   return (
     <>
-      {/* Header */}
-      <section className="section-padding-sm bg-card border-b border-border">
-        <div className="container-wide">
-          <h1 className="text-display-md font-semibold mb-4">Proyectos</h1>
-          <p className="text-body-lg text-muted-foreground max-w-2xl">
+      <InteriorPageHero
+        title="Proyectos"
+        description={
+          <>
             Trabajo arquitectónico desde el concepto hasta la entrega de obra, en
             proyectos residenciales, comerciales, institucionales e industriales.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       {/* Controls */}
       <section className="py-8 border-b border-border">

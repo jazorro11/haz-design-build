@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { Button } from '@/components/ui/button';
 import { services, processSteps } from '@/data/services';
 import { Compass, FileStack, HardHat, Users, Wrench, ArrowRight } from 'lucide-react';
@@ -14,16 +15,15 @@ const iconMap: Record<string, React.ElementType> = {
 export default function Services() {
   return (
     <>
-      {/* Header */}
-      <section className="section-padding-sm bg-card border-b border-border">
-        <div className="container-wide">
-          <h1 className="text-display-md font-semibold mb-4">Servicios</h1>
-          <p className="text-body-lg text-muted-foreground max-w-2xl">
-            Ofrecemos un servicio integral que abarca desde el diseño conceptual 
+      <InteriorPageHero
+        title="Servicios"
+        description={
+          <>
+            Ofrecemos un servicio integral que abarca desde el diseño conceptual
             hasta la entrega de obra terminada.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       {/* Services Grid */}
       <section className="section-padding">

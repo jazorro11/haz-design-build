@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Calendar, Ruler, Users } from 'lucide-react';
+import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Button } from '@/components/ui/button';
 import { getProjectById, ProjectStatus } from '@/data/projects';
@@ -41,7 +42,6 @@ export default function ProjectDetail({ id }: { id: string }) {
 
   return (
     <>
-      {/* Back link */}
       <div className="container-wide py-6">
         <Link
           href="/proyectos"
@@ -52,29 +52,29 @@ export default function ProjectDetail({ id }: { id: string }) {
         </Link>
       </div>
 
-      {/* Hero */}
-      <section className="relative h-[50vh] md:h-[60vh] bg-muted">
-        <OptimizedImage
-          src={project.coverImage}
-          alt={project.name}
-          className="image-cover"
-          eager
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 container-wide pb-8 md:pb-12">
-          <h1 className="text-display-md md:text-display-lg font-semibold text-foreground mb-4">
-            {project.name}
-          </h1>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 text-caption font-medium rounded-full bg-primary text-primary-foreground">
-              {typeLabels[project.type]}
-            </span>
-            <span className="px-3 py-1 text-caption font-medium rounded-full bg-muted text-foreground">
-              {roleLabels[project.role]}
-            </span>
-            <span className="px-3 py-1 text-caption font-medium rounded-full bg-muted text-foreground">
-              {statusLabels[project.status]}
-            </span>
+      <InteriorPageHero title={project.name}>
+        <div className="flex flex-wrap gap-2">
+          <span className="px-3 py-1 text-caption font-medium rounded-full bg-primary text-primary-foreground">
+            {typeLabels[project.type]}
+          </span>
+          <span className="px-3 py-1 text-caption font-medium rounded-full bg-muted text-foreground">
+            {roleLabels[project.role]}
+          </span>
+          <span className="px-3 py-1 text-caption font-medium rounded-full bg-muted text-foreground">
+            {statusLabels[project.status]}
+          </span>
+        </div>
+      </InteriorPageHero>
+
+      <section className="border-b border-border bg-background py-8 md:py-12">
+        <div className="container-wide">
+          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
+            <OptimizedImage
+              src={project.coverImage}
+              alt={project.name}
+              className="image-cover"
+              eager
+            />
           </div>
         </div>
       </section>

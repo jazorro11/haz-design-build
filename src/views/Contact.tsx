@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -65,16 +66,15 @@ export default function Contact() {
 
   return (
     <>
-      {/* Header */}
-      <section className="section-padding-sm bg-card border-b border-border">
-        <div className="container-wide">
-          <h1 className="text-display-md font-semibold mb-4">Contacto</h1>
-          <p className="text-body-lg text-muted-foreground max-w-2xl">
-            ¿Tiene un proyecto en mente? Cuéntenos sobre él y le responderemos 
-            a la brevedad.
-          </p>
-        </div>
-      </section>
+      <InteriorPageHero
+        title="Contacto"
+        description={
+          <>
+            ¿Tiene un proyecto en mente? Cuéntenos sobre él y le responderemos a la
+            brevedad.
+          </>
+        }
+      />
 
       {/* Contact Content */}
       <section className="section-padding">
@@ -129,6 +129,7 @@ export default function Contact() {
                 <select
                   id="project-type"
                   name="project-type"
+                  suppressHydrationWarning
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <option value="">Seleccione una opción</option>
