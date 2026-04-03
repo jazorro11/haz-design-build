@@ -13,13 +13,14 @@ import {
   Award,
   Clock,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { ProjectCard } from '@/components/projects/ProjectCard';
 import { OptimizedImage } from '@/components/OptimizedImage';
+import { ProjectCard } from '@/components/projects/ProjectCard';
+import { ProcessStepsSection } from '@/components/sections/ProcessStepsSection';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { Button } from '@/components/ui/button';
 import { SITE_NAME, SITE_TAGLINE } from '@/lib/site';
 import { getFeaturedProjects } from '@/data/projects';
-import { services, processSteps } from '@/data/services';
+import { services } from '@/data/services';
 import heroImage from '@/assets/portada-1.png';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -135,49 +136,21 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Differentiator - Process */}
-      <section className="section-padding bg-card">
-        <div className="container-wide">
-          <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="text-display-md font-semibold mb-4">
-                Del concepto a la obra
-              </h2>
-              <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-                Nuestro proceso integrado garantiza coherencia entre la visión 
-                arquitectónica y la realidad construida.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
-            {processSteps.map((step, index) => (
-              <div
-                key={step.number}
-                className="relative bg-background rounded-lg p-6 border border-border"
-              >
-                <div className="text-4xl font-light text-primary/30 mb-4">
-                  {step.number}
-                </div>
-                <h3 className="text-lg font-medium mb-2">{step.title}</h3>
-                <p className="text-caption text-muted-foreground mb-3">
-                  {step.description}
-                </p>
-                <span className="text-micro text-primary font-medium">
-                  {step.duration}
-                </span>
-                
-                {/* Arrow connector */}
-                {index < processSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 text-muted-foreground/30">
-                    <ArrowRight size={20} />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProcessStepsSection
+        title="Del concepto a la obra"
+        description={
+          <>
+            Nuestro proceso integrado garantiza coherencia entre la visión
+            arquitectónica y la realidad construida.
+          </>
+        }
+        testIds={{
+          section: 'home-process-section',
+          intro: 'home-process-intro',
+          footnote: 'home-process-footnote',
+        }}
+        animateIntro
+      />
 
       {/* Services */}
       <section className="section-padding">
