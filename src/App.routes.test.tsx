@@ -39,7 +39,7 @@ describe("Rutas MVP (páginas)", () => {
 
   it.each([
     [Index, /HAZ Arquitectura/i],
-    [Projects, /^Proyectos$/],
+    [Projects, /^Proyectos destacados$/],
     [Services, /^Servicios$/],
     [About, /^Sobre HAZ$/],
     [Contact, /^Contacto$/],

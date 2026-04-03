@@ -117,7 +117,7 @@ export default function Index() {
               href="/proyectos"
               className="hidden md:inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
             >
-              Ver todos <ArrowRight size={18} />
+              Ver proyectos <ArrowRight size={18} />
             </Link>
           </div>
 
@@ -129,7 +129,7 @@ export default function Index() {
 
           <div className="mt-8 text-center md:hidden">
             <Button variant="outline" asChild>
-              <Link href="/proyectos">Ver todos los proyectos</Link>
+              <Link href="/proyectos">Ver proyectos</Link>
             </Button>
           </div>
         </div>

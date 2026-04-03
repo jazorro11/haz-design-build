@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/site-metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Proyectos",
   description:
-    "Proyectos de arquitectura e interiorismo: residencial, comercial, institucional e industrial. Trayectoria en diseño y ejecución de obra.",
+    "Selección de obras de arquitectura e interiorismo que reflejan trayectoria en diseño y ejecución de obra.",
   path: "/proyectos",
 });
 

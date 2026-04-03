@@ -1,15 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { AppTestShell } from "@/test/wrapAppShell";
 import Projects from "@/views/Projects";
-import { projects } from "@/data/projects";
+import { getFeaturedProjects } from "@/data/projects";
 
-function projectSummaryLabel(count: number): string {
-  return `${count} proyecto${count !== 1 ? "s" : ""}`;
-}
-
-describe("Projects — filtros", () => {
-  it("filtrar por tipología reduce el listado y Limpiar filtros lo restablece", () => {
+describe("Projects — listado destacados", () => {
+  it("muestra el título Proyectos destacados", () => {
     render(
       <AppTestShell>
         <Projects />
@@ -17,33 +13,39 @@ describe("Projects — filtros", () => {
     );
 
     expect(
-      screen.getByText(projectSummaryLabel(projects.length)),
-    ).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole("button", { name: /^Industrial$/ }));
-
-    expect(screen.getByText(projectSummaryLabel(1))).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole("button", { name: /^Limpiar filtros$/ }));
-
-    expect(
-      screen.getByText(projectSummaryLabel(projects.length)),
+      screen.getByRole("heading", {
+        level: 1,
+        name: /Proyectos destacados/i,
+      }),
     ).toBeInTheDocument();
   });
 
-  it("alternar a Todos los proyectos mantiene el listado visible", () => {
+  it("renderiza una tarjeta por cada proyecto destacado", () => {
+    const { container } = render(
+      <AppTestShell>
+        <Projects />
+      </AppTestShell>,
+    );
+
+    const expected = getFeaturedProjects().length;
+    const projectLinks = container.querySelectorAll(
+      'a[href^="/proyectos/"]',
+    );
+    expect(projectLinks.length).toBe(expected);
+  });
+
+  it("no muestra el conmutador ni filtros del listado anterior", () => {
     render(
       <AppTestShell>
         <Projects />
       </AppTestShell>,
     );
 
-    fireEvent.click(
-      screen.getByRole("button", { name: /Todos los proyectos/i }),
-    );
-
     expect(
-      screen.getByText(projectSummaryLabel(projects.length)),
-    ).toBeInTheDocument();
+      screen.queryByRole("button", { name: /Todos los proyectos/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /Selección destacada/i }),
+    ).not.toBeInTheDocument();
   });
 });
