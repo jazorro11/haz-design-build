@@ -1,3 +1,4 @@
+import type { StaticImageData } from 'next/image';
 import aposentos8Img from '@/assets/projects/aposentos-8.png';
 import arturoCalle7Img from '@/assets/projects/arturo-calle-7.png';
 import celta7Img from '@/assets/projects/celta-7.png';
@@ -11,6 +12,9 @@ export type ProjectStatus = 'completed' | 'in-progress';
 export type ProjectRole = 'design' | 'execution' | 'design-execution';
 export type ProjectType = 'residential' | 'commercial' | 'institutional' | 'industrial';
 
+/** Ruta o import estático (Next.js / bundler). */
+export type ProjectImageSrc = string | StaticImageData;
+
 export interface Project {
   id: string;
   name: string;
@@ -20,9 +24,9 @@ export interface Project {
   role: ProjectRole;
   status: ProjectStatus;
   featured: boolean;
-  coverImage: string;
+  coverImage: ProjectImageSrc;
   images: {
-    url: string;
+    url: ProjectImageSrc;
     caption?: string;
     stage: 'completed' | 'in-progress';
   }[];

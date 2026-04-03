@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background & Surfaces */
+    --background: 45 20% 98%;
+    --foreground: 0 0% 11%;
+    
+    --card: 45 15% 96%;
+    --card-foreground: 0 0% 11%;
+    
+    --popover: 45 20% 98%;
+    --popover-foreground: 0 0% 11%;
+
+    /* Brand Colors */
+    --primary: 195 45% 25%;
+    --primary-foreground: 45 20% 98%;
+
+    --secondary: 35 20% 92%;
+    --secondary-foreground: 0 0% 11%;
+
+    --muted: 40 15% 94%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 20 25% 45%;
+    --accent-foreground: 45 20% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 195 45% 25%;
+
+    --radius: 0.375rem;
+
+    /* Custom tokens */
+    --stone: 40 10% 75%;
+    --stone-light: 40 10% 95%;
+    --charcoal: 0 0% 15%;
+    --petrol: 195 45% 25%;
+    --petrol-light: 195 35% 40%;
+    --terracotta: 20 35% 45%;
+    --cream: 45 30% 96%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.03);
+    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.06);
+    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.08);
+    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.04);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 45 10% 92%;
+    
+    --card: 0 0% 10%;
+    --card-foreground: 45 10% 92%;
+    
+    --popover: 0 0% 8%;
+    --popover-foreground: 45 10% 92%;
+
+    --primary: 195 40% 55%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 45 10% 92%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 20 30% 55%;
+    --accent-foreground: 0 0% 8%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 195 40% 55%;
+
+    --stone: 0 0% 30%;
+    --stone-light: 0 0% 12%;
+    --charcoal: 0 0% 90%;
+    --petrol: 195 40% 55%;
+    --petrol-light: 195 35% 65%;
+    --terracotta: 20 35% 55%;
+    --cream: 0 0% 10%;
+
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.2);
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-foreground;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl leading-tight;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+
+  h4 {
+    @apply text-lg md:text-xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-padding-after-hero {
+    @apply pt-10 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32;
+  }
+
+  .section-padding-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .image-cover {
+    @apply object-cover w-full h-full;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

@@ -9,9 +9,9 @@ alwaysApply: true
 
 ## Stack y carpetas
 
-- **Stack:** Vite, React 18, TypeScript (strict), React Router v6, Tailwind; Radix/shadcn donde ya exista. Metadatos: `react-helmet-async` + `index.html`.
-- **Datos:** `src/data/*.ts` (sin backend/CMS en MVP). **Proyectos:** modelo en `src/data/projects.ts`; imágenes vía **imports Vite** desde `src/assets/projects/` (u otra convención explícita en el repo).
-- **Rutas:** `src/App.tsx`. **Vistas:** `src/pages/`. **Layout/nav:** `src/components/layout/`. **SEO:** `src/components/SEO.tsx`. **Utilidades:** `src/lib/`.
+- **Stack:** Next.js 15 (App Router), React 19, TypeScript, Tailwind; Radix/shadcn donde ya exista. Metadatos: `metadata` / `generateMetadata` en `app/` + `src/lib/site-metadata.ts` y `app/layout.tsx`.
+- **Datos:** `src/data/*.ts` (sin CMS en MVP). **Proyectos:** modelo en `src/data/projects.ts`; imágenes vía **imports estáticos** desde `src/assets/projects/` (u otra convención explícita en el repo).
+- **Rutas:** `app/**/page.tsx`. **Vistas de UI:** `src/views/`. **Layout/nav:** `src/components/layout/` (envueltos por `app/(site)/layout.tsx`). **Utilidades:** `src/lib/`. **No** usar `src/pages/` para vistas (reservado al Pages Router de Next).
 
 ## Rutas del producto MVP
 
@@ -21,14 +21,14 @@ Incluidas: `/`, `/proyectos`, `/proyectos/:id` (**parámetro `id`**, no slug; `g
 
 ## Contenido, build y UX
 
-- Texto orientado al visitante en **español** (incluida `NotFound.tsx`).
-- **Contacto:** datos reales coherentes (página + pie); formulario sin envío real salvo criterio explícito en PR (mailto / canales directos / post-MVP — ver brief).
-- **Build:** `npm run build` y chequeo TS sin errores. Imágenes con `alt`; evitar CLS grave donde aplique. Responsive y un `h1` por página según patrón actual.
+- Texto orientado al visitante en **español** (incluida `src/views/NotFound.tsx`).
+- **Contacto:** datos reales coherentes (página + pie); formulario **POST** a `/api/contact` cuando el entorno tenga credenciales (ver brief); fallback de mensajes en UI si la API falla.
+- **Build:** `npm run build` (Next) y chequeo TS sin errores. Imágenes con `alt`; evitar CLS grave donde aplique. Responsive y un `h1` por página según patrón actual.
 
 ## Post-MVP / fuera de alcance (recordatorio)
 
-Backend, CMS, auth, Clientes/Prensa en UX pública, pre-render/SSG, i18n, analytics — solo si se acuerda explícitamente (brief §4).
+Backend dedicado, CMS, auth, Clientes/Prensa en UX pública, i18n, analytics — solo si se acuerda explícitamente (brief sección 4). Next ya permite SSG/SSR por ruta; ampliar estrategias solo si el brief o el PR lo definen.
 
 ## Agentes al implementar
 
-Para **features y bugs**, el flujo de **revisor de alcance** y **QA** sobre código nuevo está definido en `.cursor/rules/haz-scope-code-review-workflow.mdc` (subagentes en `.cursor/agents/`).
+Para **features y bugs**, el flujo de **revisor de alcance**, **diseño web / UX** (`haz-web-design-expert` cuando toque UI o experiencia) y **QA** sobre código nuevo está definido en `.cursor/rules/haz-scope-code-review-workflow.mdc` (subagentes en `.cursor/agents/`).

@@ -1,0 +1,229 @@
+'use client';
+
+import Link from 'next/link';
+import {
+  ArrowRight,
+  Compass,
+  FileStack,
+  HardHat,
+  Users,
+  Wrench,
+  Building2,
+  Globe,
+  Award,
+  Clock,
+} from 'lucide-react';
+import { OptimizedImage } from '@/components/OptimizedImage';
+import { ProjectCard } from '@/components/projects/ProjectCard';
+import { ProcessStepsSection } from '@/components/sections/ProcessStepsSection';
+import { ScrollReveal } from '@/components/ScrollReveal';
+import { Button } from '@/components/ui/button';
+import { SITE_NAME, SITE_TAGLINE } from '@/lib/site';
+import { getFeaturedProjects } from '@/data/projects';
+import { services } from '@/data/services';
+import heroImage from '@/assets/portada-1.png';
+
+const iconMap: Record<string, React.ElementType> = {
+  Compass,
+  FileStack,
+  HardHat,
+  Users,
+  Wrench,
+};
+
+const stats = [
+  { icon: Clock, value: '+30', label: 'años de experiencia' },
+  { icon: Building2, value: 'Diseño + Ejecución', label: 'servicio integral' },
+  { icon: Globe, value: 'Clientes', label: 'internacionales' },
+  { icon: Award, value: 'Proyectos', label: 'publicados' },
+];
+
+export default function Index() {
+  const featuredProjects = getFeaturedProjects();
+
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="relative min-h-[clamp(22rem,62dvh,40rem)] flex items-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <OptimizedImage
+            src={heroImage}
+            alt="Arquitectura moderna - HAZ Arquitectura"
+            sizes="100vw"
+            className="image-cover"
+            eager
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+        </div>
+
+        {/* Content */}
+        <div className="container-wide relative z-10 py-20">
+          <div className="max-w-2xl">
+            <h1 className="text-display-lg md:text-display-xl font-semibold mb-6 animate-fade-in-up">
+              {SITE_NAME} -
+              <br />
+              <span className="text-primary">{SITE_TAGLINE}.</span>
+            </h1>
+            <p className="text-body-lg text-muted-foreground mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              Más de 30 años integrando arquitectura y ejecución para entregar 
+              obras sólidas y funcionales.
+            </p>
+            <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <Button variant="hero" asChild>
+                <Link href="/proyectos">Ver proyectos</Link>
+              </Button>
+              <Button variant="hero-outline" asChild>
+                <Link href="/contacto">Hablemos</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="bg-card border-y border-border">
+        <div className="container-wide py-12 md:py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {stats.map((stat, index) => (
+              <ScrollReveal key={index} delay={index * 100}>
+                <div className="text-center">
+                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
+                  <div className="text-xl md:text-2xl font-semibold text-foreground mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-caption text-muted-foreground">
+                    {stat.label}
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="section-padding">
+        <div className="container-wide">
+          <div className="flex items-end justify-between mb-12">
+            <div>
+              <h2 className="text-display-md font-semibold mb-3">
+                Proyectos destacados
+              </h2>
+              <p className="text-body-lg text-muted-foreground">
+                Selección de obras que reflejan nuestra capacidad integral.
+              </p>
+            </div>
+            <Link
+              href="/proyectos"
+              className="hidden md:inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
+            >
+              Ver proyectos <ArrowRight size={18} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+
+          <div className="mt-8 text-center md:hidden">
+            <Button variant="outline" asChild>
+              <Link href="/proyectos">Ver proyectos</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <ProcessStepsSection
+        title="Del concepto a la obra"
+        description={
+          <>
+            Nuestro proceso integrado garantiza coherencia entre la visión
+            arquitectónica y la realidad construida.
+          </>
+        }
+        testIds={{
+          section: 'home-process-section',
+          intro: 'home-process-intro',
+          footnote: 'home-process-footnote',
+        }}
+        animateIntro
+      />
+
+      {/* Services */}
+      <section className="section-padding">
+        <div className="container-wide">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <h2 className="text-display-md font-semibold mb-4">Servicios</h2>
+              <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+                Ofrecemos servicios completos de arquitectura y construcción, 
+                adaptados a las necesidades de cada proyecto.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.slice(0, 3).map((service) => {
+              const Icon = iconMap[service.icon];
+              return (
+                <div
+                  key={service.id}
+                  className="p-6 rounded-lg border border-border bg-card hover:shadow-elevated transition-shadow"
+                >
+                  <Icon className="w-10 h-10 text-primary mb-4" />
+                  <h3 className="text-xl font-medium mb-3">{service.title}</h3>
+                  <p className="text-muted-foreground mb-4">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, index) => (
+                      <li
+                        key={index}
+                        className="text-caption text-muted-foreground flex items-center gap-2"
+                      >
+                        <span className="w-1 h-1 rounded-full bg-primary" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-8">
+            <Button variant="outline" asChild>
+              <Link href="/servicios">Ver todos los servicios</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="section-padding bg-foreground text-background">
+        <ScrollReveal>
+          <div className="container-narrow text-center">
+            <h2 className="text-display-md font-semibold mb-4">
+              ¿Tiene un proyecto en mente?
+            </h2>
+            <p className="text-body-lg text-background/70 mb-8 max-w-xl mx-auto">
+              Conversemos sobre cómo podemos ayudarle a materializar su visión 
+              arquitectónica con la solidez de más de tres décadas de experiencia.
+            </p>
+            <Button
+              variant="hero-outline"
+              size="xl"
+              className="border-background/40 text-background hover:bg-background hover:text-foreground"
+              asChild
+            >
+              <Link href="/contacto">Cotizar / Hablemos</Link>
+            </Button>
+          </div>
+        </ScrollReveal>
+      </section>
+    </>
+  );
+}

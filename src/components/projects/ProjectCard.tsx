@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Project, ProjectStatus } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import { OptimizedImage } from '@/components/OptimizedImage';
@@ -29,7 +29,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
 
   return (
     <Link
-      to={`/proyectos/${project.id}`}
+      href={`/proyectos/${project.id}`}
       className={cn(
         'group block overflow-hidden rounded-lg bg-card transition-all duration-300',
         'hover:shadow-elevated hover:-translate-y-1',
@@ -42,6 +42,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
         <OptimizedImage
           src={project.coverImage}
           alt={`${project.name} - ${project.status === 'in-progress' ? 'en obra' : 'terminado'}`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="image-cover transition-transform duration-500 group-hover:scale-105"
         />
         

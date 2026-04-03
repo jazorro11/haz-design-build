@@ -1,17 +1,18 @@
 ---
-description: Subagentes haz-scope-code-review (alcance MVP) y qa-test-engineer (calidad/tests) en features, bugs y cierre de cambios
+description: Subagentes haz-scope-code-review (alcance MVP), haz-web-design-expert (UI/UX y experiencia) y qa-test-engineer (calidad/tests) en features, bugs y cierre de cambios
 alwaysApply: true
 ---
 
-# Revisión de alcance y calidad (workflow)
+# Revisión de alcance, diseño y calidad (workflow)
 
-Para que los cambios encajen con el contrato del portafolio y con la calidad verificable (tests, lint, build), **invoca los subagentes** según el flujo siguiente. No sustituyas su criterio con una revisión manual superficial salvo que el cambio entre en la excepción de trivialidad.
+Para que los cambios encajen con el contrato del portafolio, con **interfaz y experiencia de usuario** coherentes, y con la calidad verificable (tests, lint, build), **invoca los subagentes** según el flujo siguiente **en serie** (cada paso aplicable **después** de cerrar el anterior; no en paralelo). No sustituyas su criterio con una revisión manual superficial salvo que el cambio entre en la excepción de trivialidad.
 
 ## Subagentes (rutas)
 
 | Rol | Archivo |
 |-----|---------|
 | **Revisor de alcance (MVP / brief)** | `.cursor/agents/haz-scope-code-review.md` |
+| **Diseño web / UI y UX (experiencia)** | `.cursor/agents/haz-web-design-expert.md` |
 | **QA / calidad de código nuevo** | `.cursor/agents/qa-test-engineer.md` |
 
 **Brief:** `.cursor/docs/technical-brief-haz-arquitectura-v6.md`
@@ -30,6 +31,23 @@ Para que los cambios encajen con el contrato del portafolio y con la calidad ver
 ### Excepción (revisor)
 
 Cambios triviales que no tocan contrato ni superficie pública (p. ej. typo interno, comentario sin impacto) no requieren invocar al revisor. **Si hay duda**, invócalo.
+
+## Diseño web / UI y experiencia (`haz-web-design-expert`)
+
+Este subagente cubre **interfaz visual y experiencia de uso**: jerarquía, tipografía, espaciado, color, responsive, coherencia con Tailwind/Radix/shadcn, accesibilidad perceptual, CLS, y además **UX** — claridad del flujo, microcopy en pantalla, estados de carga / vacío / error, feedback tras acciones (p. ej. formulario), predictibilidad de la navegación percibida y sensación de rendimiento donde el diseño lo afecta. Debe **coordinarse** con `haz-scope-code-review` cuando el diseño toque rutas MVP, nav, copy en español o restricciones del brief (el agente lo deja explícito en su salida).
+
+### Cuándo invocarlo
+
+| Situación | Acción |
+|-----------|--------|
+| **Nuevo feature con pantalla o interacción** | Tras el código: revisión con el **formato obligatorio** del subagente (Resumen, Fortalezas, Problemas por prioridad, coherencia con el sistema, cruce con alcance, verificación sugerida). |
+| **Cambios en `src/views/`, layout, header/footer, formularios o componentes de página** | Igual: invocación **proactiva** salvo trivialidad. |
+| **Bug que afecta usabilidad, lectura, responsive, foco/contraste o mensajes al usuario** | Tras el fix: revisión de diseño/UX si la superficie visible cambió o el fallo era perceptual. |
+| **Revisión de PR con diff sustancial en UI** | Usar el subagente para evaluar diseño **y** experiencia; enlazar o integrar con la salida del revisor de alcance. |
+
+### Excepción (diseño / UX)
+
+Cambios que **no** alteran lo que ve o percibe el visitante (p. ej. refactor interno sin cambio de clases ni estructura visual, tipos solo TS) pueden omitir el diseño experto. **Si hay duda** (p. ej. tocaste un `tsx` de vista aunque “fuera poco”), invócalo.
 
 ## QA / calidad (`qa-test-engineer`)
 
@@ -51,13 +69,23 @@ Cambios triviales sin impacto en comportamiento, tipos ni rutas (p. ej. comentar
 
 1. Plan breve vs brief (puede incluir revisor al inicio si el alcance es ambiguo).
 2. Implementar el código.
-3. **Revisor de alcance** — salvo trivial.
-4. **QA** — salvo trivial.
-5. Entregar al usuario con ambos informes integrados o enlazados cuando ambos aplicaron.
+3. **Diseño web experto** (`haz-web-design-expert`) — cuando el cambio toque **UI, layout, interacción o experiencia** (vistas, nav visual, formularios, estados vacío/carga/error, microcopy de pantalla); salvo trivial. **No invoques el paso 4 hasta haber cerrado este paso** (o haberlo omitido por excepción).
+4. **Revisor de alcance** (`haz-scope-code-review`) — salvo trivial. **No invoques el paso 5 hasta haber cerrado este paso** (o haberlo omitido por excepción). Puede apoyarse en la salida del paso 3 cuando ambos aplicaron.
+5. **QA** (`qa-test-engineer`) — salvo trivial. **Siempre después** de los pasos 3 y 4 que correspondan (nunca antes del revisor de alcance cuando ese paso aplica).
+
+**Serialización:** los pasos 3 → 4 → 5 son **obligatoriamente en serie** para los subagentes: un solo subagente activo en esta cadena a la vez, en ese orden. Si un paso no aplica (trivialidad), **salta** al siguiente manteniendo el orden.
+
+6. **README:** con **diseño (paso 3)** y **QA (paso 5)** cerrados favorablemente (u omitidos por trivialidad documentada), el **revisor de alcance** (`haz-scope-code-review`) debe **actualizar o verificar `README.md`** según las instrucciones del agente (coherencia con `.env.example`, scripts, rutas, flujos). Si la invocación del revisor fue **antes** de QA, **reinvócalo** tras el informe QA favorable para ese cierre, o aplica tú mismo ese paso siguiendo el mismo criterio del agente.
+
+7. Entregar al usuario con los informes que apliquen **integrados o enlazados** (diseño + alcance + QA + README si hubo edición).
 
 ## Formato del revisor
 
-Cuando entregues una revisión formal (feature, bug, PR), usa la estructura que exige `haz-scope-code-review` (Resumen, Alineación con alcance, Cambios recomendados, Fuera de este cambio, Verificación con checklists).
+Cuando entregues una revisión formal (feature, bug, PR), usa la estructura que exige `haz-scope-code-review` (Resumen, Alineación con alcance, Cambios recomendados, Fuera de este cambio, **README**, Verificación con checklists).
+
+## Formato del diseño / UX
+
+Cuando entregues una revisión formal de interfaz o experiencia, usa la estructura que exige `haz-web-design-expert` (Resumen, Fortalezas, **Experiencia (UX)**, Problemas por prioridad, coherencia con el sistema, **Para cruzar con haz-scope-code-review**, verificación rápida).
 
 ## Formato del QA
 

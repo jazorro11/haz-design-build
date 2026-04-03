@@ -1,30 +1,18 @@
 import type { ReactNode } from "react";
-import { HelmetProvider } from "react-helmet-async";
-import { MemoryRouter } from "react-router-dom";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as SonnerToaster } from "@/components/ui/sonner";
-import { AppRoutes } from "@/App";
+import { Layout } from "@/components/layout/Layout";
 
 /**
- * Misma envoltura lógica que `App`, con `MemoryRouter` para fijar la URL inicial en tests.
+ * Proveedores + layout del sitio para pruebas de páginas (equivalente a la envoltura visible en Next).
  */
-export function AppTestShell({
-  initialPath,
-  children,
-}: {
-  initialPath: string;
-  children?: ReactNode;
-}) {
+export function AppTestShell({ children }: { children: ReactNode }) {
   return (
-    <HelmetProvider>
-      <TooltipProvider>
-        <Toaster />
-        <SonnerToaster />
-        <MemoryRouter initialEntries={[initialPath]}>
-          {children ?? <AppRoutes />}
-        </MemoryRouter>
-      </TooltipProvider>
-    </HelmetProvider>
+    <TooltipProvider>
+      <Toaster />
+      <SonnerToaster />
+      <Layout>{children}</Layout>
+    </TooltipProvider>
   );
 }

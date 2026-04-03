@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { SITE_TAGLINE } from '@/lib/site';
 
 const navigation = {
@@ -16,10 +16,10 @@ export function Footer() {
   return (
     <footer className="bg-foreground text-background">
       <div className="container-wide section-padding-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="inline-block text-2xl font-semibold tracking-tight mb-4">
+            <Link href="/" className="inline-block text-2xl font-semibold tracking-tight mb-4">
               HAZ
               <span className="font-light ml-1">Arquitectura</span>
             </Link>
@@ -41,7 +41,7 @@ export function Footer() {
               {navigation.main.map((item) => (
                 <li key={item.name}>
                   <Link
-                    to={item.href}
+                    href={item.href}
                     className="text-background/70 hover:text-background transition-colors"
                   >
                     {item.name}
@@ -49,22 +49,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-caption font-semibold uppercase tracking-wider mb-4 text-background/50">
-              Contacto
-            </h4>
-            <div>
-              <p className="text-caption text-background/50 mb-2">Bogotá, Colombia</p>
-              <a
-                href="mailto:contacto@hazarquitectura.com"
-                className="text-background/70 hover:text-background transition-colors"
-              >
-                contacto@hazarquitectura.com
-              </a>
-            </div>
           </div>
         </div>
 

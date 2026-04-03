@@ -22,9 +22,9 @@ Hugo, arquitecto, necesita una página web para **mostrar su obra**, **explicar 
 
 ### Cómo está el sistema hoy
 
-El repositorio es una **SPA** generada inicialmente con Lovable, basada en **Vite + React 18 + TypeScript**, con **React Router**, **Tailwind CSS** y un conjunto amplio de componentes tipo **shadcn/ui** (primitivas Radix). Los datos de negocio viven en **`src/data/`** como módulos TypeScript; las imágenes de proyectos se referencian principalmente con **importaciones de Vite** desde **`src/assets/projects/`** (no solo desde `public/`).
+El repositorio es una aplicación **Next.js (App Router) + React 19 + TypeScript**, con **Tailwind CSS** y componentes tipo **shadcn/ui** (primitivas Radix). Los datos de negocio viven en **`src/data/`** como módulos TypeScript; las imágenes de proyectos se referencian con **importaciones estáticas** (Next/bundler) desde **`src/assets/projects/`** (no solo desde `public/`).
 
-La aplicación ya define **más rutas y enlaces** de los necesarios para este MVP: existen páginas y enlaces a **Clientes** y **Prensa**, que **no forman parte** del alcance actual. Además, la página de inicio ([`src/pages/Index.tsx`](src/pages/Index.tsx)) incluye **secciones completas** de clientes y prensa con enlaces a `/clientes` y `/prensa`; eso contradice el alcance si solo se actualizan cabecera y pie. La cabecera ([`src/components/layout/Header.tsx`](src/components/layout/Header.tsx)) y el pie ([`src/components/layout/Footer.tsx`](src/components/layout/Footer.tsx)) deben alinearse al menú reducido, y la **home debe dejar de mostrar ni enlazar** esas secciones.
+La aplicación ya define **más rutas y enlaces** de los necesarios para este MVP: existen páginas y enlaces a **Clientes** y **Prensa**, que **no forman parte** del alcance actual. Además, la página de inicio ([`src/views/Index.tsx`](src/views/Index.tsx)) incluyó en el pasado **secciones completas** de clientes y prensa con enlaces a `/clientes` y `/prensa`; eso contradice el alcance si solo se actualizan cabecera y pie. La cabecera ([`src/components/layout/Header.tsx`](src/components/layout/Header.tsx)) y el pie ([`src/components/layout/Footer.tsx`](src/components/layout/Footer.tsx)) deben alinearse al menú reducido, y la **home debe dejar de mostrar ni enlazar** esas secciones.
 
 ### Problema a resolver
 
@@ -36,18 +36,18 @@ Sustituir el contenido demo por el **material entregado por Hugo** en todas las 
 
 ### Estado actual del código (referencia rápida)
 
-- **Rutas registradas** en [`src/App.tsx`](src/App.tsx): `/`, `/proyectos`, `/proyectos/:id`, `/servicios`, `/sobre-haz`, `/clientes`, `/prensa`, `/contacto`, `/_internal/design-system`, comodín `*` → 404.
+- **Rutas registradas** en [`app/`](app/) (App Router): `/`, `/proyectos`, `/proyectos/[id]`, `/servicios`, `/sobre-haz`, `/contacto`, `/_internal/design-system`; rutas no definidas → **`not-found`** (404). Las URLs `/clientes` y `/prensa` **no** están registradas.
 - **Detalle de proyecto:** parámetro de ruta **`id`** (no `slug`), resolución con `getProjectById` en [`src/data/projects.ts`](src/data/projects.ts).
-- **Metadatos por página:** [`src/components/SEO.tsx`](src/components/SEO.tsx) con **`react-helmet-async`**; el proveedor está en [`src/main.tsx`](src/main.tsx). Metadatos base también en [`index.html`](index.html).
-- **Contacto:** [`src/pages/Contact.tsx`](src/pages/Contact.tsx) incluye formulario con **envío simulado** (toast); no hay backend.
-- **Deploy:** no existe aún **`vercel.json`** en el repositorio (headers de seguridad y rewrites para SPA son recomendables antes de producción).
-- **`public/`:** existe [`public/robots.txt`](public/robots.txt); **no** hay `sitemap.xml` en el momento de redactar este brief.
+- **Metadatos por página:** API **`metadata` / `generateMetadata`** de Next en [`app/`](app/) y helper [`src/lib/site-metadata.ts`](src/lib/site-metadata.ts); layout raíz en [`app/layout.tsx`](app/layout.tsx).
+- **Contacto:** [`src/views/Contact.tsx`](src/views/Contact.tsx) con formulario que **POST** a **`/api/contact`** ([`app/api/contact/route.ts`](app/api/contact/route.ts)); requiere variables de entorno del servidor (Google Sheets) en despliegue.
+- **Deploy:** existe [`vercel.json`](vercel.json) con **headers** de seguridad (sin rewrite SPA; Next resuelve rutas por archivo).
+- **`public/`:** [`public/robots.txt`](public/robots.txt) con `Sitemap:` y `Disallow: /_internal/`. Sitemap generado por Next: [`app/sitemap.ts`](app/sitemap.ts) → `/sitemap.xml` (rutas MVP + fichas de proyecto).
 
 ### Alcance de páginas del MVP
 
 | Incluido en MVP | Ruta | Notas |
 |-----------------|------|--------|
-| Inicio | `/` | Hero, destacados de proyectos, servicios y proceso; **sin** secciones ni enlaces a Clientes o Prensa (hoy presentes en [`src/pages/Index.tsx`](src/pages/Index.tsx); deben eliminarse o sustituirse por contenido acotado al MVP) |
+| Inicio | `/` | Hero, destacados de proyectos, servicios y proceso; **sin** secciones ni enlaces a Clientes o Prensa (contenido en [`src/views/Index.tsx`](src/views/Index.tsx)) |
 | Proyectos | `/proyectos` | Listado; sin requisito de filtros avanzados salvo lo que ya implemente el código |
 | Detalle de proyecto | `/proyectos/:id` | `id` coincide con el campo `id` de cada proyecto en datos |
 | Servicios | `/servicios` | Contenido desde [`src/data/services.ts`](src/data/services.ts) (incluye `processSteps` si la página los usa) |
@@ -59,9 +59,9 @@ Sustituir el contenido demo por el **material entregado por Hugo** en todas las 
 | Clientes | `/clientes` |
 | Prensa | `/prensa` |
 
-**Política recomendada para `/clientes` y `/prensa`:** además de quitar enlaces, **eliminar las rutas del router** en [`App.tsx`](src/App.tsx) y responder con **404** si alguien accede por URL antigua (o redirigir a `/` con criterio único documentado). Así el `sitemap.xml` y la realidad del sitio coinciden: esas URLs **no** son parte del producto MVP.
+**Política recomendada para `/clientes` y `/prensa`:** además de quitar enlaces, **no registrar** esas rutas en `app/` y responder con **404** (`not-found`) si alguien accede por URL antigua (o redirigir a `/` con criterio único documentado). Así el `sitemap.xml` y la realidad del sitio coinciden: esas URLs **no** son parte del producto MVP.
 
-La ruta `/_internal/design-system` puede permanecer para desarrollo; **no** debe aparecer en menú público, pie ni sitemap del MVP.
+La ruta pública acordada `/_internal/design-system` se sirve vía **rewrite** en [`middleware.ts`](middleware.ts) hacia el segmento interno `/internal/design-system` (las carpetas con prefijo `_` en `app/` son privadas en Next). **No** debe aparecer en menú público, pie ni sitemap del MVP.
 
 ### Gestión del contenido entregado por Hugo
 
@@ -70,7 +70,7 @@ La ruta `/_internal/design-system` puede permanecer para desarrollo; **no** debe
 | Textos de inicio, sobre, servicios | Páginas y/o `src/data/*.ts` según donde esté hoy cada bloque | Desarrollador |
 | Proyectos (título, descripción, año, ubicación, imágenes, etc.) | [`src/data/projects.ts`](src/data/projects.ts) + assets bajo `src/assets/projects/` (o convención acordada) | Desarrollador |
 | Servicios (títulos, descripciones, ítems, proceso) | [`src/data/services.ts`](src/data/services.ts) | Desarrollador |
-| Datos de contacto reales | [`src/pages/Contact.tsx`](src/pages/Contact.tsx), pie y metadatos según diseño | Desarrollador |
+| Datos de contacto reales | [`src/views/Contact.tsx`](src/views/Contact.tsx), pie y metadatos según diseño | Desarrollador |
 | Clientes y Prensa | **No** forman parte del MVP: **no** hace falta sustituir `clients.ts` / `press.ts` por contenido real; basta con **dejar de importarlos y de mostrarlos** en la UI. Los archivos pueden permanecer en el repo para post-MVP o eliminarse si el equipo prefiere evitar código muerto. | Desarrollador |
 
 Dudas de contenido se resuelven **directamente con Hugo**.
@@ -83,15 +83,15 @@ Dudas de contenido se resuelven **directamente con Hugo**.
 
 > **Preguntas guía:** ¿Se continúa con el stack existente? Sí, salvo decisiones explícitas de refactor posterior.
 
-- **Lenguaje:** TypeScript. El proyecto actual declara **`strict: false`** en [`tsconfig.app.json`](tsconfig.app.json); para el MVP se exige **tipado en datos y componentes tocados** y **no introducir `any` innecesario** en código nuevo o modificado. Activar **`strict` de forma gradual** es objetivo **post-MVP**, salvo decisión explícita de alcance.
-- **Runtime de desarrollo/build:** Node.js **18+** recomendado (compatible con Vite 5).
-- **Framework:** React 18.
-- **Bundler:** Vite.
-- **Enrutamiento:** React Router v6.
-- **Estilos:** Tailwind CSS; componentes UI actuales basados en **Radix / shadcn** donde ya existan.
-- **Metadatos:** `react-helmet-async` + `index.html` para valores globales.
-- **Datos:** archivos TypeScript en `src/data/`; sin backend ni CMS en el MVP.
-- **Estado remoto / formularios:** `@tanstack/react-query` está presente en la app; para el MVP de contacto **no** se exige API. La limpieza de dependencias no usadas puede planificarse **después** del primer despliegue con contenido real.
+- **Lenguaje:** TypeScript. El proyecto declara **`strict: false`** en [`tsconfig.json`](tsconfig.json) (ajustable); para el MVP se exige **tipado en datos y componentes tocados** y **no introducir `any` innecesario** en código nuevo o modificado. Activar **`strict` de forma gradual** es objetivo **post-MVP**, salvo decisión explícita de alcance.
+- **Runtime de desarrollo/build:** Node.js **18+** recomendado (compatible con Next.js 15).
+- **Framework:** React 19.
+- **Aplicación:** **Next.js 15** (App Router); `npm run dev` / `npm run build` / `npm run start`.
+- **Enrutamiento:** segmentos en [`app/`](app/); vistas de UI en [`src/views/`](src/views/) (evitar carpeta `src/pages/` para no activar el Pages Router de Next).
+- **Estilos:** Tailwind CSS; componentes UI basados en **Radix / shadcn** donde ya existan; estilos globales en [`app/globals.css`](app/globals.css).
+- **Metadatos:** **`metadata` / `generateMetadata`** (Next) + [`src/lib/site-metadata.ts`](src/lib/site-metadata.ts).
+- **Datos:** archivos TypeScript en `src/data/`; sin CMS en el MVP. **API de contacto:** Route Handler en [`app/api/contact/route.ts`](app/api/contact/route.ts) (servidor).
+- **Estado remoto / formularios:** sin requisito de librería global; la limpieza de dependencias no usadas puede planificarse cuando proceda.
 
 ### Calidad y verificación
 
@@ -102,17 +102,18 @@ Dudas de contenido se resuelven **directamente con Hugo**.
 
 ### Arquitectura
 
-> **Pregunta guía:** ¿Patrón principal? **SPA estática:** `npm run build` genera `dist/` con assets estáticos; el servidor debe servir `index.html` para rutas de aplicación (rewrite en hosting).
+> **Pregunta guía:** ¿Patrón principal? **Next.js App Router:** `npm run build` genera salida optimizada para Node/serverless en Vercel; rutas definidas por archivos en `app/`.
 
-- **SPA:** una sola carga de aplicación; las rutas las resuelve el cliente.
+- **Renderizado:** páginas mayormente estáticas donde aplica; API y datos dinámicos en Route Handlers.
 - **Organización:**
-  - [`src/pages/`](src/pages/) — vistas por ruta
+  - [`app/`](app/) — rutas, layouts, `metadata`, API
+  - [`src/views/`](src/views/) — vistas de pantalla importadas por `app/**/page.tsx`
   - [`src/components/layout/`](src/components/layout/) — layout, cabecera, pie
-  - [`src/components/`](src/components/) — bloques reutilizables (p. ej. proyectos, SEO, imágenes)
+  - [`src/components/`](src/components/) — bloques reutilizables (p. ej. proyectos, imágenes)
   - [`src/data/`](src/data/) — datos de negocio
   - [`src/lib/`](src/lib/) — utilidades
-- **Punto de entrada de rutas:** [`src/App.tsx`](src/App.tsx).
-- **404:** ruta comodín `*` hacia [`src/pages/NotFound.tsx`](src/pages/NotFound.tsx). Los textos de esa vista deben estar en **español** (hoy parte del copy está en inglés y debe corregirse). Un `id` de proyecto inexistente puede mostrar mensaje propio dentro del layout en la página de detalle (comportamiento actual).
+- **Punto de entrada de rutas:** segmentos bajo `app/`, incluido el grupo de layout `(site)` para cabecera/pie compartidos.
+- **404:** [`app/not-found.tsx`](app/not-found.tsx) y componente [`src/views/NotFound.tsx`](src/views/NotFound.tsx). Los textos deben estar en **español**. Un `id` de proyecto inexistente muestra mensaje propio en la vista de detalle (comportamiento actual).
 
 Flujo de datos **objetivo** (la home consume varios módulos; no solo proyectos):
 
@@ -158,7 +159,7 @@ interface Project {
   status: ProjectStatus;
   featured: boolean;
   published: boolean;
-  coverImage: string;  // típicamente módulo importado (Vite)
+  coverImage: ProjectImageSrc;  // string o import estático (Next `StaticImageData`)
   images: {
     url: string;
     caption?: string;
@@ -193,10 +194,10 @@ interface Service {
 
 ### Output esperado
 
-- **Build:** `npm run build` produce `dist/` sin errores de TypeScript.
+- **Build:** `npm run build` (Next) sin errores de TypeScript.
 - **Navegación MVP:** todas las rutas incluidas responden con la vista esperada; **no** hay enlaces en **ninguna página del MVP** (incluida la home) ni en cabecera ni pie hacia `/clientes` ni `/prensa`.
-- **SEO:** título y descripción globales en `index.html`; páginas que usen `<SEO />` siguen definiendo título/descripción por vista vía `react-helmet-async`.
-- **Limitación conocida (SPA sin pre-render):** los crawlers que no ejecutan JavaScript pueden ver HTML mínimo; Open Graph por URL puede no reflejar el título específico de cada página hasta una fase con pre-render o SSR. Para el MVP se acepta esta limitación salvo que se acuerde lo contrario.
+- **SEO:** título y descripción globales en [`app/layout.tsx`](app/layout.tsx); por ruta vía `metadata` / `generateMetadata` y [`src/lib/site-metadata.ts`](src/lib/site-metadata.ts). El HTML inicial incluye metadatos por página donde Next pre-renderiza.
+- **Pre-render / SSR:** el stack Next permite mejorar SEO frente a una SPA pura; afinar estrategias por ruta (estático vs dinámico) en iteraciones posteriores si el alcance lo exige.
 
 ---
 
@@ -204,14 +205,14 @@ interface Service {
 
 ### Idioma y alcance de contenido
 
-- Todo el contenido visible orientado al usuario final debe estar en **español** (salvo nombres propios), **incluida la página 404** ([`NotFound.tsx`](src/pages/NotFound.tsx)).
+- Todo el contenido visible orientado al usuario final debe estar en **español** (salvo nombres propios), **incluida la página 404** ([`src/views/NotFound.tsx`](src/views/NotFound.tsx)).
 - En las **rutas y secciones del MVP**, sustituir el contenido demo por el material **real de Hugo**.
 - **Clientes** y **Prensa** no son rutas MVP: **no** se exige reemplazar sus datos demo por contenido real; se exige **que no formen parte del producto** (sin secciones, sin imports en la home, sin enlaces; ver tabla de gestión de contenido).
 
 ### Navegación y pie
 
 - **Cabecera y pie:** solo enlaces a **Inicio** (marca), **Proyectos**, **Servicios**, **Sobre el estudio**, **Contacto** (más CTA a contacto si aplica). **Eliminar** enlaces a **Clientes** y **Prensa**.
-- **Todas las páginas MVP:** no deben contener `Link`, botones ni textos que envíen a `/clientes` o `/prensa` (revisar especialmente [`src/pages/Index.tsx`](src/pages/Index.tsx) y cualquier bloque reutilizado).
+- **Todas las páginas MVP:** no deben contener `Link`, botones ni textos que envíen a `/clientes` o `/prensa` (revisar especialmente [`src/views/Index.tsx`](src/views/Index.tsx) y cualquier bloque reutilizado).
 - **Rutas `/clientes` y `/prensa`:** **recomendado** eliminarlas del router y tratar URLs antiguas con **404** (o redirección acordada). Si por error temporal permanecieran registradas, tampoco deben aparecer en sitemap ni en la UI.
 
 ### Contacto funcional (MVP)
@@ -226,7 +227,7 @@ interface Service {
 ### Imágenes
 
 - Sustituir imágenes demo por las **entregadas por Hugo**, con **texto alternativo** (`alt`) descriptivo.
-- Respetar el patrón técnico del proyecto (p. ej. imports desde `src/assets/projects/` para que Vite optimice en build).
+- Respetar el patrón técnico del proyecto (p. ej. imports desde `src/assets/projects/` para que el bundler de Next optimice en build).
 - Evitar **CLS** grave: donde sea posible, reservar espacio (p. ej. aspect-ratio o altura mínima) en contenedores de imagen.
 
 ### Código y dependencias
@@ -237,7 +238,7 @@ interface Service {
 ### Seguridad en despliegue y cliente
 
 - **Headers HTTP** (configuración en [`vercel.json`](vercel.json) u host equivalente), además del rewrite SPA: definir políticas **verificables** en producción. Referencia mínima para el MVP:
-  - **Content-Security-Policy** acorde a una SPA Vite (scripts module, estilos inline si los exige el build); puede empezar en **`Content-Security-Policy-Report-Only`** si hace falta afinar sin romper el sitio.
+  - **Content-Security-Policy** acorde a Next.js (scripts y estilos del runtime); afinar en iteraciones; se retiró CSP Report-Only genérico de la SPA para evitar falsos positivos hasta definir política explícita.
   - **X-Content-Type-Options: nosniff**
   - **Referrer-Policy** (p. ej. `strict-origin-when-cross-origin`)
   - **Permissions-Policy** mínima, deshabilitando APIs del navegador **no usadas** por el sitio.
@@ -259,7 +260,7 @@ interface Service {
 
 ### Deploy
 
-- Añadir **`vercel.json`** (u configuración equivalente del hosting) con **rewrite** de rutas de aplicación a `index.html` y los **headers** descritos en **Seguridad en despliegue y cliente** antes o al cierre del MVP en producción.
+- Mantener **`vercel.json`** con los **headers** descritos en **Seguridad en despliegue y cliente** (sin rewrite SPA: Next gestiona rutas).
 
 ### Fuera de alcance del MVP
 
@@ -276,7 +277,7 @@ El trabajo se considera terminado cuando:
 ### Funcionalidad y alcance
 
 - [ ] Las rutas **MVP** (`/`, `/proyectos`, `/proyectos/:id`, `/servicios`, `/sobre-haz`, `/contacto`) renderizan sin errores y con **contenido real de Hugo** (sin textos/imágenes demo intencionales).
-- [ ] La página de **inicio** ([`src/pages/Index.tsx`](src/pages/Index.tsx)) **no** importa ni muestra datos de **Clientes** ni **Prensa** y **no** enlaza a `/clientes` ni `/prensa`.
+- [ ] La página de **inicio** ([`src/views/Index.tsx`](src/views/Index.tsx)) **no** importa ni muestra datos de **Clientes** ni **Prensa** y **no** enlaza a `/clientes` ni `/prensa`.
 - [ ] **No** hay enlaces en **cabecera**, **pie** ni **ninguna vista MVP** hacia `/clientes` ni `/prensa`.
 - [ ] Las rutas `/clientes` y `/prensa` **no** están registradas en el router **o** quedan documentadas como redirección/404 explícita acordada con el equipo; en cualquier caso **no** son descubibles desde la UI.
 - [ ] Los **servicios** mostrados corresponden a datos reales en [`src/data/services.ts`](src/data/services.ts) (incluido proceso si la página lo usa).
@@ -288,7 +289,7 @@ El trabajo se considera terminado cuando:
 
 ### Marca y metadatos
 
-- [ ] Nombre y textos del estudio en cabecera, pie y **`index.html`** alineados con lo definido con Hugo.
+- [ ] Nombre y textos del estudio en cabecera, pie y **metadatos del layout** (`app/layout.tsx` / `site-metadata`) alineados con lo definido con Hugo.
 
 ### Build y calidad
 
@@ -305,7 +306,7 @@ El trabajo se considera terminado cuando:
 
 ### Deploy
 
-- [ ] Sitio desplegado en el entorno acordado (p. ej. Vercel) con **`vercel.json`** (o equivalente) que incluya **rewrite** de rutas de aplicación a **`index.html`**.
+- [ ] Sitio desplegado en el entorno acordado (p. ej. Vercel) con **`vercel.json`** (o equivalente) con **headers** de seguridad y proyecto configurado como **Next.js**.
 - [ ] **Headers** verificables en producción, alineados con la sección *Seguridad en despliegue y cliente* (constraints), incluyendo como mínimo: **Content-Security-Policy** (o **Content-Security-Policy-Report-Only** durante el ajuste), **X-Content-Type-Options: nosniff**, **Referrer-Policy** (p. ej. `strict-origin-when-cross-origin`) y **Permissions-Policy** mínima. **HSTS** solo si aplica según criterio documentado allí.
 
 ### Verificación sugerida (opcional)

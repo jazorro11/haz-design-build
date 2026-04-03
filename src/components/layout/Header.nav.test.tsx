@@ -1,15 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import { Header } from "./Header";
 
 describe("Header — navegación MVP", () => {
   it("no enlaza a /clientes ni /prensa", () => {
-    render(
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>,
-    );
+    render(<Header />);
 
     const hrefs = screen
       .getAllByRole("link")
@@ -21,17 +16,17 @@ describe("Header — navegación MVP", () => {
   });
 
   it("incluye enlaces MVP principales", () => {
-    render(
-      <MemoryRouter>
-        <Header />
-      </MemoryRouter>,
-    );
+    render(<Header />);
 
     const proyectosLinks = screen.getAllByRole("link", { name: /^Proyectos$/ });
     expect(proyectosLinks.length).toBeGreaterThan(0);
-    expect(proyectosLinks.every((el) => el.getAttribute("href") === "/proyectos")).toBe(true);
+    expect(
+      proyectosLinks.every((el) => el.getAttribute("href") === "/proyectos"),
+    ).toBe(true);
 
     const contactoLinks = screen.getAllByRole("link", { name: /^Contacto$/ });
-    expect(contactoLinks.some((el) => el.getAttribute("href") === "/contacto")).toBe(true);
+    expect(
+      contactoLinks.some((el) => el.getAttribute("href") === "/contacto"),
+    ).toBe(true);
   });
 });

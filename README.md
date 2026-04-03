@@ -1,120 +1,110 @@
-# Welcome to your Lovable project
+# Portafolio HAZ — haz-design-build
 
-## Project info
+Sitio del estudio **HAZ** (arquitectura y construcción): proyectos, servicios, sobre el estudio y contacto. Contenido en datos TypeScript locales (sin CMS en el alcance actual).
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Stack
 
-## How can I edit this code?
+- **Next.js 15** (App Router)
+- **React 19** y **TypeScript**
+- **Tailwind CSS**; componentes con **Radix UI** y patrones tipo shadcn
+- Pruebas con **Vitest** y **Testing Library**
 
-There are several ways of editing your application.
+## Requisitos
 
-**Use Lovable**
+- Node.js LTS y npm
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Puesta en marcha
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+git clone <URL_DEL_REPO>
+cd haz-design-build
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+El servidor de desarrollo arranca en el puerto **8080** (ver `package.json`).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Scripts
 
-**Use GitHub Codespaces**
+| Comando | Descripción |
+|--------|-------------|
+| `npm run dev` | Servidor de desarrollo Next.js |
+| `npm run build` | Compilación de producción |
+| `npm run start` | Servidor de producción (tras `build`) |
+| `npm run lint` | ESLint |
+| `npm run test` | Vitest en modo run |
+| `npm run test:watch` | Vitest en modo watch |
+| `npm run verify:contact-api` | Comprueba el endpoint de contacto (opcional; ver script) |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Estructura relevante
 
-## What technologies are used for this project?
+- `app/` — rutas, layouts y **Route Handlers** (`app/api/…`)
+- `src/views/` — vistas de página (UI por ruta)
+- `src/data/` — datos estáticos (proyectos, textos, etc.)
+- `src/components/` — componentes compartidos y layout
+- `src/lib/` — utilidades y metadatos del sitio
 
-This project is built with:
+## Rutas públicas principales
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- `/` — inicio
+- `/proyectos` y `/proyectos/[id]` — listado y detalle de proyecto
+- `/servicios`, `/sobre-haz`, `/contacto`
 
-## Variables de entorno (formulario de contacto → Google Sheets)
+La ruta interna de diseño (`/_internal/design-system`, reescrita en middleware hacia `app/internal/design-system`) es solo para desarrollo: no va en menú público ni en el sitemap del MVP.
 
-El envío del formulario de contacto usa una **función serverless** (`POST /api/contact`) que escribe filas en Google Sheets. Las credenciales **no van en el front** (no uses prefijo `VITE_*` para secretos).
+## Variables de entorno (contacto → Google Sheets)
+
+El formulario de **contacto** hace `POST` a `/api/contact` (handler en `app/api/contact/route.ts`). Las credenciales van **solo en servidor** (variables de entorno en Vercel o en local con `vercel dev`). **No uses el prefijo `VITE_*` para secretos** (ver `.env.example`).
 
 ### Archivos
 
-| Archivo        | Uso |
-|----------------|-----|
-| `.env.example` | Plantilla documentada (sí va al repo). |
-| `.env`         | Tus valores locales; está en `.gitignore` — rellénalo tú y no lo subas. |
+| Archivo | Uso |
+|--------|-----|
+| `.env.example` | Plantilla documentada (sí va al repo); fuente de verdad de nombres y notas |
+| `.env` | Valores locales; está en `.gitignore` — rellénalo tú y no lo subas |
 
-Opcional en local: `.env.local` (también ignorado por `*.local`) o `vercel env pull .env.local` si usas la CLI de Vercel.
+Opcional en local: `.env.local` (también cubierto por `*.local`) o `vercel env pull .env.local` con la CLI de Vercel **logueada**, para replicar Preview y usar **`vercel dev`**.
 
-### Desarrollo local
+### Desarrollo local (probar `/api/contact`)
 
 1. Rellena `.env` con los cuatro valores `GOOGLE_*` (pasos abajo).
-2. Para probar la API en local hace falta **`vercel dev`**. Un `npm run dev` normal de Vite **no** expone `/api`.
+2. Para ejercitar `POST /api/contact` en local hace falta **`vercel dev`**. Un `npm run dev` normal **no** expone `/api`, según la convención documentada en `.env.example`.
 
 ### Producción / preview (Vercel)
 
-1. **Project → Settings → Environment Variables**.
-2. Añade las mismas variables `GOOGLE_*` para Preview y/o Production.
-3. **Redeploy** para que la función reciba los valores.
+1. **Project → Settings → Environment Variables**
+2. Añade las mismas variables `GOOGLE_*` para Preview y/o Production
+3. **Redeploy** para que la función reciba los valores
+
+### Hoja de Google
+
+Crea una pestaña cuyo nombre encaje con `GOOGLE_SHEET_RANGE` (por defecto la hoja **Respuestas**). La **fila 1** (A1:G1) debe coincidir con el orden de columnas del append en `api/contact.ts` (como indica `.env.example`):
+
+**A** Fecha | **B** Nombre | **C** Empresa | **D** Correo | **E** Teléfono | **F** Tipo de proyecto | **G** Mensaje  
+
+Comparte la hoja de cálculo con `GOOGLE_SERVICE_ACCOUNT_EMAIL` como **Editor** (cuenta de servicio en GCP).
 
 ### Cómo obtener cada variable
 
 1. **`GOOGLE_SHEET_ID`**  
-   Abre la hoja en Google Sheets. En la URL, el id es el segmento entre `/d/` y `/edit`.  
-   Ejemplo: `https://docs.google.com/spreadsheets/d/ESTE_ES_EL_ID/edit`
+   En la URL de Google Sheets, el id es el segmento entre `/d/` y `/edit`.
 
 2. **`GOOGLE_SHEET_RANGE`**  
-   Nombre de la pestaña y rango de columnas, p. ej. `Respuestas!A:G`.  
-   La pestaña debe existir con ese nombre (o ajusta el valor).  
-   Fila **1** (A1:G1): Fecha \| Nombre \| Empresa \| Correo \| Teléfono \| Tipo de proyecto \| Mensaje (orden alineado con `api/contact.ts`).
+   Nombre de la pestaña y rango de columnas, p. ej. `Respuestas!A:G`.
 
 3. **`GOOGLE_SERVICE_ACCOUNT_EMAIL`** y **`GOOGLE_PRIVATE_KEY`**  
    - [Google Cloud Console](https://console.cloud.google.com): proyecto → habilita **Google Sheets API**.  
    - **IAM y administración → Cuentas de servicio → Crear cuenta de servicio**.  
    - **Claves → Añadir clave → JSON**; en el archivo descargado:  
      - `client_email` → `GOOGLE_SERVICE_ACCOUNT_EMAIL`  
-     - `private_key` → `GOOGLE_PRIVATE_KEY` (el código reemplaza `\n` escapados por saltos de línea reales).  
-   - En la hoja de cálculo: **Compartir** y añade el `client_email` de la cuenta de servicio con permiso de **Editor**.
+     - `private_key` → `GOOGLE_PRIVATE_KEY` (el código reemplaza `\n` escapados por saltos de línea reales).
 
 ### Verificación opcional
 
-El script `scripts/verify-contact-api.mjs` puede usar `CONTACT_PREVIEW_URL` (base URL del despliegue) para probar el endpoint contra preview; no es obligatorio para el funcionamiento básico.
+El script `scripts/verify-contact-api.mjs` puede usar `CONTACT_PREVIEW_URL` (URL base del despliegue) para probar el endpoint; no es obligatorio para el flujo básico.
 
-## How can I deploy this project?
+## Despliegue
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+El proyecto está pensado para desplegarse en **Vercel** (u otro hosting compatible con Next.js 15): conecta el repositorio, configura las variables de entorno y ejecuta `npm run build` en el pipeline.
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Documentación de referencia del alcance y arquitectura: `.cursor/docs/technical-brief-haz-arquitectura-v6.md` (si trabajas en el repo con ese brief).

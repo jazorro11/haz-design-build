@@ -1,15 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import { Footer } from "./Footer";
 
 describe("Footer — navegación MVP", () => {
   it("no enlaza a /clientes ni /prensa", () => {
-    render(
-      <MemoryRouter>
-        <Footer />
-      </MemoryRouter>,
-    );
+    render(<Footer />);
 
     const hrefs = screen
       .getAllByRole("link")
@@ -21,13 +16,15 @@ describe("Footer — navegación MVP", () => {
   });
 
   it("mantiene enlaces de navegación principal", () => {
-    render(
-      <MemoryRouter>
-        <Footer />
-      </MemoryRouter>,
-    );
+    render(<Footer />);
 
-    expect(screen.getByRole("link", { name: /^Proyectos$/ })).toHaveAttribute("href", "/proyectos");
-    expect(screen.getByRole("link", { name: /^Contacto$/ })).toHaveAttribute("href", "/contacto");
+    expect(screen.getByRole("link", { name: /^Proyectos$/ })).toHaveAttribute(
+      "href",
+      "/proyectos",
+    );
+    expect(screen.getByRole("link", { name: /^Contacto$/ })).toHaveAttribute(
+      "href",
+      "/contacto",
+    );
   });
 });
