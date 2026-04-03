@@ -1,0 +1,34 @@
+---
+description: Alcance MVP HAZ — stack, rutas, datos y restricciones del brief técnico
+alwaysApply: true
+---
+
+# Portafolio HAZ — alcance MVP
+
+**Fuente de verdad:** `.cursor/docs/technical-brief-haz-arquitectura-v6.md`. Antes de cambiar rutas públicas, navegación, contenido, SEO, contacto o deploy, contrastar con ese documento.
+
+## Stack y carpetas
+
+- **Stack:** Vite, React 18, TypeScript (strict), React Router v6, Tailwind; Radix/shadcn donde ya exista. Metadatos: `react-helmet-async` + `index.html`.
+- **Datos:** `src/data/*.ts` (sin backend/CMS en MVP). **Proyectos:** modelo en `src/data/projects.ts`; imágenes vía **imports Vite** desde `src/assets/projects/` (u otra convención explícita en el repo).
+- **Rutas:** `src/App.tsx`. **Vistas:** `src/pages/`. **Layout/nav:** `src/components/layout/`. **SEO:** `src/components/SEO.tsx`. **Utilidades:** `src/lib/`.
+
+## Rutas del producto MVP
+
+Incluidas: `/`, `/proyectos`, `/proyectos/:id` (**parámetro `id`**, no slug; `getProjectById`), `/servicios`, `/sobre-haz`, `/contacto`.
+
+**Restricción:** en ninguna vista MVP, cabecera ni pie debe haber enlaces o CTAs a `/clientes` ni `/prensa`. La home no debe importar ni mostrar bloques de Clientes/Prensa. Esas URLs **no son parte del MVP** (router sin registro o 404/redirección documentada). `/_internal/design-system` solo desarrollo — no menú público ni sitemap MVP.
+
+## Contenido, build y UX
+
+- Texto orientado al visitante en **español** (incluida `NotFound.tsx`).
+- **Contacto:** datos reales coherentes (página + pie); formulario sin envío real salvo criterio explícito en PR (mailto / canales directos / post-MVP — ver brief).
+- **Build:** `npm run build` y chequeo TS sin errores. Imágenes con `alt`; evitar CLS grave donde aplique. Responsive y un `h1` por página según patrón actual.
+
+## Post-MVP / fuera de alcance (recordatorio)
+
+Backend, CMS, auth, Clientes/Prensa en UX pública, pre-render/SSG, i18n, analytics — solo si se acuerda explícitamente (brief §4).
+
+## Agentes al implementar
+
+Para **features y bugs**, el flujo de **revisor de alcance** y **QA** sobre código nuevo está definido en `.cursor/rules/haz-scope-code-review-workflow.mdc` (subagentes en `.cursor/agents/`).

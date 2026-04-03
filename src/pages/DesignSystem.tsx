@@ -4,7 +4,8 @@ import {
   ChevronLeft, Search, Menu, X, Copy, Check, Loader2,
   AlertCircle, CheckCircle, Info
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import type { VariantProps } from 'class-variance-authority';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,6 +19,9 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from '@/components/ui/textarea';
+
+type ButtonPlaygroundVariant = NonNullable<VariantProps<typeof buttonVariants>['variant']>;
+type ButtonPlaygroundSize = NonNullable<VariantProps<typeof buttonVariants>['size']>;
 
 // --- NAV ---
 const navItems = [
@@ -125,8 +129,8 @@ export default function DesignSystem() {
   const [active, setActive] = useState('overview');
   const [search, setSearch] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [btnVariant, setBtnVariant] = useState<any>('default');
-  const [btnSize, setBtnSize] = useState<any>('default');
+  const [btnVariant, setBtnVariant] = useState<ButtonPlaygroundVariant>('default');
+  const [btnSize, setBtnSize] = useState<ButtonPlaygroundSize>('default');
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [progress, setProgress] = useState(60);
 

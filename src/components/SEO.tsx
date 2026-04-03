@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { SITE_NAME, SITE_DEFAULT_PAGE_TITLE } from '@/lib/site';
 
 interface SEOProps {
   title?: string;
@@ -8,7 +9,6 @@ interface SEOProps {
   noindex?: boolean;
 }
 
-const SITE_NAME = 'HAZ Arquitectura';
 const BASE_URL = 'https://hazarquitectura.com';
 const DEFAULT_DESCRIPTION =
   'Más de 30 años integrando arquitectura y ejecución para entregar obras sólidas y funcionales. Diseño + Ejecución bajo un solo techo.';
@@ -20,7 +20,7 @@ export function SEO({
   type = 'website',
   noindex = false,
 }: SEOProps) {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — Diseño que se construye`;
+  const fullTitle = title ? `${title} | ${SITE_NAME}` : SITE_DEFAULT_PAGE_TITLE;
   const url = `${BASE_URL}${path}`;
 
   return (

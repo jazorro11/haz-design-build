@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SITE_TAGLINE } from '@/lib/site';
 
 const navigation = {
   main: [
@@ -6,10 +7,6 @@ const navigation = {
     { name: 'Servicios', href: '/servicios' },
     { name: 'Sobre HAZ', href: '/sobre-haz' },
     { name: 'Contacto', href: '/contacto' },
-  ],
-  secondary: [
-    { name: 'Clientes', href: '/clientes' },
-    { name: 'Prensa', href: '/prensa' },
   ],
 };
 
@@ -31,7 +28,7 @@ export function Footer() {
               entregar proyectos sólidos y funcionales.
             </p>
             <p className="text-caption text-background/50">
-              Diseño que se construye.
+              {SITE_TAGLINE}.
             </p>
           </div>
 
@@ -54,24 +51,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* More Links */}
+          {/* Contact */}
           <div>
             <h4 className="text-caption font-semibold uppercase tracking-wider mb-4 text-background/50">
-              Más
+              Contacto
             </h4>
-            <ul className="space-y-3">
-              {navigation.secondary.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    to={item.href}
-                    className="text-background/70 hover:text-background transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8">
+            <div>
               <p className="text-caption text-background/50 mb-2">Bogotá, Colombia</p>
               <a
                 href="mailto:contacto@hazarquitectura.com"

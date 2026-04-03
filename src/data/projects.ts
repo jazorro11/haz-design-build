@@ -1,11 +1,13 @@
-import torreAndinaImg from '@/assets/projects/torre-andina.jpg';
-import residenciasParqueImg from '@/assets/projects/residencias-parque.jpg';
-import centroCulturalImg from '@/assets/projects/centro-cultural.jpg';
-import bodegaIndustrialImg from '@/assets/projects/bodega-industrial.jpg';
-import hotelBoutiqueImg from '@/assets/projects/hotel-boutique.jpg';
-import techHubImg from '@/assets/projects/tech-hub.jpg';
+import aposentos8Img from '@/assets/projects/aposentos-8.png';
+import arturoCalle7Img from '@/assets/projects/arturo-calle-7.png';
+import celta7Img from '@/assets/projects/celta-7.png';
+import casaUnifamiliar2Img from '@/assets/projects/casa-unifamiliar-2.png';
+import centroPenitenciarioImg from '@/assets/projects/centro-penitenciario.png';
+import mro3Img from '@/assets/projects/mro-3.png';
+import parqueLosLocos1Img from '@/assets/projects/parque-los-locos-1.png';
+import villetaSamanes2Img from '@/assets/projects/villeta-samanes-2.png';
 
-export type ProjectStatus = 'completed' | 'in-progress' | 'published';
+export type ProjectStatus = 'completed' | 'in-progress';
 export type ProjectRole = 'design' | 'execution' | 'design-execution';
 export type ProjectType = 'residential' | 'commercial' | 'institutional' | 'industrial';
 
@@ -18,7 +20,6 @@ export interface Project {
   role: ProjectRole;
   status: ProjectStatus;
   featured: boolean;
-  published: boolean;
   coverImage: string;
   images: {
     url: string;
@@ -37,238 +38,150 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'torre-andina',
-    name: 'Torre Andina',
-    location: 'Bogotá, Colombia',
-    year: 2023,
-    type: 'commercial',
-    role: 'design-execution',
-    status: 'completed',
-    featured: true,
-    published: true,
-    coverImage: torreAndinaImg,
-    images: [
-      { url: torreAndinaImg, caption: 'Vista principal', stage: 'completed' },
-      { url: torreAndinaImg, caption: 'Lobby de acceso', stage: 'completed' },
-    ],
-    client: 'Grupo Empresarial Andino',
-    area: '45,000 m²',
-    team: ['Arq. Director Principal', 'Ing. Estructural'],
-    description: 'Edificio corporativo de 25 pisos que redefine el skyline del norte de Bogotá. El diseño integra espacios de trabajo flexibles con áreas verdes y tecnología de punta.',
-    challenge: 'Crear un edificio que maximice eficiencia energética sin sacrificar la experiencia del usuario.',
-    solution: 'Fachada de doble piel con control solar activo y sistemas de ventilación natural.',
-    result: 'Certificación LEED Gold y 30% de ahorro energético respecto a edificios similares.',
-    deliverables: ['Diseño arquitectónico completo', 'Dirección de obra', 'Coordinación MEP'],
-  },
-  {
-    id: 'residencias-parque-central',
-    name: 'Residencias Parque Central',
-    location: 'Medellín, Colombia',
-    year: 2022,
+    id: 'aposentos',
+    name: 'Aposentos',
+    location: 'Colombia',
+    year: 2024,
     type: 'residential',
     role: 'design-execution',
     status: 'completed',
     featured: true,
-    published: true,
-    coverImage: residenciasParqueImg,
+    coverImage: aposentos8Img,
     images: [
-      { url: residenciasParqueImg, caption: 'Fachada principal', stage: 'completed' },
-      { url: residenciasParqueImg, caption: 'Áreas comunes', stage: 'completed' },
+      { url: aposentos8Img, caption: 'Interior principal', stage: 'completed' },
     ],
-    client: 'Constructora Urbana S.A.',
-    area: '28,000 m²',
-    description: 'Complejo residencial de alta gama con 120 unidades distribuidas en tres torres, integrando el paisaje natural del valle.',
-    challenge: 'Maximizar vistas y ventilación natural en un terreno con pendiente pronunciada.',
-    solution: 'Diseño escalonado que aprovecha la topografía para crear terrazas privadas en cada unidad.',
-    result: 'Ventas completadas 6 meses antes de la entrega.',
-    deliverables: ['Diseño integral', 'Construcción llave en mano', 'Paisajismo'],
+    description:
+      'Proyecto residencial que articula la luz natural, los materiales y la circulación para crear espacios habitables cálidos y funcionales, con un enfoque en el detalle constructivo y la continuidad visual entre ambientes.',
+    deliverables: ['Diseño arquitectónico', 'Interiorismo', 'Dirección de obra'],
   },
   {
-    id: 'centro-cultural-libertad',
-    name: 'Centro Cultural Libertad',
-    location: 'Cartagena, Colombia',
-    year: 2023,
-    type: 'institutional',
-    role: 'design',
-    status: 'completed',
-    featured: true,
-    published: true,
-    coverImage: centroCulturalImg,
-    images: [
-      { url: centroCulturalImg, caption: 'Vista del patio central', stage: 'completed' },
-    ],
-    client: 'Ministerio de Cultura',
-    area: '8,500 m²',
-    description: 'Espacio cultural que dialoga con el patrimonio colonial de la ciudad amurallada, incorporando materiales contemporáneos con técnicas tradicionales.',
-    deliverables: ['Diseño arquitectónico', 'Documentación técnica', 'Supervisión de obra'],
-  },
-  {
-    id: 'bodega-industrial-zona-franca',
-    name: 'Bodega Industrial Zona Franca',
-    location: 'Barranquilla, Colombia',
-    year: 2024,
-    type: 'industrial',
-    role: 'execution',
-    status: 'in-progress',
-    featured: true,
-    published: false,
-    coverImage: bodegaIndustrialImg,
-    images: [
-      { url: bodegaIndustrialImg, caption: 'Avance estructural', stage: 'in-progress' },
-    ],
-    client: 'Confidencial',
-    area: '35,000 m²',
-    description: 'Centro logístico de clase A con capacidad para operaciones de almacenamiento y distribución a gran escala.',
-    deliverables: ['Dirección de obra', 'Coordinación de contratistas'],
-  },
-  {
-    id: 'hotel-boutique-santafe',
-    name: 'Hotel Boutique Santa Fe',
-    location: 'Bogotá, Colombia',
-    year: 2021,
-    type: 'commercial',
-    role: 'design-execution',
-    status: 'completed',
-    featured: true,
-    published: false,
-    coverImage: hotelBoutiqueImg,
-    images: [
-      { url: hotelBoutiqueImg, caption: 'Lobby del hotel', stage: 'completed' },
-      { url: hotelBoutiqueImg, caption: 'Área de recepción', stage: 'completed' },
-    ],
-    client: 'Grupo Hotelero Nacional',
-    area: '4,200 m²',
-    description: 'Restauración y adecuación de casona patrimonial del siglo XIX para uso hotelero de lujo, preservando elementos históricos.',
-    deliverables: ['Diseño interior', 'Restauración patrimonial', 'Construcción'],
-  },
-  {
-    id: 'oficinas-tech-hub',
-    name: 'Oficinas Tech Hub',
-    location: 'Bogotá, Colombia',
+    id: 'arturo-calle',
+    name: 'Arturo Calle',
+    location: 'Colombia',
     year: 2024,
     type: 'commercial',
     role: 'design-execution',
-    status: 'in-progress',
-    featured: true,
-    published: false,
-    coverImage: techHubImg,
-    images: [
-      { url: techHubImg, caption: 'Estructura en progreso', stage: 'in-progress' },
-    ],
-    client: 'Fondo de Inversión Tecnológico',
-    area: '15,000 m²',
-    description: 'Campus de oficinas diseñado para empresas de tecnología, con espacios colaborativos y amenidades de bienestar.',
-    deliverables: ['Diseño arquitectónico', 'Dirección de obra'],
-  },
-  {
-    id: 'vivienda-unifamiliar-el-poblado',
-    name: 'Casa El Poblado',
-    location: 'Medellín, Colombia',
-    year: 2022,
-    type: 'residential',
-    role: 'design',
     status: 'completed',
-    featured: false,
-    published: false,
-    coverImage: residenciasParqueImg,
+    featured: true,
+    coverImage: arturoCalle7Img,
     images: [
-      { url: residenciasParqueImg, stage: 'completed' },
+      {
+        url: arturoCalle7Img,
+        caption: 'Interior comercial — zona de exhibición y accesorios',
+        stage: 'completed',
+      },
     ],
-    area: '850 m²',
-    description: 'Vivienda unifamiliar contemporánea con diseño bioclimático integrado al paisaje montañoso.',
-    deliverables: ['Diseño arquitectónico', 'Interiorismo'],
+    client: 'Arturo Calle',
+    description:
+      'Diseño de espacio comercial para la marca: circuito de exhibición, materiales y luminarias que refuerzan la identidad retail y mejoran la experiencia de compra en zonas de ropa y accesorios.',
+    deliverables: [
+      'Diseño de interior comercial',
+      'Ejecución',
+      'Coordinación de mobiliario y vitrinas',
+    ],
   },
   {
-    id: 'centro-comercial-norte',
-    name: 'Centro Comercial Norte',
-    location: 'Bucaramanga, Colombia',
-    year: 2020,
+    id: 'celta',
+    name: 'Celta',
+    location: 'Colombia',
+    year: 2024,
     type: 'commercial',
     role: 'design-execution',
     status: 'completed',
-    featured: false,
-    published: true,
-    coverImage: torreAndinaImg,
+    featured: true,
+    coverImage: celta7Img,
     images: [
-      { url: torreAndinaImg, stage: 'completed' },
+      {
+        url: celta7Img,
+        caption: 'Interior comercial — exhibición y circulación',
+        stage: 'completed',
+      },
     ],
-    client: 'Inversiones Norte S.A.',
-    area: '52,000 m²',
-    description: 'Centro comercial con enfoque en experiencia del visitante, incorporando plazas abiertas y circulación natural.',
-    deliverables: ['Diseño completo', 'Construcción', 'Coordinación de locatarios'],
+    client: 'Celta',
+    description:
+      'Diseño y ejecución de espacio comercial para la marca: layout de exhibición, iluminación y materiales que ordenan la experiencia de compra y refuerzan la identidad del punto de venta.',
+    deliverables: [
+      'Diseño de interior comercial',
+      'Ejecución',
+      'Coordinación de mobiliario y señalética',
+    ],
   },
   {
-    id: 'colegio-internacional',
-    name: 'Colegio Internacional del Valle',
-    location: 'Cali, Colombia',
-    year: 2019,
+    id: 'casa-unifamiliar',
+    name: 'Casa unifamiliar',
+    location: 'Colombia',
+    year: 2024,
+    type: 'residential',
+    role: 'design-execution',
+    status: 'completed',
+    featured: true,
+    coverImage: casaUnifamiliar2Img,
+    images: [{ url: casaUnifamiliar2Img, caption: 'Vivienda — espacios principales', stage: 'completed' }],
+    description:
+      'Vivienda unifamiliar donde la relación interior–exterior, la iluminación natural y la elección de materiales definen ambientes cómodos y duraderos, con énfasis en la funcionalidad de la familia.',
+    deliverables: ['Diseño arquitectónico', 'Interiorismo', 'Dirección de obra'],
+  },
+  {
+    id: 'centro-penitenciario',
+    name: 'Centro penitenciario',
+    location: 'Colombia',
+    year: 2023,
     type: 'institutional',
     role: 'design-execution',
     status: 'completed',
-    featured: false,
-    published: true,
-    coverImage: centroCulturalImg,
+    featured: true,
+    coverImage: centroPenitenciarioImg,
     images: [
-      { url: centroCulturalImg, stage: 'completed' },
+      { url: centroPenitenciarioImg, caption: 'Complejo — circulación y volumetría', stage: 'completed' },
     ],
-    client: 'Fundación Educativa',
-    area: '18,000 m²',
-    description: 'Campus educativo bilingüe con instalaciones deportivas, laboratorios y espacios de aprendizaje innovadores.',
-    deliverables: ['Diseño arquitectónico', 'Paisajismo', 'Construcción por fases'],
+    description:
+      'Proyecto institucional de gran escala que organiza circulaciones, seguridad y servicios con criterios técnicos y normativos, integrando la volumetría del conjunto con el entorno.',
+    deliverables: ['Diseño arquitectónico', 'Coordinación técnica', 'Ejecución'],
   },
   {
-    id: 'edificio-apartamentos-chapinero',
-    name: 'Edificio Chapinero 72',
-    location: 'Bogotá, Colombia',
-    year: 2021,
-    type: 'residential',
-    role: 'design',
-    status: 'completed',
-    featured: false,
-    published: false,
-    coverImage: residenciasParqueImg,
-    images: [
-      { url: residenciasParqueImg, stage: 'completed' },
-    ],
-    area: '6,800 m²',
-    description: 'Edificio de apartamentos con diseño contemporáneo enfocado en eficiencia espacial.',
-    deliverables: ['Diseño arquitectónico', 'Documentación técnica'],
-  },
-  {
-    id: 'nave-industrial-siberia',
-    name: 'Nave Industrial Siberia',
-    location: 'Cundinamarca, Colombia',
+    id: 'mro-3',
+    name: 'Instalación MRO y logística',
+    location: 'Colombia',
     year: 2023,
     type: 'industrial',
-    role: 'execution',
-    status: 'completed',
-    featured: false,
-    published: false,
-    coverImage: bodegaIndustrialImg,
-    images: [
-      { url: bodegaIndustrialImg, stage: 'completed' },
-    ],
-    area: '22,000 m²',
-    description: 'Bodega industrial con altura libre de 12 metros y sistemas logísticos automatizados.',
-    deliverables: ['Dirección de obra', 'Control de calidad'],
-  },
-  {
-    id: 'restaurante-terraza',
-    name: 'Restaurante La Terraza',
-    location: 'Santa Marta, Colombia',
-    year: 2022,
-    type: 'commercial',
     role: 'design-execution',
     status: 'completed',
-    featured: false,
-    published: false,
-    coverImage: hotelBoutiqueImg,
-    images: [
-      { url: hotelBoutiqueImg, stage: 'completed' },
-    ],
-    area: '650 m²',
-    description: 'Restaurante frente al mar con diseño que maximiza vistas y ventilación natural.',
-    deliverables: ['Diseño interior', 'Construcción'],
+    featured: true,
+    coverImage: mro3Img,
+    images: [{ url: mro3Img, caption: 'Nave e infraestructura de apoyo', stage: 'completed' }],
+    description:
+      'Infraestructura industrial para operaciones de mantenimiento, reparación y apoyo logístico, con módulos claros de circulación, almacenamiento y talleres.',
+    deliverables: ['Diseño arquitectónico', 'Ingeniería de detalle', 'Dirección de obra'],
+  },
+  {
+    id: 'parque-los-locos',
+    name: 'Parque Los Locos',
+    location: 'Colombia',
+    year: 2024,
+    type: 'residential',
+    role: 'design-execution',
+    status: 'completed',
+    featured: true,
+    coverImage: parqueLosLocos1Img,
+    images: [{ url: parqueLosLocos1Img, caption: 'Conjunto — fachadas y espacio común', stage: 'completed' }],
+    description:
+      'Proyecto residencial que ordena unidades y áreas comunes en torno a paisaje y recorridos peatonales, priorizando confort, privacidad y coherencia formal del conjunto.',
+    deliverables: ['Diseño arquitectónico', 'Paisajismo', 'Dirección de obra'],
+  },
+  {
+    id: 'villeta-samanes',
+    name: 'Villeta — conjunto Samanes',
+    location: 'Villeta, Cundinamarca',
+    year: 2024,
+    type: 'residential',
+    role: 'design-execution',
+    status: 'completed',
+    featured: true,
+    coverImage: villetaSamanes2Img,
+    images: [{ url: villetaSamanes2Img, caption: 'Vivienda — integración con el entorno', stage: 'completed' }],
+    description:
+      'Vivienda en contexto de clima cálido y vegetación, con soluciones de sombra, ventilación cruzada y materiales adecuados al lugar para reducir carga térmica y mantener confort interior.',
+    deliverables: ['Diseño arquitectónico', 'Interiorismo', 'Dirección de obra'],
   },
 ];
 
@@ -279,28 +192,27 @@ export const getProjectsByFilter = (
   featuredOnly?: boolean
 ): Project[] => {
   let filtered = [...projects];
-  
+
   if (featuredOnly) {
     filtered = filtered.filter(p => p.featured);
   }
-  
+
   if (typeFilter && typeFilter.length > 0) {
     filtered = filtered.filter(p => typeFilter.includes(p.type));
   }
-  
+
   if (roleFilter && roleFilter.length > 0) {
     filtered = filtered.filter(p => roleFilter.includes(p.role));
   }
-  
+
   if (statusFilter && statusFilter.length > 0) {
     filtered = filtered.filter(p => statusFilter.includes(p.status));
   }
-  
-  // Sort: published first, then completed, then in-progress
+
+  // Sort: terminado antes que en obra; mismo estado por año descendente
   return filtered.sort((a, b) => {
-    if (a.published !== b.published) return b.published ? 1 : -1;
     if (a.status !== b.status) {
-      const order = { 'completed': 0, 'in-progress': 1, 'published': 2 };
+      const order: Record<ProjectStatus, number> = { completed: 0, 'in-progress': 1 };
       return order[a.status] - order[b.status];
     }
     return b.year - a.year;
@@ -308,7 +220,7 @@ export const getProjectsByFilter = (
 };
 
 export const getFeaturedProjects = (): Project[] => {
-  return getProjectsByFilter(undefined, undefined, undefined, true).slice(0, 6);
+  return getProjectsByFilter(undefined, undefined, undefined, true).slice(0, 12);
 };
 
 export const getProjectById = (id: string): Project | undefined => {

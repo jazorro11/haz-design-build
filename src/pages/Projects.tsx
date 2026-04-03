@@ -36,7 +36,7 @@ export default function Projects() {
     <Layout>
       <SEO
         title="Proyectos"
-        description="Catálogo de proyectos de arquitectura: residencial, comercial, institucional e industrial. Más de 30 años de experiencia en diseño y ejecución."
+        description="Proyectos de arquitectura e interiorismo: residencial, comercial, institucional e industrial. Trayectoria en diseño y ejecución de obra."
         path="/proyectos"
       />
       {/* Header */}
@@ -44,8 +44,8 @@ export default function Projects() {
         <div className="container-wide">
           <h1 className="text-display-md font-semibold mb-4">Proyectos</h1>
           <p className="text-body-lg text-muted-foreground max-w-2xl">
-            Más de tres décadas de trabajo arquitectónico, desde el concepto 
-            hasta la entrega de obra.
+            Trabajo arquitectónico desde el concepto hasta la entrega de obra, en
+            proyectos residenciales, comerciales, institucionales e industriales.
           </p>
         </div>
       </section>
