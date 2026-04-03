@@ -21,7 +21,7 @@ export function InteriorPageHero({
     <section
       className={cn(
         'relative overflow-hidden border-b border-border',
-        'min-h-[max(15rem,min(42dvh,25rem))]'
+        'min-h-[max(11rem,min(26dvh,17rem))]'
       )}
     >
       <div className="absolute inset-0 z-0">
@@ -35,9 +35,9 @@ export function InteriorPageHero({
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
       </div>
 
-      <div className="relative z-10 container-wide py-12 md:py-16 lg:py-20">
+      <div className="relative z-10 container-wide py-8 md:py-10 lg:py-12">
         <div className={cn('max-w-2xl', textClassName)}>
-          <h1 className="text-display-md font-semibold mb-4">{title}</h1>
+          <h1 className="text-display-md font-semibold mb-3">{title}</h1>
           {description != null ? (
             <div className="text-body-lg text-muted-foreground">{description}</div>
           ) : null}

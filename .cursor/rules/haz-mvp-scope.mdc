@@ -31,4 +31,4 @@ Backend dedicado, CMS, auth, Clientes/Prensa en UX pública, i18n, analytics —
 
 ## Agentes al implementar
 
-Para **features y bugs**, el flujo de **revisor de alcance** y **QA** sobre código nuevo está definido en `.cursor/rules/haz-scope-code-review-workflow.mdc` (subagentes en `.cursor/agents/`).
+Para **features y bugs**, el flujo de **revisor de alcance**, **diseño web / UX** (`haz-web-design-expert` cuando toque UI o experiencia) y **QA** sobre código nuevo está definido en `.cursor/rules/haz-scope-code-review-workflow.mdc` (subagentes en `.cursor/agents/`).

@@ -313,6 +313,7 @@ export default function DesignSystem() {
             <div className="grid grid-cols-2 gap-3">
               {[
                 { t: '.section-padding', d: 'py-16 md:py-24 lg:py-32' },
+                { t: '.section-padding-after-hero', d: 'pt-10 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32' },
                 { t: '.section-padding-sm', d: 'py-12 md:py-16 lg:py-20' },
                 { t: '.container-wide', d: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' },
                 { t: '.container-narrow', d: 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8' },

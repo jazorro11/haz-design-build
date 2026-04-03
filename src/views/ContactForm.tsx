@@ -65,7 +65,7 @@ export function ContactForm() {
   };
 
   return (
-    <section className="section-padding">
+    <section className="section-padding-after-hero">
       <div className="container-wide">
         <div className="max-w-2xl">
           <h2 className="text-2xl font-semibold mb-6">Envíenos un mensaje</h2>

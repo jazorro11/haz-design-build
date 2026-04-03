@@ -43,7 +43,7 @@ export default function Index() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center">
+      <section className="relative min-h-[clamp(22rem,62dvh,40rem)] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <OptimizedImage
