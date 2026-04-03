@@ -75,11 +75,13 @@ Cambios triviales sin impacto en comportamiento, tipos ni rutas (p. ej. comentar
 
 **Serialización:** los pasos 3 → 4 → 5 son **obligatoriamente en serie** para los subagentes: un solo subagente activo en esta cadena a la vez, en ese orden. Si un paso no aplica (trivialidad), **salta** al siguiente manteniendo el orden.
 
-6. Entregar al usuario con los informes que apliquen **integrados o enlazados** (diseño + alcance + QA).
+6. **README:** con **diseño (paso 3)** y **QA (paso 5)** cerrados favorablemente (u omitidos por trivialidad documentada), el **revisor de alcance** (`haz-scope-code-review`) debe **actualizar o verificar `README.md`** según las instrucciones del agente (coherencia con `.env.example`, scripts, rutas, flujos). Si la invocación del revisor fue **antes** de QA, **reinvócalo** tras el informe QA favorable para ese cierre, o aplica tú mismo ese paso siguiendo el mismo criterio del agente.
+
+7. Entregar al usuario con los informes que apliquen **integrados o enlazados** (diseño + alcance + QA + README si hubo edición).
 
 ## Formato del revisor
 
-Cuando entregues una revisión formal (feature, bug, PR), usa la estructura que exige `haz-scope-code-review` (Resumen, Alineación con alcance, Cambios recomendados, Fuera de este cambio, Verificación con checklists).
+Cuando entregues una revisión formal (feature, bug, PR), usa la estructura que exige `haz-scope-code-review` (Resumen, Alineación con alcance, Cambios recomendados, Fuera de este cambio, **README**, Verificación con checklists).
 
 ## Formato del diseño / UX
 
