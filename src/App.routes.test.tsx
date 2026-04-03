@@ -8,7 +8,8 @@ import Services from "@/views/Services";
 import About from "@/views/About";
 import Contact from "@/views/Contact";
 import DesignSystem from "@/views/DesignSystem";
-import ProjectDetail from "@/views/ProjectDetail";
+import ProjectDetail, { ProjectNotFound } from "@/views/ProjectDetail";
+import { getProjectById } from "@/data/projects";
 import NotFound from "@/views/NotFound";
 
 describe("Rutas MVP (páginas)", () => {
@@ -65,9 +66,11 @@ describe("Rutas MVP (páginas)", () => {
   });
 
   it("ruta /proyectos/:id válida muestra el nombre del proyecto en h1", () => {
+    const project = getProjectById("aposentos");
+    expect(project).toBeDefined();
     render(
       <AppTestShell>
-        <ProjectDetail id="aposentos" />
+        <ProjectDetail project={project!} />
       </AppTestShell>,
     );
     expect(
@@ -78,7 +81,7 @@ describe("Rutas MVP (páginas)", () => {
   it("ruta /proyectos/:id inválida muestra estado no encontrado", () => {
     render(
       <AppTestShell>
-        <ProjectDetail id="id-inexistente" />
+        <ProjectNotFound />
       </AppTestShell>,
     );
     expect(

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ProjectDetail from "@/views/ProjectDetail";
+import ProjectDetail, { ProjectNotFound } from "@/views/ProjectDetail";
 import { getProjectById } from "@/data/projects";
 import { buildPageMetadata } from "@/lib/site-metadata";
 
@@ -38,5 +38,9 @@ export default async function ProyectoDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  return <ProjectDetail id={id} />;
+  const project = getProjectById(id);
+  if (!project) {
+    return <ProjectNotFound />;
+  }
+  return <ProjectDetail project={project} />;
 }

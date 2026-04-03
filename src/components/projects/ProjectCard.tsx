@@ -42,6 +42,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
         <OptimizedImage
           src={project.coverImage}
           alt={`${project.name} - ${project.status === 'in-progress' ? 'en obra' : 'terminado'}`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="image-cover transition-transform duration-500 group-hover:scale-105"
         />
         

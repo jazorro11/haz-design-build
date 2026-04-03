@@ -1,5 +1,3 @@
-'use client';
-
 import type { ReactNode } from 'react';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { cn } from '@/lib/utils';
@@ -30,6 +28,7 @@ export function InteriorPageHero({
         <OptimizedImage
           src={heroImage}
           alt="Arquitectura moderna - HAZ Arquitectura"
+          sizes="100vw"
           className="image-cover"
           eager
         />

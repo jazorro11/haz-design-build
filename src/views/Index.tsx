@@ -49,6 +49,7 @@ export default function Index() {
           <OptimizedImage
             src={heroImage}
             alt="Arquitectura moderna - HAZ Arquitectura"
+            sizes="100vw"
             className="image-cover"
             eager
           />

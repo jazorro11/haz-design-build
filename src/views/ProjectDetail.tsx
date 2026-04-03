@@ -1,11 +1,9 @@
-'use client';
-
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Calendar, Ruler, Users } from 'lucide-react';
 import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Button } from '@/components/ui/button';
-import { getProjectById, ProjectStatus } from '@/data/projects';
+import type { Project, ProjectStatus } from '@/data/projects';
 import { cn } from '@/lib/utils';
 
 const statusLabels: Record<ProjectStatus, string> = {
@@ -26,20 +24,18 @@ const typeLabels: Record<string, string> = {
   industrial: 'Industrial',
 };
 
-export default function ProjectDetail({ id }: { id: string }) {
-  const project = id ? getProjectById(id) : undefined;
+export function ProjectNotFound() {
+  return (
+    <div className="section-padding container-wide text-center">
+      <h1 className="text-2xl font-semibold mb-4">Proyecto no encontrado</h1>
+      <Button asChild>
+        <Link href="/proyectos">Volver a proyectos</Link>
+      </Button>
+    </div>
+  );
+}
 
-  if (!project) {
-    return (
-      <div className="section-padding container-wide text-center">
-        <h1 className="text-2xl font-semibold mb-4">Proyecto no encontrado</h1>
-        <Button asChild>
-          <Link href="/proyectos">Volver a proyectos</Link>
-        </Button>
-      </div>
-    );
-  }
-
+export default function ProjectDetail({ project }: { project: Project }) {
   return (
     <>
       <div className="container-wide py-6">
@@ -72,6 +68,7 @@ export default function ProjectDetail({ id }: { id: string }) {
             <OptimizedImage
               src={project.coverImage}
               alt={project.name}
+              sizes="(max-width: 1280px) 100vw, 1280px"
               className="image-cover"
               eager
             />
@@ -79,11 +76,9 @@ export default function ProjectDetail({ id }: { id: string }) {
         </div>
       </section>
 
-      {/* Content */}
       <section className="section-padding-sm">
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-            {/* Main content */}
             <div className="lg:col-span-2">
               <h2 className="text-2xl font-semibold mb-6">Descripción</h2>
               <p className="text-body-lg text-muted-foreground mb-8 leading-relaxed">
@@ -130,7 +125,6 @@ export default function ProjectDetail({ id }: { id: string }) {
                 </div>
               )}
 
-              {/* Gallery */}
               {project.images.length > 0 && (
                 <div>
                   <h2 className="text-2xl font-semibold mb-6">Galería</h2>
@@ -143,6 +137,7 @@ export default function ProjectDetail({ id }: { id: string }) {
                         <OptimizedImage
                           src={image.url}
                           alt={image.caption || `${project.name} - Imagen ${index + 1}`}
+                          sizes="(max-width: 768px) 100vw, 50vw"
                           className="image-cover"
                         />
                         <div className="absolute top-3 right-3">
@@ -151,7 +146,7 @@ export default function ProjectDetail({ id }: { id: string }) {
                               'px-2 py-1 text-micro font-medium rounded',
                               image.stage === 'completed'
                                 ? 'bg-primary/90 text-primary-foreground'
-                                : 'bg-accent/90 text-accent-foreground'
+                                : 'bg-accent/90 text-accent-foreground',
                             )}
                           >
                             {image.stage === 'completed' ? 'Terminado' : 'En obra'}
@@ -159,9 +154,7 @@ export default function ProjectDetail({ id }: { id: string }) {
                         </div>
                         {image.caption && (
                           <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-background/80 to-transparent">
-                            <p className="text-caption text-foreground">
-                              {image.caption}
-                            </p>
+                            <p className="text-caption text-foreground">{image.caption}</p>
                           </div>
                         )}
                       </div>
@@ -171,7 +164,6 @@ export default function ProjectDetail({ id }: { id: string }) {
               )}
             </div>
 
-            {/* Sidebar - Technical info */}
             <div className="lg:col-span-1">
               <div className="sticky top-28 space-y-8">
                 <div className="p-6 rounded-lg bg-card border border-border">
@@ -220,7 +212,6 @@ export default function ProjectDetail({ id }: { id: string }) {
                   </dl>
                 </div>
 
-                {/* CTA */}
                 <div className="p-6 rounded-lg bg-primary text-primary-foreground">
                   <h3 className="font-semibold mb-3">¿Un proyecto similar?</h3>
                   <p className="text-sm opacity-80 mb-4">
