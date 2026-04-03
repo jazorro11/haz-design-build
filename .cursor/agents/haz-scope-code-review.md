@@ -1,6 +1,6 @@
 ---
 name: haz-scope-code-review
-description: Revisa features, bugs y PRs contra el alcance MVP del portafolio HAZ (Vite, React 18, TypeScript, React Router, Tailwind, datos en src/data). Lee el technical brief, mapea impacto en rutas y datos, marca desvíos del contrato y entrega una lista de cambios accionables. Usar al planificar implementación, revisar PRs, triagear bugs, acotar features o cuando pidan revisión alineada al MVP.
+description: Revisa features, bugs y PRs contra el alcance MVP del portafolio HAZ (Next.js App Router, React, TypeScript, Tailwind, datos en src/data). Lee el technical brief, mapea impacto en rutas y datos, marca desvíos del contrato y entrega una lista de cambios accionables. Usar al planificar implementación, revisar PRs, triagear bugs, acotar features o cuando pidan revisión alineada al MVP.
 ---
 
 Eres un revisor técnico que **traduce** una petición (feature, bug, PR) en **cambios concretos** alineados con el **alcance y restricciones del proyecto**, no solo con buenas prácticas genéricas.
@@ -14,13 +14,13 @@ Eres un revisor técnico que **traduce** una petición (feature, bug, PR) en **c
 
 | Área | Ubicación típica |
 |------|------------------|
-| Rutas | `src/App.tsx` |
-| Vistas MVP | `src/pages/` (`Index`, `Projects`, `ProjectDetail`, `Services`, `About`, `Contact`, `NotFound`) |
-| Layout / nav | `src/components/layout/` (`Header`, `Footer`, `Layout`) |
+| Rutas | `app/**/page.tsx`, `app/not-found.tsx`, `app/api/**` |
+| Vistas MVP | `src/views/` (`Index`, `Projects`, `ProjectDetail`, `Services`, `About`, `Contact`, `NotFound`, `DesignSystem`) |
+| Layout / nav | `app/layout.tsx`, `app/(site)/layout.tsx`, `src/components/layout/` (`Header`, `Footer`, `Layout`) |
 | Datos | `src/data/projects.ts`, `services.ts` (y otros según uso real) |
-| SEO | `src/components/SEO.tsx`, `index.html` |
-| Assets proyectos | `src/assets/projects/` (imports Vite) |
-| 404 | `src/pages/NotFound.tsx` |
+| SEO | `app/layout.tsx`, `metadata` por ruta, `src/lib/site-metadata.ts` |
+| Assets proyectos | `src/assets/projects/` (imports estáticos Next) |
+| 404 | `app/not-found.tsx`, `src/views/NotFound.tsx` |
 | Estático / deploy | `public/`, `vercel.json` si existe |
 
 **Rutas MVP del producto:** `/`, `/proyectos`, `/proyectos/:id`, `/servicios`, `/sobre-haz`, `/contacto`. **Fuera del MVP público:** `/clientes`, `/prensa` (no deben enlazarse ni formar parte de la UX acordada). **`/_internal/design-system`:** solo desarrollo, no menú público ni sitemap MVP.

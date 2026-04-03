@@ -1,5 +1,8 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -14,7 +17,7 @@ const navigation = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +30,7 @@ export function Header() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <header
@@ -42,7 +45,7 @@ export function Header() {
         <nav className="flex items-center justify-between h-18 md:h-22">
           {/* Logo */}
           <Link
-            to="/"
+            href="/"
             className="text-xl md:text-2xl font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
           >
             HAZ
@@ -54,10 +57,10 @@ export function Header() {
             {navigation.map((item) => (
               <Link
                 key={item.name}
-                to={item.href}
+                href={item.href}
                 className={cn(
                   'text-caption font-medium tracking-wide uppercase transition-colors link-underline',
-                  location.pathname === item.href
+                  pathname === item.href
                     ? 'text-foreground'
                     : 'text-muted-foreground hover:text-foreground'
                 )}
@@ -70,7 +73,7 @@ export function Header() {
           {/* CTA + Mobile Menu Toggle */}
           <div className="flex items-center gap-4">
             <Button variant="cta" size="sm" className="hidden sm:inline-flex" asChild>
-              <Link to="/contacto">Hablemos</Link>
+              <Link href="/contacto">Hablemos</Link>
             </Button>
 
             <button
@@ -95,10 +98,10 @@ export function Header() {
           {navigation.map((item) => (
             <Link
               key={item.name}
-              to={item.href}
+              href={item.href}
               className={cn(
                 'block py-3 text-lg font-medium transition-colors',
-                location.pathname === item.href
+                pathname === item.href
                   ? 'text-foreground'
                   : 'text-muted-foreground hover:text-foreground'
               )}
@@ -108,7 +111,7 @@ export function Header() {
           ))}
           <div className="pt-4">
             <Button variant="cta" className="w-full" asChild>
-              <Link to="/contacto">Hablemos</Link>
+              <Link href="/contacto">Hablemos</Link>
             </Button>
           </div>
         </div>

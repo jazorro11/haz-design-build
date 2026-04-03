@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { AppTestShell } from "@/test/wrapAppShell";
+import Projects from "@/views/Projects";
 import { projects } from "@/data/projects";
 
 function projectSummaryLabel(count: number): string {
@@ -9,7 +10,11 @@ function projectSummaryLabel(count: number): string {
 
 describe("Projects — filtros", () => {
   it("filtrar por tipología reduce el listado y Limpiar filtros lo restablece", () => {
-    render(<AppTestShell initialPath="/proyectos" />);
+    render(
+      <AppTestShell>
+        <Projects />
+      </AppTestShell>,
+    );
 
     expect(
       screen.getByText(projectSummaryLabel(projects.length)),
@@ -27,7 +32,11 @@ describe("Projects — filtros", () => {
   });
 
   it("alternar a Todos los proyectos mantiene el listado visible", () => {
-    render(<AppTestShell initialPath="/proyectos" />);
+    render(
+      <AppTestShell>
+        <Projects />
+      </AppTestShell>,
+    );
 
     fireEvent.click(
       screen.getByRole("button", { name: /Todos los proyectos/i }),

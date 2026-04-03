@@ -1,5 +1,7 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { google } from "googleapis";
+import { NextResponse } from "next/server";
+
+export const runtime = "nodejs";
 
 type ContactBody = {
   name?: unknown;
@@ -12,39 +14,27 @@ type ContactBody = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function parseBody(req: VercelRequest): ContactBody | null {
-  if (req.body == null) return {};
-  if (typeof req.body === "string") {
-    try {
-      return JSON.parse(req.body) as ContactBody;
-    } catch {
-      return null;
-    }
-  }
-  if (typeof req.body === "object") {
-    return req.body as ContactBody;
-  }
-  return null;
-}
-
 function str(v: unknown): string {
   if (typeof v !== "string") return "";
   return v.trim();
 }
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse,
-): Promise<void> {
-  if (req.method !== "POST") {
-    res.status(405).json({ ok: false, error: "Método no permitido" });
-    return;
+export async function POST(request: Request) {
+  let parsed: ContactBody | null;
+  try {
+    const raw = await request.json();
+    if (raw == null) parsed = {};
+    else if (typeof raw === "object") parsed = raw as ContactBody;
+    else parsed = null;
+  } catch {
+    parsed = null;
   }
 
-  const parsed = parseBody(req);
   if (parsed === null) {
-    res.status(400).json({ ok: false, error: "Cuerpo inválido" });
-    return;
+    return NextResponse.json(
+      { ok: false, error: "Cuerpo inválido" },
+      { status: 400 },
+    );
   }
 
   const name = str(parsed.name);
@@ -55,14 +45,16 @@ export default async function handler(
   const message = str(parsed.message);
 
   if (!name || !email || !message) {
-    res
-      .status(400)
-      .json({ ok: false, error: "Faltan nombre, correo o mensaje" });
-    return;
+    return NextResponse.json(
+      { ok: false, error: "Faltan nombre, correo o mensaje" },
+      { status: 400 },
+    );
   }
   if (!EMAIL_RE.test(email)) {
-    res.status(400).json({ ok: false, error: "Correo no válido" });
-    return;
+    return NextResponse.json(
+      { ok: false, error: "Correo no válido" },
+      { status: 400 },
+    );
   }
 
   const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -72,8 +64,10 @@ export default async function handler(
 
   if (!clientEmail || !privateKey || !spreadsheetId || !range) {
     console.error("contact: missing server environment variables");
-    res.status(500).json({ ok: false, error: "Error del servidor" });
-    return;
+    return NextResponse.json(
+      { ok: false, error: "Error del servidor" },
+      { status: 500 },
+    );
   }
 
   try {
@@ -105,9 +99,12 @@ export default async function handler(
       },
     });
 
-    res.status(200).json({ ok: true });
+    return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("contact: sheets append failed", err);
-    res.status(500).json({ ok: false, error: "No se pudo registrar el mensaje" });
+    return NextResponse.json(
+      { ok: false, error: "No se pudo registrar el mensaje" },
+      { status: 500 },
+    );
   }
 }

@@ -1,6 +1,6 @@
+'use client';
+
 import { useState } from 'react';
-import { Layout } from '@/components/layout/Layout';
-import { SEO } from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -64,12 +64,7 @@ export default function Contact() {
   };
 
   return (
-    <Layout>
-      <SEO
-        title="Contacto"
-        description="Contáctenos para cotizar su proyecto. HAZ Arquitectura: diseño y ejecución de obra con más de 30 años de experiencia."
-        path="/contacto"
-      />
+    <>
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">
@@ -163,6 +158,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }

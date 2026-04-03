@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
-import { Layout } from '@/components/layout/Layout';
-import { SEO } from '@/components/SEO';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { services, processSteps } from '@/data/services';
 import { Compass, FileStack, HardHat, Users, Wrench, ArrowRight } from 'lucide-react';
@@ -15,12 +13,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function Services() {
   return (
-    <Layout>
-      <SEO
-        title="Servicios"
-        description="Servicios integrales de arquitectura: diseño arquitectónico, ejecución de obra, gerencia de proyectos, consultoría técnica y remodelaciones."
-        path="/servicios"
-      />
+    <>
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">
@@ -117,10 +110,10 @@ export default function Services() {
             Cuéntenos sobre su proyecto y le daremos una propuesta personalizada.
           </p>
           <Button variant="hero" asChild>
-            <Link to="/contacto">Solicitar cotización</Link>
+            <Link href="/contacto">Solicitar cotización</Link>
           </Button>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }

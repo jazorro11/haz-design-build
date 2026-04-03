@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import {
   ArrowRight,
   Compass,
@@ -12,8 +14,6 @@ import {
   Clock,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Layout } from '@/components/layout/Layout';
-import { SEO } from '@/components/SEO';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -41,8 +41,7 @@ export default function Index() {
   const featuredProjects = getFeaturedProjects();
 
   return (
-    <Layout>
-      <SEO path="/" />
+    <>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center">
         {/* Background Image */}
@@ -70,10 +69,10 @@ export default function Index() {
             </p>
             <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               <Button variant="hero" asChild>
-                <Link to="/proyectos">Ver proyectos</Link>
+                <Link href="/proyectos">Ver proyectos</Link>
               </Button>
               <Button variant="hero-outline" asChild>
-                <Link to="/contacto">Hablemos</Link>
+                <Link href="/contacto">Hablemos</Link>
               </Button>
             </div>
           </div>
@@ -114,7 +113,7 @@ export default function Index() {
               </p>
             </div>
             <Link
-              to="/proyectos"
+              href="/proyectos"
               className="hidden md:inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
             >
               Ver todos <ArrowRight size={18} />
@@ -129,7 +128,7 @@ export default function Index() {
 
           <div className="mt-8 text-center md:hidden">
             <Button variant="outline" asChild>
-              <Link to="/proyectos">Ver todos los proyectos</Link>
+              <Link href="/proyectos">Ver todos los proyectos</Link>
             </Button>
           </div>
         </div>
@@ -223,7 +222,7 @@ export default function Index() {
 
           <div className="text-center mt-8">
             <Button variant="outline" asChild>
-              <Link to="/servicios">Ver todos los servicios</Link>
+              <Link href="/servicios">Ver todos los servicios</Link>
             </Button>
           </div>
         </div>
@@ -246,11 +245,11 @@ export default function Index() {
               className="border-background/40 text-background hover:bg-background hover:text-foreground"
               asChild
             >
-              <Link to="/contacto">Cotizar / Hablemos</Link>
+              <Link href="/contacto">Cotizar / Hablemos</Link>
             </Button>
           </div>
         </ScrollReveal>
       </section>
-    </Layout>
+    </>
   );
 }

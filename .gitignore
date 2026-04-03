@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Next.js (build output y caché; no versionar)
+.next
+out
+
 # Credenciales locales (no subir; la plantilla vive en .env.example)
 .env
 

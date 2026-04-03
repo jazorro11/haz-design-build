@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { AppTestShell } from "@/test/wrapAppShell";
+import Contact from "@/views/Contact";
 
 describe("Contact — formulario", () => {
   const originalFetch = globalThis.fetch;
@@ -20,7 +21,11 @@ describe("Contact — formulario", () => {
       json: () => Promise.resolve({ ok: true }),
     } as Response);
 
-    render(<AppTestShell initialPath="/contacto" />);
+    render(
+      <AppTestShell>
+        <Contact />
+      </AppTestShell>,
+    );
 
     fireEvent.change(screen.getByLabelText(/^Nombre/i), {
       target: { value: "Usuario prueba" },
@@ -60,7 +65,11 @@ describe("Contact — formulario", () => {
       json: () => Promise.resolve({ ok: false, error: "Error del servidor" }),
     } as Response);
 
-    render(<AppTestShell initialPath="/contacto" />);
+    render(
+      <AppTestShell>
+        <Contact />
+      </AppTestShell>,
+    );
 
     fireEvent.change(screen.getByLabelText(/^Nombre/i), {
       target: { value: "Usuario prueba" },

@@ -1,53 +1,86 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { AppTestShell } from "@/test/wrapAppShell";
+import { mockUsePathname } from "@/test/next-navigation-mock";
+import Index from "@/views/Index";
+import Projects from "@/views/Projects";
+import Services from "@/views/Services";
+import About from "@/views/About";
+import Contact from "@/views/Contact";
+import DesignSystem from "@/views/DesignSystem";
+import ProjectDetail from "@/views/ProjectDetail";
+import NotFound from "@/views/NotFound";
 
-describe("App routes (MVP y post-MVP)", () => {
+describe("Rutas MVP (páginas)", () => {
   let errorSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    mockUsePathname.mockReturnValue("/");
   });
 
   afterEach(() => {
     errorSpy.mockRestore();
   });
 
-  it.each(["/clientes", "/prensa"])(
-    "ruta %s no está registrada: muestra 404",
-    (path) => {
-      render(<AppTestShell initialPath={path} />);
-      expect(screen.getByRole("heading", { name: "404" })).toBeInTheDocument();
-    },
-  );
+  it.each([
+    ["/clientes"],
+    ["/prensa"],
+  ])("ruta no registrada %s: NotFound con 404", (path) => {
+    mockUsePathname.mockReturnValue(path);
+    render(
+      <AppTestShell>
+        <NotFound />
+      </AppTestShell>,
+    );
+    expect(screen.getByRole("heading", { name: "404" })).toBeInTheDocument();
+  });
 
   it.each([
-    ["/", /HAZ Arquitectura/i],
-    ["/proyectos", /^Proyectos$/],
-    ["/servicios", /^Servicios$/],
-    ["/sobre-haz", /^Sobre HAZ$/],
-    ["/contacto", /^Contacto$/],
-  ])("ruta MVP %s renderiza h1 esperado", (path, nameMatcher) => {
-    render(<AppTestShell initialPath={path} />);
-    expect(screen.getByRole("heading", { level: 1, name: nameMatcher })).toBeInTheDocument();
+    [Index, /HAZ Arquitectura/i],
+    [Projects, /^Proyectos$/],
+    [Services, /^Servicios$/],
+    [About, /^Sobre HAZ$/],
+    [Contact, /^Contacto$/],
+  ])("página MVP renderiza h1 esperado", (Page, nameMatcher) => {
+    render(
+      <AppTestShell>
+        <Page />
+      </AppTestShell>,
+    );
+    expect(
+      screen.getByRole("heading", { level: 1, name: nameMatcher }),
+    ).toBeInTheDocument();
   });
 
   it("ruta interna design-system responde", () => {
-    render(<AppTestShell initialPath="/_internal/design-system" />);
+    render(
+      <AppTestShell>
+        <DesignSystem />
+      </AppTestShell>,
+    );
     expect(
       screen.getByRole("heading", { name: /HAZ Design System/i }),
     ).toBeInTheDocument();
   });
 
   it("ruta /proyectos/:id válida muestra el nombre del proyecto en h1", () => {
-    render(<AppTestShell initialPath="/proyectos/aposentos" />);
+    render(
+      <AppTestShell>
+        <ProjectDetail id="aposentos" />
+      </AppTestShell>,
+    );
     expect(
       screen.getByRole("heading", { level: 1, name: /^Aposentos$/ }),
     ).toBeInTheDocument();
   });
 
   it("ruta /proyectos/:id inválida muestra estado no encontrado", () => {
-    render(<AppTestShell initialPath="/proyectos/id-inexistente" />);
+    render(
+      <AppTestShell>
+        <ProjectDetail id="id-inexistente" />
+      </AppTestShell>,
+    );
     expect(
       screen.getByRole("heading", {
         level: 1,

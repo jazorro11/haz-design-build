@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { SITE_TAGLINE } from '@/lib/site';
 
 const navigation = {
@@ -19,7 +19,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="inline-block text-2xl font-semibold tracking-tight mb-4">
+            <Link href="/" className="inline-block text-2xl font-semibold tracking-tight mb-4">
               HAZ
               <span className="font-light ml-1">Arquitectura</span>
             </Link>
@@ -41,7 +41,7 @@ export function Footer() {
               {navigation.main.map((item) => (
                 <li key={item.name}>
                   <Link
-                    to={item.href}
+                    href={item.href}
                     className="text-background/70 hover:text-background transition-colors"
                   >
                     {item.name}

@@ -1,3 +1,5 @@
+'use client';
+
 import { ProjectType, ProjectRole, ProjectStatus } from '@/data/projects';
 import { cn } from '@/lib/utils';
 

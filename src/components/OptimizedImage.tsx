@@ -1,13 +1,23 @@
+/* eslint-disable @next/next/no-img-element -- lazy placeholder pattern; migrar a next/image si se unifica */
+'use client';
+
 import { useState, useRef, useEffect } from 'react';
+import type { StaticImageData } from 'next/image';
 import { cn } from '@/lib/utils';
 
-interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
+function resolveSrc(src: string | StaticImageData): string {
+  return typeof src === 'string' ? src : src.src;
+}
+
+interface OptimizedImageProps
+  extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> {
+  src: string | StaticImageData;
   alt: string;
   eager?: boolean;
 }
 
 export function OptimizedImage({ src, alt, className, eager = false, ...props }: OptimizedImageProps) {
+  const srcUrl = resolveSrc(src);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(eager);
   const imgRef = useRef<HTMLDivElement>(null);
@@ -46,7 +56,7 @@ export function OptimizedImage({ src, alt, className, eager = false, ...props }:
 
       {isInView && (
         <img
-          src={src}
+          src={srcUrl}
           alt={alt}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"

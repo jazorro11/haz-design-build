@@ -1,7 +1,7 @@
-import { useParams, Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { ArrowLeft, MapPin, Calendar, Ruler, Users } from 'lucide-react';
-import { Layout } from '@/components/layout/Layout';
-import { SEO } from '@/components/SEO';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { Button } from '@/components/ui/button';
 import { getProjectById, ProjectStatus } from '@/data/projects';
@@ -25,34 +25,26 @@ const typeLabels: Record<string, string> = {
   industrial: 'Industrial',
 };
 
-export default function ProjectDetail() {
-  const { id } = useParams<{ id: string }>();
+export default function ProjectDetail({ id }: { id: string }) {
   const project = id ? getProjectById(id) : undefined;
 
   if (!project) {
     return (
-      <Layout>
-        <div className="section-padding container-wide text-center">
-          <h1 className="text-2xl font-semibold mb-4">Proyecto no encontrado</h1>
-          <Button asChild>
-            <Link to="/proyectos">Volver a proyectos</Link>
-          </Button>
-        </div>
-      </Layout>
+      <div className="section-padding container-wide text-center">
+        <h1 className="text-2xl font-semibold mb-4">Proyecto no encontrado</h1>
+        <Button asChild>
+          <Link href="/proyectos">Volver a proyectos</Link>
+        </Button>
+      </div>
     );
   }
 
   return (
-    <Layout>
-      <SEO
-        title={project.name}
-        description={`${project.name} — ${project.location}. Proyecto de ${typeLabels[project.type] || project.type} por HAZ Arquitectura.`}
-        path={`/proyectos/${project.id}`}
-      />
+    <>
       {/* Back link */}
       <div className="container-wide py-6">
         <Link
-          to="/proyectos"
+          href="/proyectos"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft size={18} />
@@ -239,7 +231,7 @@ export default function ProjectDetail() {
                     className="w-full border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                     asChild
                   >
-                    <Link to="/contacto">Hablemos</Link>
+                    <Link href="/contacto">Hablemos</Link>
                   </Button>
                 </div>
               </div>
@@ -247,6 +239,6 @@ export default function ProjectDetail() {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }

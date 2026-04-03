@@ -1,5 +1,20 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
+import { useState, useEffect, useSyncExternalStore } from 'react';
+
+function subscribeHash(cb: () => void) {
+  window.addEventListener('hashchange', cb);
+  return () => window.removeEventListener('hashchange', cb);
+}
+
+function getHashSnapshot() {
+  return typeof window !== 'undefined' ? window.location.hash : '';
+}
+
+function useHash() {
+  return useSyncExternalStore(subscribeHash, getHashSnapshot, () => '');
+}
 import { 
   ChevronLeft, Search, Menu, X, Copy, Check, Loader2,
   AlertCircle, CheckCircle, Info
@@ -125,7 +140,7 @@ function Playground({ title, children, controls }: { title: string; children: Re
 
 // --- PAGE ---
 export default function DesignSystem() {
-  const location = useLocation();
+  const hash = useHash();
   const [active, setActive] = useState('overview');
   const [search, setSearch] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -135,9 +150,12 @@ export default function DesignSystem() {
   const [progress, setProgress] = useState(60);
 
   useEffect(() => {
-    const hash = location.hash.replace('#', '');
-    if (hash) { setActive(hash); document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  }, [location.hash]);
+    const id = hash.replace('#', '');
+    if (id) {
+      setActive(id);
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [hash]);
 
   const nav = (id: string) => { setActive(id); setSidebarOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
   const filtered = navItems.filter(i => i.label.toLowerCase().includes(search.toLowerCase()));
@@ -150,7 +168,7 @@ export default function DesignSystem() {
           <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)}><Menu className="w-5 h-5" /></Button>
           <span className="font-semibold">Design System</span>
         </div>
-        <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Volver</Link>
+        <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">← Volver</Link>
       </header>
 
       {sidebarOpen && <div className="lg:hidden fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />}
@@ -162,7 +180,7 @@ export default function DesignSystem() {
       )}>
         <div className="p-4 border-b border-border">
           <div className="flex items-center justify-between mb-3">
-            <Link to="/" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
+            <Link href="/" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
               <ChevronLeft className="w-4 h-4" /> Volver
             </Link>
             <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setSidebarOpen(false)}><X className="w-5 h-5" /></Button>
@@ -357,7 +375,12 @@ export default function DesignSystem() {
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center gap-2">
                     <Label className="text-sm">Variant:</Label>
-                    <Select value={btnVariant} onValueChange={setBtnVariant}>
+                    <Select
+                      value={btnVariant}
+                      onValueChange={(v) =>
+                        setBtnVariant(v as ButtonPlaygroundVariant)
+                      }
+                    >
                       <SelectTrigger className="w-28 h-8"><SelectValue /></SelectTrigger>
                       <SelectContent>
                         {['default','destructive','outline','secondary','ghost','link','hero','hero-outline','subtle','cta'].map(v => (
@@ -368,7 +391,12 @@ export default function DesignSystem() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Label className="text-sm">Size:</Label>
-                    <Select value={btnSize} onValueChange={setBtnSize}>
+                    <Select
+                      value={btnSize}
+                      onValueChange={(v) =>
+                        setBtnSize(v as ButtonPlaygroundSize)
+                      }
+                    >
                       <SelectTrigger className="w-20 h-8"><SelectValue /></SelectTrigger>
                       <SelectContent>
                         {['sm','default','lg','xl','icon'].map(v => (

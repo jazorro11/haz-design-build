@@ -1,6 +1,6 @@
+'use client';
+
 import { useState, useMemo } from 'react';
-import { Layout } from '@/components/layout/Layout';
-import { SEO } from '@/components/SEO';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ProjectFilters } from '@/components/projects/ProjectFilters';
 import { getProjectsByFilter, ProjectType, ProjectRole, ProjectStatus } from '@/data/projects';
@@ -33,12 +33,7 @@ export default function Projects() {
   const hasFilters = activeTypes.length > 0 || activeRoles.length > 0 || activeStatuses.length > 0;
 
   return (
-    <Layout>
-      <SEO
-        title="Proyectos"
-        description="Proyectos de arquitectura e interiorismo: residencial, comercial, institucional e industrial. Trayectoria en diseño y ejecución de obra."
-        path="/proyectos"
-      />
+    <>
       {/* Header */}
       <section className="section-padding-sm bg-card border-b border-border">
         <div className="container-wide">
@@ -129,6 +124,6 @@ export default function Projects() {
           )}
         </div>
       </section>
-    </Layout>
+    </>
   );
 }
