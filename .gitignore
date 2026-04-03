@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Credenciales locales (no subir; la plantilla vive en .env.example)
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
