@@ -67,9 +67,14 @@ export function ContactForm() {
   return (
     <section className="section-padding-after-hero">
       <div className="container-wide">
-        <div className="max-w-2xl">
-          <h2 className="text-2xl font-semibold mb-6">Envíenos un mensaje</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="mx-auto w-full max-w-3xl">
+          <h2 className="text-2xl font-semibold text-center text-balance mb-8">
+            Envíenos un mensaje
+          </h2>
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 rounded-xl border border-border/80 bg-card/40 p-6 shadow-sm sm:p-8 md:p-10"
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Nombre *</Label>
@@ -131,9 +136,11 @@ export function ContactForm() {
               />
             </div>
 
-            <Button type="submit" size="lg" disabled={isSubmitting}>
-              {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
-            </Button>
+            <div className="flex justify-center pt-2 sm:justify-start">
+              <Button type="submit" size="lg" disabled={isSubmitting}>
+                {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+              </Button>
+            </div>
           </form>
         </div>
       </div>

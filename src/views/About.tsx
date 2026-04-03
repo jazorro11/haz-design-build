@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
+import { OptimizedImage } from '@/components/OptimizedImage';
 import { Button } from '@/components/ui/button';
+import designExecutionPhoto from '@/assets/celta-1.png';
+import trajectorySectionBg from '@/assets/samanes-4.png';
 
 const milestones = [
   { year: '1993', event: 'Fundación de HAZ Arquitectura en Bogotá' },
@@ -82,16 +85,35 @@ export default function About() {
                 </li>
               </ul>
             </div>
-            <div className="aspect-square rounded-lg bg-muted flex items-center justify-center">
-              <span className="text-6xl font-light text-muted-foreground/50">HAZ</span>
+            <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+              <OptimizedImage
+                src={designExecutionPhoto}
+                alt="Ejecución de obra: vaciado de concreto y coordinación en sitio."
+                sizes="(min-width: 1024px) min(50vw, 40rem), 100vw"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section-padding bg-card">
-        <div className="container-wide">
+      {/* Timeline — imagen + wash como hero y sección proceso en Servicios */}
+      <section
+        data-testid="about-trajectory-section"
+        className="relative overflow-hidden section-padding"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 z-0"
+          aria-hidden
+        >
+          <OptimizedImage
+            src={trajectorySectionBg}
+            alt=""
+            sizes="100vw"
+            className="scale-[1.02] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
+        </div>
+        <div className="relative z-10 container-wide">
           <h2 className="text-display-md font-semibold mb-12 text-center">
             Nuestra trayectoria
           </h2>

@@ -219,7 +219,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                   </p>
                   <Button
                     variant="outline"
-                    className="w-full border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                    className="w-full border-primary-foreground/30 text-primary hover:bg-primary-foreground hover:text-primary"
                     asChild
                   >
                     <Link href="/contacto">Hablemos</Link>
