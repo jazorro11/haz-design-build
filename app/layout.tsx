@@ -6,7 +6,7 @@ import { SITE_DEFAULT_PAGE_TITLE, SITE_NAME } from "@/lib/site";
 import { DEFAULT_PAGE_DESCRIPTION } from "@/lib/site-metadata";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hazarquitectura.com"),
+  metadataBase: new URL("https://www.haz-arquitectura.com"),
   title: {
     default: SITE_DEFAULT_PAGE_TITLE,
     template: `%s | ${SITE_NAME}`,

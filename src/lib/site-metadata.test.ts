@@ -21,7 +21,7 @@ describe("buildPageMetadata", () => {
     });
     expect(m.description).toBe("Descripción de prueba");
     expect(m.alternates?.canonical).toBe(
-      "https://hazarquitectura.com/proyectos",
+      "https://www.haz-arquitectura.com/proyectos",
     );
   });
 

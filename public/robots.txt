@@ -13,7 +13,7 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://hazarquitectura.com/sitemap.xml
+Sitemap: https://www.haz-arquitectura.com/sitemap.xml
 
 Disallow: /_internal/
 Disallow: /internal/

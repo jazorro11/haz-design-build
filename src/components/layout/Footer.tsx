@@ -24,8 +24,8 @@ export function Footer() {
               <span className="font-light ml-1">Arquitectura</span>
             </Link>
             <p className="text-background/70 max-w-md mb-6">
-              Más de 30 años integrando diseño arquitectónico y ejecución de obra para 
-              entregar proyectos sólidos y funcionales.
+              Más de 30 años integrando diseño arquitectónico y ejecución de obra en Colombia
+              para entregar proyectos sólidos y funcionales.
             </p>
             <p className="text-caption text-background/50">
               {SITE_TAGLINE}.
