@@ -21,7 +21,7 @@ export interface Project {
   location: string;
   /** Año para ordenación; si hay rango, usar el año final aquí y `yearLabel` para mostrar. */
   year: number;
-  /** Texto mostrado en UI en lugar de `year` (p. ej. "2016–2020"). */
+  /** Texto mostrado en UI en lugar de `year` (p. ej. "2016-2020"). */
   yearLabel?: string;
   type: ProjectType;
   role: ProjectRole;
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     name: 'Arturo Calle',
     location: 'Cali, Medellín, Sincelejo, Bogotá y otras ciudades',
     year: 2020,
-    yearLabel: '2016–2020',
+    yearLabel: '2016-2020',
     type: 'commercial',
     role: 'execution',
     status: 'completed',
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     images: [
       {
         url: arturoCalle7Img,
-        caption: 'Interior comercial — zona de exhibición y accesorios',
+        caption: 'Interior comercial: zona de exhibición y accesorios',
         stage: 'completed',
       },
     ],
@@ -97,7 +97,7 @@ export const projects: Project[] = [
   },
   {
     id: 'celta',
-    name: 'Parque industrial Celta — Bodega 57',
+    name: 'Parque industrial Celta, Bodega 57',
     location: 'Cota, Cundinamarca',
     year: 2007,
     type: 'industrial',
@@ -109,7 +109,7 @@ export const projects: Project[] = [
     images: [
       {
         url: celta7Img,
-        caption: 'Bodega industrial — cubierta y circulación',
+        caption: 'Bodega industrial: cubierta y circulación',
         stage: 'completed',
       },
     ],
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     status: 'completed',
     featured: true,
     coverImage: casaUnifamiliar2Img,
-    images: [{ url: casaUnifamiliar2Img, caption: 'Vivienda — espacios principales', stage: 'completed' }],
+    images: [{ url: casaUnifamiliar2Img, caption: 'Vivienda: espacios principales', stage: 'completed' }],
     description:
       'Interpretación de las intenciones del cliente llevadas al espacio y a la funcionalidad. Diseño de vivienda desarrollado a través de la unión familiar en torno a la alimentación, potenciando la inversión.',
     deliverables: [
@@ -152,7 +152,7 @@ export const projects: Project[] = [
     coverImage: centroPenitenciarioImg,
     area: '40.000 m²',
     images: [
-      { url: centroPenitenciarioImg, caption: 'Complejo — circulación y volumetría', stage: 'completed' },
+      { url: centroPenitenciarioImg, caption: 'Complejo: circulación y volumetría', stage: 'completed' },
     ],
     description:
       'Macroproyecto con dirección técnico-administrativa, control de contrato y contratistas, y residencia de obra para armado y vaciado de hormigón. Se concluyeron los 11 pabellones, pabellones aislados, garitas de guardia, áreas administrativas, talleres, cocina, módulos de máxima seguridad y demás infraestructura, en un área aproximada de 40.000 m².',
@@ -165,7 +165,7 @@ export const projects: Project[] = [
   },
   {
     id: 'mro-3',
-    name: 'MRO Avianca — Aeropuerto JMC',
+    name: 'MRO Avianca, Aeropuerto JMC',
     location: 'Rionegro, Antioquia',
     year: 2021,
     type: 'industrial',
@@ -196,7 +196,7 @@ export const projects: Project[] = [
     coverImage: parqueLosLocos1Img,
     area: '+22.000 m²',
     images: [
-      { url: parqueLosLocos1Img, caption: 'Complejo deportivo — fachadas y espacios exteriores', stage: 'completed' },
+      { url: parqueLosLocos1Img, caption: 'Complejo deportivo: fachadas y espacios exteriores', stage: 'completed' },
     ],
     description:
       'Estructuración y dirección del proyecto desde el día cero hasta acabados, con control de etapas hasta su culminación. Infraestructura de más de 22.000 m²: auditorio; canchas de pádel, tenis, fútbol y squash; gimnasio; edificio administrativo; parqueadero; zona de juegos infantiles; skate park y teatrino.',
@@ -218,7 +218,7 @@ export const projects: Project[] = [
     featured: true,
     coverImage: villetaSamanes2Img,
     area: '+750 m²',
-    images: [{ url: villetaSamanes2Img, caption: 'Vivienda campestre — integración con el entorno', stage: 'completed' }],
+    images: [{ url: villetaSamanes2Img, caption: 'Vivienda campestre: integración con el entorno', stage: 'completed' }],
     description:
       'Construcción de vivienda unifamiliar campestre, desde el descapote y la localización hasta la entrega. Un gran logro por la complejidad del terreno y la estructura con cubierta abovedada, la piscina y los acabados al detalle. Más de 750 m².',
     deliverables: [

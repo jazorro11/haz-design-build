@@ -22,6 +22,7 @@ Incluidas: `/`, `/proyectos`, `/proyectos/:id` (**parámetro `id`**, no slug; `g
 ## Contenido, build y UX
 
 - Texto orientado al visitante en **español** (incluida `src/views/NotFound.tsx`).
+- **Guiones en copy visible al visitante** (datos en `src/data/*`, vistas, metadatos descriptivos, pies de foto, etc.): no usar **guión largo** (`—`, U+2014) ni **guión medio** (`–`, U+2013). Para rangos numéricos (p. ej. años) usar **guión corto ASCII** (`-`, U+002D), p. ej. `2016-2020`. En el resto del texto, preferir **coma**, **dos puntos** o **paréntesis** según suene natural en español.
 - **Contacto:** datos reales coherentes (página + pie); formulario **POST** a `/api/contact` cuando el entorno tenga credenciales (ver brief); fallback de mensajes en UI si la API falla.
 - **Build:** `npm run build` (Next) y chequeo TS sin errores. Imágenes con `alt`; evitar CLS grave donde aplique. Responsive y un `h1` por página según patrón actual.
 
