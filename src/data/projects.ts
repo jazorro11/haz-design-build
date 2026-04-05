@@ -12,16 +12,26 @@ import arturoCalle4Img from '@/assets/projects/arturo-calle-4.png';
 import arturoCalle7Img from '@/assets/projects/arturo-calle-7.png';
 import celta1Img from '@/assets/projects/celta-1.png';
 import celta2Img from '@/assets/projects/celta-2.png';
+import celta3Img from '@/assets/projects/celta-3.png';
+import celta4Img from '@/assets/projects/celta-4.png';
 import celta7Img from '@/assets/projects/celta-7.png';
+import casaUnifamiliar1Img from '@/assets/projects/casa-unifamiliar-1.png';
 import casaUnifamiliar2Img from '@/assets/projects/casa-unifamiliar-2.png';
 import centroPenitenciarioImg from '@/assets/projects/centro-penitenciario.png';
+import centroPenitenciario1Img from '@/assets/projects/centro-penitenciario-1.png';
+import mro1Img from '@/assets/projects/mro-1.png';
+import mro2Img from '@/assets/projects/mro-2.png';
 import mro3Img from '@/assets/projects/mro-3.png';
 import parqueLosLocos1Img from '@/assets/projects/parque-los-locos-1.png';
 import parqueLosLocos2Img from '@/assets/projects/parque-los-locos-2.png';
 import parqueLosLocos3Img from '@/assets/projects/parque-los-locos-3.png';
 import parqueLosLocos4Img from '@/assets/projects/parque-los-locos-4.png';
 import parqueLosLocos5Img from '@/assets/projects/parque-los-locos-5.png';
+import villetaSamanes1Img from '@/assets/projects/villeta-samanes-1.png';
 import villetaSamanes2Img from '@/assets/projects/villeta-samanes-2.png';
+import villetaSamanes3Img from '@/assets/projects/villeta-samanes-3.jpg';
+import villetaSamanes4Img from '@/assets/projects/villeta-samanes-4.jpg';
+import villetaSamanes5Img from '@/assets/projects/villeta-samanes-5.jpg';
 
 export type ProjectStatus = 'completed' | 'in-progress';
 export type ProjectRole = 'design' | 'execution' | 'design-execution';
@@ -182,6 +192,16 @@ export const projects: Project[] = [
         caption: 'Fachada, accesos y cerramiento industrial',
         stage: 'completed',
       },
+      {
+        url: celta3Img,
+        caption: 'Interior de nave y línea de montaje',
+        stage: 'completed',
+      },
+      {
+        url: celta4Img,
+        caption: 'Cerramientos, muelle o zona perimetral',
+        stage: 'completed',
+      },
     ],
     description:
       'Con Armotec S.A.S. se desarrolló la construcción y el control de la Bodega 57 de Ingeniería de Vías. El reto fue superar la luz libre de cubierta de más de 50 m, junto con las dependencias, equipos de montaje y especialidades asociadas.',
@@ -201,7 +221,14 @@ export const projects: Project[] = [
     status: 'completed',
     featured: true,
     coverImage: casaUnifamiliar2Img,
-    images: [{ url: casaUnifamiliar2Img, caption: 'Vivienda: espacios principales', stage: 'completed' }],
+    images: [
+      { url: casaUnifamiliar2Img, caption: 'Vivienda: espacios principales', stage: 'completed' },
+      {
+        url: casaUnifamiliar1Img,
+        caption: 'Fachada y relación con el lote',
+        stage: 'completed',
+      },
+    ],
     description:
       'Interpretación de las intenciones del cliente llevadas al espacio y a la funcionalidad. Diseño de vivienda desarrollado a través de la unión familiar en torno a la alimentación, potenciando la inversión.',
     deliverables: [
@@ -228,7 +255,7 @@ export const projects: Project[] = [
         stage: 'completed',
       },
       {
-        url: centroPenitenciarioImg,
+        url: centroPenitenciario1Img,
         caption: 'Fachadas y orden del conjunto',
         stage: 'completed',
       },
@@ -238,7 +265,7 @@ export const projects: Project[] = [
         stage: 'completed',
       },
       {
-        url: centroPenitenciarioImg,
+        url: centroPenitenciario1Img,
         caption: 'Detalle constructivo',
         stage: 'completed',
       },
@@ -266,8 +293,13 @@ export const projects: Project[] = [
     images: [
       { url: mro3Img, caption: 'Hangar e infraestructura MRO', stage: 'completed' },
       {
-        url: mro3Img,
+        url: mro1Img,
         caption: 'Operación aeronáutica y soporte en pista',
+        stage: 'completed',
+      },
+      {
+        url: mro2Img,
+        caption: 'Ampliación, oficinas y circulación técnica',
         stage: 'completed',
       },
     ],
@@ -345,8 +377,23 @@ export const projects: Project[] = [
         stage: 'completed',
       },
       {
-        url: villetaSamanes2Img,
-        caption: 'Cubierta, piscina y zona exterior',
+        url: villetaSamanes1Img,
+        caption: 'Cubierta, volumetría y paisaje',
+        stage: 'completed',
+      },
+      {
+        url: villetaSamanes3Img,
+        caption: 'Piscina y zona exterior',
+        stage: 'completed',
+      },
+      {
+        url: villetaSamanes4Img,
+        caption: 'Detalle de acabados y carpintería',
+        stage: 'completed',
+      },
+      {
+        url: villetaSamanes5Img,
+        caption: 'Espacios interiores y luz natural',
         stage: 'completed',
       },
     ],
