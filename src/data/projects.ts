@@ -3,7 +3,6 @@ import aposentos1Img from '@/assets/projects/aposentos-1.png';
 import aposentos2Img from '@/assets/projects/aposentos-2.png';
 import aposentos3Img from '@/assets/projects/aposentos-3.png';
 import aposentos4Img from '@/assets/projects/aposentos-4.png';
-import aposentos5Img from '@/assets/projects/aposentos-5.png';
 import aposentos8Img from '@/assets/projects/aposentos-8.png';
 import arturoCalle1Img from '@/assets/projects/arturo-calle-1.png';
 import arturoCalle2Img from '@/assets/projects/arturo-calle-2.png';
@@ -81,30 +80,25 @@ export const projects: Project[] = [
     coverImage: aposentos8Img,
     area: '2.500 m²',
     images: [
-      { url: aposentos8Img, caption: 'Interior principal', stage: 'completed' },
+      { url: aposentos8Img, caption: 'Estancia principal', stage: 'completed' },
       {
         url: aposentos1Img,
-        caption: 'Espacios sociales y circulación',
+        caption: 'Salas y circulación',
         stage: 'completed',
       },
       {
         url: aposentos2Img,
-        caption: 'Detalle de acabados y accesibilidad',
+        caption: 'Accesos PMR y acabados',
         stage: 'completed',
       },
       {
         url: aposentos3Img,
-        caption: 'Cocina, comedor y áreas de servicio',
+        caption: 'Cocina y comedor',
         stage: 'completed',
       },
       {
         url: aposentos4Img,
-        caption: 'Amenidades, bienestar y espacios húmedos',
-        stage: 'completed',
-      },
-      {
-        url: aposentos5Img,
-        caption: 'Terrazas y salones de uso social',
+        caption: 'Zona wellness',
         stage: 'completed',
       },
     ],
@@ -132,27 +126,27 @@ export const projects: Project[] = [
     images: [
       {
         url: arturoCalle7Img,
-        caption: 'Interior comercial: zona de exhibición y accesorios',
+        caption: 'Exhibición y mostrador',
         stage: 'completed',
       },
       {
         url: arturoCalle1Img,
-        caption: 'Vista general del local y circulación',
+        caption: 'Vista general del local',
         stage: 'completed',
       },
       {
         url: arturoCalle2Img,
-        caption: 'Zona de exhibición y materialidad',
+        caption: 'Lineales de producto',
         stage: 'completed',
       },
       {
         url: arturoCalle3Img,
-        caption: 'Lineales de atención y punto de venta',
+        caption: 'Caja y atención',
         stage: 'completed',
       },
       {
         url: arturoCalle4Img,
-        caption: 'Iluminación y acabados de tienda',
+        caption: 'Luz y acabados',
         stage: 'completed',
       },
     ],
@@ -179,27 +173,27 @@ export const projects: Project[] = [
     images: [
       {
         url: celta7Img,
-        caption: 'Bodega industrial: cubierta y circulación',
+        caption: 'Nave y cubierta',
         stage: 'completed',
       },
       {
         url: celta1Img,
-        caption: 'Gran luz libre y montaje estructural',
+        caption: 'Luz libre y estructura',
         stage: 'completed',
       },
       {
         url: celta2Img,
-        caption: 'Fachada, accesos y cerramiento industrial',
+        caption: 'Fachada y accesos',
         stage: 'completed',
       },
       {
         url: celta3Img,
-        caption: 'Interior de nave y línea de montaje',
+        caption: 'Interior de bodega',
         stage: 'completed',
       },
       {
         url: celta4Img,
-        caption: 'Cerramientos, muelle o zona perimetral',
+        caption: 'Cerramiento perimetral',
         stage: 'completed',
       },
     ],
@@ -222,10 +216,10 @@ export const projects: Project[] = [
     featured: true,
     coverImage: casaUnifamiliar2Img,
     images: [
-      { url: casaUnifamiliar2Img, caption: 'Vivienda: espacios principales', stage: 'completed' },
+      { url: casaUnifamiliar2Img, caption: 'Espacios principales', stage: 'completed' },
       {
         url: casaUnifamiliar1Img,
-        caption: 'Fachada y relación con el lote',
+        caption: 'Fachada al lote',
         stage: 'completed',
       },
     ],
@@ -251,22 +245,12 @@ export const projects: Project[] = [
     images: [
       {
         url: centroPenitenciarioImg,
-        caption: 'Complejo: circulación y volumetría',
+        caption: 'Módulos en obra',
         stage: 'completed',
       },
       {
         url: centroPenitenciario1Img,
-        caption: 'Fachadas y orden del conjunto',
-        stage: 'completed',
-      },
-      {
-        url: centroPenitenciarioImg,
-        caption: 'Módulos y espacios exteriores',
-        stage: 'completed',
-      },
-      {
-        url: centroPenitenciario1Img,
-        caption: 'Detalle constructivo',
+        caption: 'Avance y entorno',
         stage: 'completed',
       },
     ],
@@ -291,15 +275,15 @@ export const projects: Project[] = [
     coverImage: mro3Img,
     client: 'Avianca (Payc S.A.S.)',
     images: [
-      { url: mro3Img, caption: 'Hangar e infraestructura MRO', stage: 'completed' },
+      { url: mro3Img, caption: 'Hangar MRO', stage: 'completed' },
       {
         url: mro1Img,
-        caption: 'Operación aeronáutica y soporte en pista',
+        caption: 'Operación en pista',
         stage: 'completed',
       },
       {
         url: mro2Img,
-        caption: 'Ampliación, oficinas y circulación técnica',
+        caption: 'Oficinas y ampliación',
         stage: 'completed',
       },
     ],
@@ -326,27 +310,27 @@ export const projects: Project[] = [
     images: [
       {
         url: parqueLosLocos1Img,
-        caption: 'Complejo deportivo: fachadas y espacios exteriores',
+        caption: 'Fachada del complejo',
         stage: 'completed',
       },
       {
         url: parqueLosLocos2Img,
-        caption: 'Equipamientos y cubiertas',
+        caption: 'Cubiertas y equipos',
         stage: 'completed',
       },
       {
         url: parqueLosLocos3Img,
-        caption: 'Relación con el entorno urbano',
+        caption: 'Entorno urbano',
         stage: 'completed',
       },
       {
         url: parqueLosLocos4Img,
-        caption: 'Circulación y plazas exteriores',
+        caption: 'Plazas y accesos',
         stage: 'completed',
       },
       {
         url: parqueLosLocos5Img,
-        caption: 'Espacios deportivos y amenidades',
+        caption: 'Zona deportiva',
         stage: 'completed',
       },
     ],
@@ -373,27 +357,27 @@ export const projects: Project[] = [
     images: [
       {
         url: villetaSamanes2Img,
-        caption: 'Vivienda campestre: integración con el entorno',
+        caption: 'Fachada campestre',
         stage: 'completed',
       },
       {
         url: villetaSamanes1Img,
-        caption: 'Cubierta, volumetría y paisaje',
+        caption: 'Cubierta y paisaje',
         stage: 'completed',
       },
       {
         url: villetaSamanes3Img,
-        caption: 'Piscina y zona exterior',
+        caption: 'Piscina y exterior',
         stage: 'completed',
       },
       {
         url: villetaSamanes4Img,
-        caption: 'Detalle de acabados y carpintería',
+        caption: 'Detalle de carpintería',
         stage: 'completed',
       },
       {
         url: villetaSamanes5Img,
-        caption: 'Espacios interiores y luz natural',
+        caption: 'Interior y luz',
         stage: 'completed',
       },
     ],
