@@ -60,7 +60,9 @@ describe("ProjectGallery — lightbox", () => {
 
     expect(screen.getByText("2 / 3")).toBeInTheDocument();
     const dialog = screen.getByRole("dialog");
-    expect(within(dialog).getByText("Foto dos")).toBeInTheDocument();
+    expect(
+      within(dialog).getByRole("img", { name: "Foto dos" }),
+    ).toBeInTheDocument();
   });
 
   it("el botón siguiente en la última imagen vuelve a la primera", async () => {

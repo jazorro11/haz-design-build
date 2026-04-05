@@ -17,6 +17,9 @@ import { getGalleryCellClassName } from "@/lib/project-gallery-layout";
 
 type GalleryImage = Project["images"][number];
 
+/** En `false`, los pies de foto no se muestran al visitante (miniaturas y lightbox). */
+const showImageCaptions = false;
+
 const GRID_SIZES_FIRST =
   "(max-width: 768px) 100vw, (max-width: 1280px) 66vw, 50vw";
 const GRID_SIZES_REST =
@@ -119,7 +122,7 @@ export function ProjectGallery({
                 }
                 className="image-cover"
               />
-              {image.caption ? (
+              {showImageCaptions && image.caption ? (
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 p-3 bg-gradient-to-t from-background/80 to-transparent">
                   <p className="text-caption text-foreground">{image.caption}</p>
                 </div>
@@ -208,7 +211,7 @@ export function ProjectGallery({
               </>
             ) : null}
 
-            {current?.caption ? (
+            {showImageCaptions && current?.caption ? (
               <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-zinc-800 bg-zinc-950/95 px-4 py-3 md:px-6">
                 <p className="text-center text-sm text-zinc-200">
                   {current.caption}
