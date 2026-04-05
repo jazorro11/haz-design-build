@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { ArrowLeft, MapPin, Calendar, Ruler, Users } from 'lucide-react';
 import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { OptimizedImage } from '@/components/OptimizedImage';
+import { ProjectGallery } from '@/components/projects/ProjectGallery';
 import { Button } from '@/components/ui/button';
 import type { Project, ProjectStatus } from '@/data/projects';
-import { cn } from '@/lib/utils';
 
 const statusLabels: Record<ProjectStatus, string> = {
   completed: 'Terminado',
@@ -126,41 +126,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
               )}
 
               {project.images.length > 0 && (
-                <div>
-                  <h2 className="text-2xl font-semibold mb-6">Galería</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {project.images.map((image, index) => (
-                      <div
-                        key={index}
-                        className="relative aspect-project rounded-lg overflow-hidden bg-muted"
-                      >
-                        <OptimizedImage
-                          src={image.url}
-                          alt={image.caption || `${project.name} - Imagen ${index + 1}`}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="image-cover"
-                        />
-                        <div className="absolute top-3 right-3">
-                          <span
-                            className={cn(
-                              'px-2 py-1 text-micro font-medium rounded',
-                              image.stage === 'completed'
-                                ? 'bg-primary/90 text-primary-foreground'
-                                : 'bg-accent/90 text-accent-foreground',
-                            )}
-                          >
-                            {image.stage === 'completed' ? 'Terminado' : 'En obra'}
-                          </span>
-                        </div>
-                        {image.caption && (
-                          <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-background/80 to-transparent">
-                            <p className="text-caption text-foreground">{image.caption}</p>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <ProjectGallery projectName={project.name} images={project.images} />
               )}
             </div>
 

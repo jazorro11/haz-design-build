@@ -47,7 +47,7 @@ El servidor de desarrollo arranca en el puerto **8080** (ver `package.json`).
 ## Rutas públicas principales
 
 - `/` — inicio
-- `/proyectos` y `/proyectos/[id]` — listado y detalle de proyecto
+- `/proyectos` y `/proyectos/[id]` — listado y detalle de proyecto (portada y galería multi-imagen desde `project.images` en datos)
 - `/servicios`, `/sobre-haz`, `/contacto`
 
 La ruta interna de diseño (`/_internal/design-system`, reescrita en middleware hacia `app/internal/design-system`) es solo para desarrollo: no va en menú público ni en el sitemap del MVP.
