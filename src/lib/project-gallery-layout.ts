@@ -27,5 +27,8 @@ export function getGalleryCellClassName(index: number, total: number): string {
     );
   }
 
-  return cn(base, "col-span-1 aspect-project w-full md:col-span-1 md:row-span-1");
+  return cn(
+    base,
+    "col-span-1 aspect-project w-full md:col-span-1 md:row-span-1 md:aspect-auto md:h-full",
+  );
 }

@@ -28,5 +28,8 @@ describe("getGalleryCellClassName", () => {
     expect(first).toContain("md:col-span-2");
     expect(first).toContain("md:row-span-2");
     expect(rest).not.toContain("md:col-span-2");
+    expect(rest).toContain("md:aspect-auto");
+    expect(rest).toContain("md:h-full");
+    expect(rest).toContain("aspect-project");
   });
 });
