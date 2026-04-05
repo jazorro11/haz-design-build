@@ -61,7 +61,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
             {project.name}
           </h3>
           <span className="text-caption text-muted-foreground shrink-0">
-            {project.year}
+            {project.yearLabel ?? project.year}
           </span>
         </div>
         

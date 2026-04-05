@@ -184,7 +184,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                         <dt className="text-micro text-muted-foreground uppercase tracking-wide">
                           Año
                         </dt>
-                        <dd className="font-medium">{project.year}</dd>
+                        <dd className="font-medium">{project.yearLabel ?? project.year}</dd>
                       </div>
                     </div>
                     {project.area && (
