@@ -1,8 +1,17 @@
 import type { StaticImageData } from 'next/image';
 import aposentos1Img from '@/assets/projects/aposentos-1.png';
 import aposentos2Img from '@/assets/projects/aposentos-2.png';
+import aposentos3Img from '@/assets/projects/aposentos-3.png';
+import aposentos4Img from '@/assets/projects/aposentos-4.png';
+import aposentos5Img from '@/assets/projects/aposentos-5.png';
 import aposentos8Img from '@/assets/projects/aposentos-8.png';
+import arturoCalle1Img from '@/assets/projects/arturo-calle-1.png';
+import arturoCalle2Img from '@/assets/projects/arturo-calle-2.png';
+import arturoCalle3Img from '@/assets/projects/arturo-calle-3.png';
+import arturoCalle4Img from '@/assets/projects/arturo-calle-4.png';
 import arturoCalle7Img from '@/assets/projects/arturo-calle-7.png';
+import celta1Img from '@/assets/projects/celta-1.png';
+import celta2Img from '@/assets/projects/celta-2.png';
 import celta7Img from '@/assets/projects/celta-7.png';
 import casaUnifamiliar2Img from '@/assets/projects/casa-unifamiliar-2.png';
 import centroPenitenciarioImg from '@/assets/projects/centro-penitenciario.png';
@@ -73,6 +82,21 @@ export const projects: Project[] = [
         caption: 'Detalle de acabados y accesibilidad',
         stage: 'completed',
       },
+      {
+        url: aposentos3Img,
+        caption: 'Cocina, comedor y áreas de servicio',
+        stage: 'completed',
+      },
+      {
+        url: aposentos4Img,
+        caption: 'Amenidades, bienestar y espacios húmedos',
+        stage: 'completed',
+      },
+      {
+        url: aposentos5Img,
+        caption: 'Terrazas y salones de uso social',
+        stage: 'completed',
+      },
     ],
     description:
       'Remodelación de gran envergadura en la que se logró el acceso para personas con movilidad reducida (PMR) a todas las instalaciones. El reto consistió en adaptar la construcción para el disfrute general sin exclusión. Se colaboró en diseño buscando la menor afectación estructural y espacial, en las distintas etapas y disciplinas. Área intervenida: 2.500 m², con cocina, comedor, piscina, sauna, turco, jacuzzi, baños, rampa, ascensor, terrazas, salón de juegos y salón de eventos.',
@@ -102,8 +126,23 @@ export const projects: Project[] = [
         stage: 'completed',
       },
       {
-        url: arturoCalle7Img,
-        caption: 'Lineal de atención y materialidad',
+        url: arturoCalle1Img,
+        caption: 'Vista general del local y circulación',
+        stage: 'completed',
+      },
+      {
+        url: arturoCalle2Img,
+        caption: 'Zona de exhibición y materialidad',
+        stage: 'completed',
+      },
+      {
+        url: arturoCalle3Img,
+        caption: 'Lineales de atención y punto de venta',
+        stage: 'completed',
+      },
+      {
+        url: arturoCalle4Img,
+        caption: 'Iluminación y acabados de tienda',
         stage: 'completed',
       },
     ],
@@ -134,8 +173,13 @@ export const projects: Project[] = [
         stage: 'completed',
       },
       {
-        url: celta7Img,
+        url: celta1Img,
         caption: 'Gran luz libre y montaje estructural',
+        stage: 'completed',
+      },
+      {
+        url: celta2Img,
+        caption: 'Fachada, accesos y cerramiento industrial',
         stage: 'completed',
       },
     ],
