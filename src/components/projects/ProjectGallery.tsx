@@ -23,11 +23,6 @@ const GRID_SIZES_REST =
   "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw";
 const LIGHTBOX_SIZES = "100vw";
 
-const statusLabel = {
-  completed: "Terminado",
-  "in-progress": "En obra",
-} as const;
-
 export function ProjectGallery({
   projectName,
   images,
@@ -76,7 +71,7 @@ export function ProjectGallery({
       ? "grid grid-cols-1 gap-4"
       : total === 2
         ? "grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4"
-        : "grid grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-none md:gap-4 md:[grid-auto-rows:minmax(0,1fr)]";
+        : "grid grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-none md:gap-2 md:[grid-auto-rows:minmax(0,1fr)]";
 
   const current = images[activeIndex];
 
@@ -124,18 +119,6 @@ export function ProjectGallery({
                 }
                 className="image-cover"
               />
-              <div className="pointer-events-none absolute top-3 right-3 z-20">
-                <span
-                  className={cn(
-                    "px-2 py-1 text-micro font-medium rounded",
-                    image.stage === "completed"
-                      ? "bg-primary/90 text-primary-foreground"
-                      : "bg-accent/90 text-accent-foreground",
-                  )}
-                >
-                  {statusLabel[image.stage]}
-                </span>
-              </div>
               {image.caption ? (
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 p-3 bg-gradient-to-t from-background/80 to-transparent">
                   <p className="text-caption text-foreground">{image.caption}</p>
@@ -179,18 +162,6 @@ export function ProjectGallery({
                 <X className="size-5" />
               </Button>
             </DialogClose>
-            <div className="absolute left-3 top-3 z-20 md:left-4 md:top-4">
-              <span
-                className={cn(
-                  "inline-flex px-2 py-1 text-micro font-medium rounded",
-                  current?.stage === "completed"
-                    ? "bg-primary/90 text-primary-foreground"
-                    : "bg-accent/90 text-accent-foreground",
-                )}
-              >
-                {current ? statusLabel[current.stage] : ""}
-              </span>
-            </div>
 
             <p className="absolute left-1/2 top-3 z-20 -translate-x-1/2 text-caption text-zinc-100 md:top-4">
               {activeIndex + 1} / {total}

@@ -80,6 +80,11 @@ export default function ProjectDetail({ project }: { project: Project }) {
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             <div className="lg:col-span-2">
+              <div className="mb-3">
+                <span className="inline-flex px-3 py-1 text-caption font-medium rounded-full bg-muted text-foreground">
+                  {statusLabels[project.status]}
+                </span>
+              </div>
               <h2 className="text-2xl font-semibold mb-6">Descripción</h2>
               <p className="text-body-lg text-muted-foreground mb-8 leading-relaxed">
                 {project.description}
