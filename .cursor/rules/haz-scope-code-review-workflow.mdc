@@ -59,7 +59,7 @@ Cambios que **no** alteran lo que ve o percibe el visitante (p. ej. refactor int
 | **Código nuevo o modificado para un bug** | Igual: invocación obligatoria al cerrar el fix salvo excepción de trivialidad. |
 | **Revisión de calidad explícita** | Si el usuario (o tú) piden validar calidad de un diff recién generado, usa el subagente QA aunque no sea cierre formal de tarea. |
 
-El subagente QA **pregunta confirmación** antes de añadir o cambiar tests o código solo para tests; respeta esa regla al integrarlo en el flujo.
+El subagente QA **puede añadir o cambiar tests** (y código mínimo solo para tests) **sin aprobación del usuario final**. La **idoneidad práctica** de esos tests la valida **`haz-scope-code-review`** en su revisión (útiles, no frágiles ni triviales, alineados con MVP). En propuestas, prioriza **1-2 tests por iteración** (ver `.cursor/agents/qa-test-engineer.md`).
 
 ### Excepción (QA)
 
@@ -89,4 +89,4 @@ Cuando entregues una revisión formal de interfaz o experiencia, usa la estructu
 
 ## Formato del QA
 
-Cuando entregues el resultado del QA, respeta las secciones obligatorias del subagente (Resumen ejecutivo, Estado de la suite, Cobertura frente al cambio, Propuestas de tests, Verificación manual, Notas).
+Cuando entregues el resultado del QA, respeta las secciones obligatorias del subagente (Resumen ejecutivo, Estado de la suite, Cobertura frente al cambio, **Propuestas de tests** incluyendo **próxima iteración (1-2 tests)** cuando aplique, Verificación manual, Notas).
