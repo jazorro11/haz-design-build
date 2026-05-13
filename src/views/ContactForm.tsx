@@ -51,7 +51,7 @@ export function ContactForm() {
           title: 'No se pudo enviar',
           description:
             data.error ??
-            'Intente de nuevo más tarde o use los datos de contacto directos.',
+            'Intente de nuevo más tarde.',
         });
         return;
       }

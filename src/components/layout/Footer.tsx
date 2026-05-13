@@ -14,7 +14,7 @@ export function Footer() {
   return (
     <footer className="bg-foreground text-background">
       <div className="container-wide section-padding-sm">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Marca */}
           <div>
             <Link href="/" className="inline-block text-2xl font-semibold tracking-tight mb-4">
@@ -40,30 +40,6 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          {/* Contacto */}
-          <div>
-            <p className="haz-label text-background/40 mb-5">Contacto</p>
-            <ul className="space-y-3 text-caption text-background/70">
-              <li>Bogotá, Colombia</li>
-              <li>
-                <a
-                  href="mailto:contacto@haz-arquitectura.com"
-                  className="hover:text-background transition-colors"
-                >
-                  contacto@haz-arquitectura.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+5716000000"
-                  className="hover:text-background transition-colors"
-                >
-                  +57 (1) 600 0000
-                </a>
-              </li>
             </ul>
           </div>
         </div>
