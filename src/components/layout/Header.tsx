@@ -39,16 +39,16 @@ export function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border'
+          ? 'bg-white/95 backdrop-blur-md border-b border-border'
           : 'bg-transparent'
       )}
     >
       <div className="container-wide">
-        <nav className="flex items-center justify-between h-18 md:h-22">
-          {/* Marca: pictograma + texto */}
+        <nav className="flex items-center justify-between h-20">
+          {/* Brand */}
           <Link
             href="/"
-            className="flex items-center gap-2 md:gap-3 text-xl md:text-2xl font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
+            className="flex items-center gap-3 text-foreground hover:text-foreground/80 transition-colors"
           >
             <Image
               src={logoMark}
@@ -56,24 +56,24 @@ export function Header() {
               width={logoMark.width}
               height={logoMark.height}
               priority
-              className="h-7 w-auto md:h-8 shrink-0 object-contain"
+              className="h-7 w-auto shrink-0 object-contain"
             />
-            <span>
-              HAZ
+            <span className="text-[18px] tracking-[-0.01em]">
+              <span className="font-semibold">HAZ</span>
               <span className="font-light ml-1">Arquitectura</span>
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-9">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'text-caption font-medium tracking-wide uppercase transition-colors link-underline',
+                  'text-[12px] font-semibold tracking-[0.12em] uppercase transition-colors',
                   pathname === item.href
-                    ? 'text-foreground'
+                    ? 'haz-nav-active'
                     : 'text-muted-foreground hover:text-foreground'
                 )}
               >
@@ -84,16 +84,21 @@ export function Header() {
 
           {/* CTA + Mobile Menu Toggle */}
           <div className="flex items-center gap-4">
-            <Button variant="cta" size="sm" className="hidden sm:inline-flex" asChild>
+            <Button
+              variant="cta"
+              size="sm"
+              className="hidden sm:inline-flex bg-accent text-accent-foreground hover:bg-[#A4521E] rounded-none shadow-none text-[12px] font-semibold tracking-[0.12em] uppercase px-5 py-[10px] h-auto"
+              asChild
+            >
               <Link href="/contacto">Hablemos</Link>
             </Button>
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-foreground hover:text-primary transition-colors focus-ring rounded-md"
+              className="lg:hidden p-2 text-foreground hover:text-muted-foreground transition-colors focus-ring"
               aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </nav>
@@ -102,7 +107,7 @@ export function Header() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          'lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-hidden',
+          'lg:hidden absolute top-full left-0 right-0 bg-white border-b border-border transition-all duration-300 overflow-hidden',
           isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         )}
       >
@@ -112,7 +117,7 @@ export function Header() {
               key={item.name}
               href={item.href}
               className={cn(
-                'block py-3 text-lg font-medium transition-colors',
+                'block py-3 text-[14px] font-semibold tracking-[0.08em] uppercase transition-colors',
                 pathname === item.href
                   ? 'text-foreground'
                   : 'text-muted-foreground hover:text-foreground'
@@ -122,7 +127,11 @@ export function Header() {
             </Link>
           ))}
           <div className="pt-4">
-            <Button variant="cta" className="w-full" asChild>
+            <Button
+              variant="cta"
+              className="w-full bg-accent text-accent-foreground hover:bg-[#A4521E] rounded-none shadow-none text-[12px] font-semibold tracking-[0.12em] uppercase py-[15px] h-auto"
+              asChild
+            >
               <Link href="/contacto">Hablemos</Link>
             </Button>
           </div>

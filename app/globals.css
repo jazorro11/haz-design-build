@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,53 +7,49 @@
 @layer base {
   :root {
     /* Background & Surfaces */
-    --background: 45 20% 98%;
-    --foreground: 0 0% 11%;
-    
-    --card: 45 15% 96%;
-    --card-foreground: 0 0% 11%;
-    
-    --popover: 45 20% 98%;
-    --popover-foreground: 0 0% 11%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
 
-    /* Brand Colors */
-    --primary: 195 45% 25%;
-    --primary-foreground: 45 20% 98%;
+    --card: 40 11% 95%;
+    --card-foreground: 0 0% 5%;
 
-    --secondary: 35 20% 92%;
-    --secondary-foreground: 0 0% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
 
-    --muted: 40 15% 94%;
-    --muted-foreground: 0 0% 40%;
+    /* Primary = dark UI accent (#2A2A2A) */
+    --primary: 0 0% 16%;
+    --primary-foreground: 0 0% 100%;
 
-    --accent: 20 25% 45%;
-    --accent-foreground: 45 20% 98%;
+    --secondary: 40 11% 95%;
+    --secondary-foreground: 0 0% 5%;
+
+    --muted: 40 11% 95%;
+    --muted-foreground: 0 0% 36%;
+
+    /* Accent = Terracota #C4622D */
+    --accent: 17 62% 47%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 40 15% 88%;
-    --input: 40 15% 88%;
-    --ring: 195 45% 25%;
+    --border: 35 12% 86%;
+    --input: 35 12% 86%;
+    --ring: 17 62% 47%;
 
-    --radius: 0.375rem;
+    --radius: 0px;
 
-    /* Custom tokens */
-    --stone: 40 10% 75%;
-    --stone-light: 40 10% 95%;
-    --charcoal: 0 0% 15%;
-    --petrol: 195 45% 25%;
-    --petrol-light: 195 35% 40%;
-    --terracotta: 20 35% 45%;
-    --cream: 45 30% 96%;
+    /* HAZ custom tokens */
+    --haz-bg-dark: #111111;
+    --haz-accent-hover: #A4521E;
 
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.03);
-    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.06);
-    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.08);
-    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.04);
+    /* Shadows — removed from new design system */
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --shadow-card: none;
 
-    /* Sidebar */
+    /* Sidebar (unchanged) */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -65,43 +61,30 @@
   }
 
   .dark {
-    --background: 0 0% 8%;
-    --foreground: 45 10% 92%;
-    
-    --card: 0 0% 10%;
-    --card-foreground: 45 10% 92%;
-    
-    --popover: 0 0% 8%;
-    --popover-foreground: 45 10% 92%;
+    --background: 0 0% 7%;
+    --foreground: 40 11% 95%;
 
-    --primary: 195 40% 55%;
-    --primary-foreground: 0 0% 8%;
+    --card: 0 0% 10%;
+    --card-foreground: 40 11% 95%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 40 11% 95%;
+
+    --primary: 0 0% 80%;
+    --primary-foreground: 0 0% 5%;
 
     --secondary: 0 0% 14%;
-    --secondary-foreground: 45 10% 92%;
+    --secondary-foreground: 40 11% 95%;
 
     --muted: 0 0% 14%;
-    --muted-foreground: 40 10% 60%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 20 30% 55%;
-    --accent-foreground: 0 0% 8%;
+    --accent: 17 55% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 195 40% 55%;
-
-    --stone: 0 0% 30%;
-    --stone-light: 0 0% 12%;
-    --charcoal: 0 0% 90%;
-    --petrol: 195 40% 55%;
-    --petrol-light: 195 35% 65%;
-    --terracotta: 20 35% 55%;
-    --cream: 0 0% 10%;
-
-    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
-    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.3);
-    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.4);
-    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.2);
+    --ring: 17 55% 55%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -129,49 +112,43 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-foreground;
-  }
-
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
-  }
-
-  h2 {
-    @apply text-3xl md:text-4xl leading-tight;
-  }
-
-  h3 {
-    @apply text-xl md:text-2xl;
-  }
-
-  h4 {
-    @apply text-lg md:text-xl;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: hsl(var(--foreground));
+    margin: 0;
   }
 
   p {
-    @apply leading-relaxed;
+    line-height: 1.6;
   }
 }
 
 @layer components {
   .container-narrow {
-    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-5xl mx-auto px-8;
   }
 
   .container-wide {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
+    padding-top: 120px;
+    padding-bottom: 120px;
   }
 
   .section-padding-after-hero {
-    @apply pt-10 md:pt-12 lg:pt-16 pb-16 md:pb-24 lg:pb-32;
+    padding-top: 120px;
+    padding-bottom: 120px;
   }
 
   .section-padding-sm {
-    @apply py-12 md:py-16 lg:py-20;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   .text-balance {
@@ -182,8 +159,9 @@
     @apply object-cover w-full h-full;
   }
 
+  /* No lift, no shadow — just image scale via ProjectCard */
   .card-hover {
-    @apply transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1;
+    transition: all 480ms cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   .link-underline {
@@ -191,51 +169,100 @@
   }
 
   .focus-ring {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
   }
+
+  /* Eyebrow / label — 12px uppercase tight-tracked */
+  .haz-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  /* Active nav item — accent underline below the header */
+  .haz-nav-active {
+    position: relative;
+    color: hsl(var(--foreground));
+  }
+  .haz-nav-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -24px;
+    height: 1px;
+    background: hsl(var(--accent));
+  }
+
+  /* Link with underline-grow animation */
+  .haz-link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    position: relative;
+    padding-bottom: 4px;
+    cursor: pointer;
+    transition: gap 280ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .haz-link-arrow::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    background: currentColor;
+    transition: width 280ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .haz-link-arrow:hover::after { width: 100%; }
+  .haz-link-arrow:hover { gap: 14px; }
 }
 
 @layer utilities {
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+    animation: fadeIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
   }
 
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 480ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-scale-in {
-    animation: scaleIn 0.4s ease-out forwards;
+    animation: scaleIn 480ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.97); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+}
+
+@media (max-width: 768px) {
+  .container-wide {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .section-padding {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  .section-padding-sm {
+    padding-top: 56px;
+    padding-bottom: 56px;
   }
 }

@@ -69,6 +69,8 @@ export default {
         },
         terracotta: "hsl(var(--terracotta))",
         cream: "hsl(var(--cream))",
+        'haz-dark': 'var(--haz-bg-dark)',
+        'haz-accent-hover': 'var(--haz-accent-hover)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,14 +79,13 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Playfair Display', 'Georgia', 'serif'],
       },
       fontSize: {
-        'display-xl': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'display-lg': ['3rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
-        'display-md': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
-        'body-lg': ['1.125rem', { lineHeight: '1.7' }],
-        'body': ['1rem', { lineHeight: '1.7' }],
+        'display-xl': ['5.5rem',  { lineHeight: '1.02', letterSpacing: '-0.02em' }],
+        'display-lg': ['3.5rem',  { lineHeight: '1.05', letterSpacing: '-0.01em' }],
+        'display-md': ['2.75rem', { lineHeight: '1.08', letterSpacing: '-0.01em' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.6' }],
+        'body': ['1rem', { lineHeight: '1.6' }],
         'caption': ['0.875rem', { lineHeight: '1.5' }],
         'micro': ['0.75rem', { lineHeight: '1.4' }],
       },
@@ -98,9 +99,9 @@ export default {
         'hero': '16 / 9',
       },
       boxShadow: {
-        'card': 'var(--shadow-card)',
-        'elevated': 'var(--shadow-md)',
-        'prominent': 'var(--shadow-lg)',
+        'card': 'none',
+        'elevated': 'none',
+        'prominent': 'none',
       },
       keyframes: {
         "accordion-down": {
