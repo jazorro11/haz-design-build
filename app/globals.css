@@ -26,8 +26,8 @@
     --muted: 40 11% 95%;
     --muted-foreground: 0 0% 36%;
 
-    /* Accent = Terracota #C4622D */
-    --accent: 17 62% 47%;
+    /* Accent = Slate blue #2B4C7E */
+    --accent: 216 49% 33%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -41,7 +41,7 @@
 
     /* HAZ custom tokens */
     --haz-bg-dark: #111111;
-    --haz-accent-hover: #A4521E;
+    --haz-accent-hover: #1E3A63;
 
     /* Shadows — removed from new design system */
     --shadow-sm: none;

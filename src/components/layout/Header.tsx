@@ -87,7 +87,7 @@ export function Header() {
             <Button
               variant="cta"
               size="sm"
-              className="hidden sm:inline-flex bg-accent text-accent-foreground hover:bg-[#A4521E] rounded-none shadow-none text-[12px] font-semibold tracking-[0.12em] uppercase px-5 py-[10px] h-auto"
+              className="hidden sm:inline-flex bg-accent text-accent-foreground hover:bg-[#1E3A63] rounded-none shadow-none text-[12px] font-semibold tracking-[0.12em] uppercase px-5 py-[10px] h-auto"
               asChild
             >
               <Link href="/contacto">Hablemos</Link>
@@ -129,7 +129,7 @@ export function Header() {
           <div className="pt-4">
             <Button
               variant="cta"
-              className="w-full bg-accent text-accent-foreground hover:bg-[#A4521E] rounded-none shadow-none text-[12px] font-semibold tracking-[0.12em] uppercase py-[15px] h-auto"
+              className="w-full bg-accent text-accent-foreground hover:bg-[#1E3A63] rounded-none shadow-none text-[12px] font-semibold tracking-[0.12em] uppercase py-[15px] h-auto"
               asChild
             >
               <Link href="/contacto">Hablemos</Link>

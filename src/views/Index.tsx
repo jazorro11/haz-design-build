@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Compass, FileStack, HardHat, Users, Wrench } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { ProcessStepsSection } from '@/components/sections/ProcessStepsSection';
@@ -10,14 +10,6 @@ import { Button } from '@/components/ui/button';
 import { getFeaturedProjects } from '@/data/projects';
 import { services } from '@/data/services';
 import heroImage from '@/assets/portada-1.png';
-
-const iconMap: Record<string, React.ElementType> = {
-  Compass,
-  FileStack,
-  HardHat,
-  Users,
-  Wrench,
-};
 
 const stats = [
   { value: '+30', label: 'años de experiencia' },
@@ -49,7 +41,7 @@ export default function Index() {
           <div className="flex flex-wrap gap-4">
             <Button
               variant="hero"
-              className="bg-accent text-accent-foreground hover:bg-[#A4521E] rounded-none shadow-none border-0 text-[12px] font-semibold tracking-[0.12em] uppercase px-6 py-[15px] h-auto"
+              className="bg-accent text-accent-foreground hover:bg-[#1E3A63] rounded-none shadow-none border-0 text-[12px] font-semibold tracking-[0.12em] uppercase px-6 py-[15px] h-auto"
               asChild
             >
               <Link href="/proyectos">Ver proyectos</Link>
@@ -79,10 +71,14 @@ export default function Index() {
       {/* Stats bar — oversized numerals, vertical hairlines */}
       <section className="border-b border-border bg-background">
         <div className="container-wide p-0">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border items-start">
             {stats.map((stat, index) => (
-              <div key={index} className="px-8 py-14">
-                <div className="text-[72px] font-light leading-[0.9] tracking-[-0.04em] text-accent tabular-nums">
+              <div key={index} className="px-8 py-14 overflow-hidden">
+                <div
+                  className={`font-light leading-[0.9] tracking-[-0.04em] text-accent tabular-nums ${
+                    stat.value.length <= 4 ? 'text-7xl' : 'text-3xl'
+                  }`}
+                >
                   {stat.value}
                 </div>
                 <div className="haz-label text-muted-foreground mt-4 leading-snug">
@@ -144,7 +140,7 @@ export default function Index() {
         />
       </div>
 
-      {/* Services — hairline grid */}
+      {/* Services — hairline grid, typographic numerals */}
       <section className="section-padding">
         <div className="container-wide">
           <ScrollReveal>
@@ -157,34 +153,33 @@ export default function Index() {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
-            {services.slice(0, 3).map((service) => {
-              const Icon = iconMap[service.icon];
-              return (
-                <div
-                  key={service.id}
-                  className="p-10 border-r border-b border-border"
-                >
-                  <Icon className="w-7 h-7 text-foreground mb-7" />
-                  <h3 className="text-[22px] font-medium leading-snug mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-[14px] text-muted-foreground leading-[1.6] mb-6">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className="text-[13px] text-foreground flex items-start gap-4"
-                      >
-                        <span className="w-4 h-px bg-foreground flex-shrink-0 mt-[10px]" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+            {services.slice(0, 3).map((service, index) => (
+              <div
+                key={service.id}
+                className="p-10 border-r border-b border-border"
+              >
+                <div className="text-6xl font-light text-[#2B4C7E] opacity-40 mb-4 leading-none tabular-nums">
+                  {String(index + 1).padStart(2, '0')}
                 </div>
-              );
-            })}
+                <h3 className="text-[22px] font-medium leading-snug mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-[14px] text-muted-foreground leading-[1.6] mb-6">
+                  {service.description}
+                </p>
+                <ul className="space-y-3">
+                  {service.features.map((feature, fIndex) => (
+                    <li
+                      key={fIndex}
+                      className="text-[13px] text-foreground flex items-start gap-4"
+                    >
+                      <span className="w-4 h-px bg-foreground flex-shrink-0 mt-[10px]" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
           <div className="mt-10">
