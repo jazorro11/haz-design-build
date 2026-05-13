@@ -1,17 +1,9 @@
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { ProcessStepsSection } from '@/components/sections/ProcessStepsSection';
-import { Button } from '@/components/ui/button';
 import { services } from '@/data/services';
-import { Compass, FileStack, HardHat, Users, Wrench } from 'lucide-react';
-
-const iconMap: Record<string, React.ElementType> = {
-  Compass,
-  FileStack,
-  HardHat,
-  Users,
-  Wrench,
-};
+import servicesHeroImg from '@/assets/services-hero.jpg';
 
 export default function Services() {
   return (
@@ -20,40 +12,44 @@ export default function Services() {
         title="Servicios"
         description={
           <>
-            Ofrecemos un servicio integral que abarca desde el diseño conceptual
-            hasta la entrega de obra terminada.
+            Servicio integral desde el diseño conceptual hasta la entrega de obra terminada.
           </>
         }
+        bgImage={servicesHeroImg}
       />
 
-      {/* Services Grid */}
+      {/* Lista editorial de servicios */}
       <section className="section-padding-after-hero">
         <div className="container-wide">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => {
-              const Icon = iconMap[service.icon];
-              return (
-                <div
-                  key={service.id}
-                  className="p-8 rounded-lg border border-border bg-card hover:shadow-elevated transition-shadow"
-                >
-                  <Icon className="w-12 h-12 text-primary mb-6" />
-                  <h2 className="text-xl font-semibold mb-4">{service.title}</h2>
-                  <p className="text-muted-foreground mb-6">{service.description}</p>
+          <div className="divide-y divide-border">
+            {services.map((service, index) => (
+              <div key={service.id} className="py-12 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+                {/* Número */}
+                <div className="md:col-span-1">
+                  <span className="text-5xl font-light text-accent opacity-20 leading-none tabular-nums">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                {/* Título */}
+                <div className="md:col-span-3">
+                  <h2 className="text-xl font-medium leading-snug">{service.title}</h2>
+                </div>
+                {/* Descripción + features */}
+                <div className="md:col-span-8">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
                   <ul className="space-y-3">
-                    {service.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-3 text-muted-foreground"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-2" />
+                    {service.features.map((feature, fIndex) => (
+                      <li key={fIndex} className="flex items-start gap-4 text-foreground text-[14px]">
+                        <span className="w-4 h-px bg-border flex-shrink-0 mt-[10px]" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -75,16 +71,19 @@ export default function Services() {
 
       {/* CTA */}
       <section className="section-padding">
-        <div className="container-narrow text-center">
-          <h2 className="text-display-md font-semibold mb-4">
-            ¿Listo para comenzar?
-          </h2>
-          <p className="text-body-lg text-muted-foreground mb-8">
-            Cuéntenos sobre su proyecto y le daremos una propuesta personalizada.
-          </p>
-          <Button variant="hero" asChild>
-            <Link href="/contacto">Solicitar cotización</Link>
-          </Button>
+        <div className="container-wide">
+          <div className="max-w-2xl border-l-2 border-accent pl-6">
+            <p className="haz-label text-muted-foreground mb-4">Siguiente paso</p>
+            <h2 className="text-display-md font-light tracking-[-0.01em] mb-4">
+              ¿Listo para comenzar?
+            </h2>
+            <p className="text-body-lg text-muted-foreground mb-8">
+              Cuéntenos sobre su proyecto y le daremos una propuesta personalizada.
+            </p>
+            <Link href="/contacto" className="haz-link-arrow">
+              Solicitar cotización <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
     </>

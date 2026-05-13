@@ -77,7 +77,7 @@ export const projects: Project[] = [
     role: 'design-execution',
     status: 'completed',
     featured: true,
-    coverImage: aposentos8Img,
+    coverImage: aposentos4Img,
     area: '2.500 m²',
     images: [
       { url: aposentos8Img, caption: 'Estancia principal', stage: 'completed' },
@@ -120,8 +120,8 @@ export const projects: Project[] = [
     type: 'commercial',
     role: 'execution',
     status: 'completed',
-    featured: true,
-    coverImage: arturoCalle7Img,
+    featured: false,
+    coverImage: arturoCalle4Img,
     client: 'Payc S.A.S. (ahora Egis)',
     images: [
       {
@@ -167,8 +167,8 @@ export const projects: Project[] = [
     type: 'industrial',
     role: 'execution',
     status: 'completed',
-    featured: true,
-    coverImage: celta7Img,
+    featured: false,
+    coverImage: celta1Img,
     client: 'Armotec S.A.S. · Ingeniería de Vías',
     images: [
       {
@@ -213,7 +213,7 @@ export const projects: Project[] = [
     type: 'residential',
     role: 'design',
     status: 'completed',
-    featured: true,
+    featured: false,
     coverImage: casaUnifamiliar2Img,
     images: [
       { url: casaUnifamiliar2Img, caption: 'Espacios principales', stage: 'completed' },
@@ -239,8 +239,8 @@ export const projects: Project[] = [
     type: 'institutional',
     role: 'execution',
     status: 'completed',
-    featured: true,
-    coverImage: centroPenitenciarioImg,
+    featured: false,
+    coverImage: centroPenitenciario1Img,
     area: '40.000 m²',
     images: [
       {
@@ -271,8 +271,8 @@ export const projects: Project[] = [
     type: 'industrial',
     role: 'execution',
     status: 'completed',
-    featured: true,
-    coverImage: mro3Img,
+    featured: false,
+    coverImage: mro2Img,
     client: 'Avianca (Payc S.A.S.)',
     images: [
       { url: mro3Img, caption: 'Hangar MRO', stage: 'completed' },
@@ -352,7 +352,7 @@ export const projects: Project[] = [
     role: 'execution',
     status: 'completed',
     featured: true,
-    coverImage: villetaSamanes2Img,
+    coverImage: villetaSamanes4Img,
     area: '+750 m²',
     images: [
       {

@@ -1,5 +1,6 @@
 import { InteriorPageHero } from '@/components/layout/InteriorPageHero';
 import { ContactForm } from '@/views/ContactForm';
+import contactHeroImg from '@/assets/contact-hero.jpg';
 
 export default function Contact() {
   return (
@@ -12,6 +13,7 @@ export default function Contact() {
             brevedad.
           </>
         }
+        bgImage={contactHeroImg}
       />
       <ContactForm />
     </>

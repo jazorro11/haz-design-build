@@ -20,7 +20,7 @@ describe("About — sección Nuestra trayectoria", () => {
     ).toBeInTheDocument();
   });
 
-  it("la sección incluye imagen de fondo samanes-4 y el contenedor de prueba", () => {
+  it("la sección trayectoria no tiene imagen de fondo (diseño editorial limpio)", () => {
     render(
       <AppTestShell>
         <About />
@@ -28,10 +28,7 @@ describe("About — sección Nuestra trayectoria", () => {
     );
 
     const section = screen.getByTestId("about-trajectory-section");
-    const imgs = section.querySelectorAll("img");
-    const hasSamanes = [...imgs].some((img) =>
-      (img.getAttribute("src") ?? "").toLowerCase().includes("samanes-4"),
-    );
-    expect(hasSamanes).toBe(true);
+    const imgs = (section as HTMLElement).querySelectorAll("img");
+    expect(imgs.length).toBe(0);
   });
 });

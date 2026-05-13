@@ -5,11 +5,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 
 export function ContactForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [projectType, setProjectType] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,6 +61,7 @@ export function ContactForm() {
         description: 'Nos pondremos en contacto con usted pronto.',
       });
       form.reset();
+      setProjectType('');
     } catch {
       toast({
         variant: 'destructive',
@@ -68,12 +77,12 @@ export function ContactForm() {
     <section className="section-padding-after-hero">
       <div className="container-wide">
         <div className="mx-auto w-full max-w-3xl">
-          <h2 className="text-2xl font-semibold text-center text-balance mb-8">
+          <h2 className="text-display-md font-light tracking-[-0.01em] mb-8">
             Envíenos un mensaje
           </h2>
           <form
             onSubmit={handleSubmit}
-            className="space-y-6 rounded-xl border border-border/80 bg-card/40 p-6 shadow-sm sm:p-8 md:p-10"
+            className="space-y-6 rounded-none border border-border/80 bg-card/40 p-6 sm:p-8 md:p-10"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -110,19 +119,18 @@ export function ContactForm() {
 
             <div className="space-y-2">
               <Label htmlFor="project-type">Tipo de proyecto</Label>
-              <select
-                id="project-type"
-                name="project-type"
-                suppressHydrationWarning
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              >
-                <option value="">Seleccione una opción</option>
-                <option value="residential">Residencial</option>
-                <option value="commercial">Comercial</option>
-                <option value="institutional">Institucional</option>
-                <option value="industrial">Industrial</option>
-                <option value="other">Otro</option>
-              </select>
+              <Select name="project-type" value={projectType} onValueChange={setProjectType}>
+                <SelectTrigger id="project-type" className="rounded-none">
+                  <SelectValue placeholder="Seleccione una opción" />
+                </SelectTrigger>
+                <SelectContent className="rounded-none">
+                  <SelectItem value="residential">Residencial</SelectItem>
+                  <SelectItem value="commercial">Comercial</SelectItem>
+                  <SelectItem value="institutional">Institucional</SelectItem>
+                  <SelectItem value="industrial">Industrial</SelectItem>
+                  <SelectItem value="other">Otro</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="space-y-2">

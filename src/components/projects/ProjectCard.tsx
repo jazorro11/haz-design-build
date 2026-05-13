@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Project, ProjectStatus } from '@/data/projects';
+import { Project, ProjectStatus, ProjectType, ProjectRole } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import { OptimizedImage } from '@/components/OptimizedImage';
 
@@ -8,72 +8,51 @@ interface ProjectCardProps {
   className?: string;
 }
 
-const overlayChipBase = 'px-2 py-1 text-micro font-medium rounded';
-
-const statusLabels: Record<
-  ProjectStatus,
-  { label: string; className: string }
-> = {
-  completed: { label: 'Terminado', className: 'bg-primary/90 text-primary-foreground' },
-  'in-progress': { label: 'En obra', className: 'bg-accent/90 text-accent-foreground' },
+const typeLabels: Record<ProjectType, string> = {
+  residential: 'Residencial',
+  commercial: 'Comercial',
+  institutional: 'Institucional',
+  industrial: 'Industrial',
 };
 
-const roleLabels: Record<string, string> = {
+const roleLabels: Record<ProjectRole, string> = {
   design: 'Diseño',
   execution: 'Ejecución',
   'design-execution': 'Diseño + Ejecución',
 };
 
 export function ProjectCard({ project, className }: ProjectCardProps) {
-  const statusChip = statusLabels[project.status];
-
   return (
     <Link
       href={`/proyectos/${project.id}`}
-      className={cn(
-        'group block overflow-hidden rounded-lg bg-card transition-all duration-300',
-        'hover:shadow-elevated hover:-translate-y-1',
-        'focus-ring',
-        className
-      )}
+      className={cn('group block focus-ring', className)}
     >
-      {/* Image */}
+      {/* Imagen a sangre — sin contenedor card */}
       <div className="relative aspect-project overflow-hidden bg-muted">
         <OptimizedImage
           src={project.coverImage}
-          alt={`${project.name} - ${project.status === 'in-progress' ? 'en obra' : 'terminado'}`}
+          alt={project.name}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="image-cover transition-transform duration-500 group-hover:scale-105"
+          className="image-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
-        
-        {/* Tags overlay */}
-        <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-          <span className={cn(overlayChipBase, statusChip.className)}>
-            {statusChip.label}
-          </span>
-        </div>
       </div>
 
-      {/* Content */}
-      <div className="p-4">
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <h3 className="text-lg font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1">
-            {project.name}
+      {/* Info — separada por hairline */}
+      <div className="pt-4 pb-6 border-b border-border">
+        <p className="haz-label text-muted-foreground mb-2">
+          {typeLabels[project.type]} · {roleLabels[project.role]}
+        </p>
+        <div className="flex items-baseline justify-between gap-3">
+          <h3 className="text-lg font-medium text-foreground leading-snug">
+            <span className="group-hover:bg-accent group-hover:text-white transition-[color,background-color] duration-300 -mx-1 px-1">
+              {project.name}
+            </span>
           </h3>
-          <span className="text-caption text-muted-foreground shrink-0">
+          <span className="text-caption text-muted-foreground shrink-0 tabular-nums">
             {project.yearLabel ?? project.year}
           </span>
         </div>
-        
-        <p className="text-caption text-muted-foreground mb-3">
-          {project.location}
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          <span className="px-2 py-0.5 text-micro text-muted-foreground bg-muted rounded">
-            {roleLabels[project.role]}
-          </span>
-        </div>
+        <p className="text-caption text-muted-foreground mt-1">{project.location}</p>
       </div>
     </Link>
   );

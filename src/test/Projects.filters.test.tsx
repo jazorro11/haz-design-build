@@ -2,10 +2,10 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { AppTestShell } from "@/test/wrapAppShell";
 import Projects from "@/views/Projects";
-import { getFeaturedProjects } from "@/data/projects";
+import { getProjectsByFilter } from "@/data/projects";
 
 describe("Projects — listado destacados", () => {
-  it("muestra el título Proyectos destacados", () => {
+  it("muestra el título Proyectos", () => {
     render(
       <AppTestShell>
         <Projects />
@@ -15,19 +15,19 @@ describe("Projects — listado destacados", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /Proyectos destacados/i,
+        name: /^Proyectos$/i,
       }),
     ).toBeInTheDocument();
   });
 
-  it("renderiza una tarjeta por cada proyecto destacado", () => {
+  it("renderiza una tarjeta por cada proyecto", () => {
     const { container } = render(
       <AppTestShell>
         <Projects />
       </AppTestShell>,
     );
 
-    const expected = getFeaturedProjects().length;
+    const expected = getProjectsByFilter().length;
     const projectLinks = container.querySelectorAll(
       'a[href^="/proyectos/"]',
     );

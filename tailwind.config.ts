@@ -58,17 +58,8 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        stone: {
-          DEFAULT: "hsl(var(--stone))",
-          light: "hsl(var(--stone-light))",
-        },
-        charcoal: "hsl(var(--charcoal))",
-        petrol: {
-          DEFAULT: "hsl(var(--petrol))",
-          light: "hsl(var(--petrol-light))",
-        },
-        terracotta: "hsl(var(--terracotta))",
-        cream: "hsl(var(--cream))",
+        'haz-dark': 'var(--haz-bg-dark)',
+        'haz-accent-hover': 'var(--haz-accent-hover)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,7 +68,6 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Playfair Display', 'Georgia', 'serif'],
       },
       fontSize: {
         'display-xl': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
@@ -98,9 +88,9 @@ export default {
         'hero': '16 / 9',
       },
       boxShadow: {
-        'card': 'var(--shadow-card)',
-        'elevated': 'var(--shadow-md)',
-        'prominent': 'var(--shadow-lg)',
+        'card': 'none',
+        'elevated': 'none',
+        'prominent': 'none',
       },
       keyframes: {
         "accordion-down": {

@@ -14,6 +14,11 @@ export function ScrollReveal({ children, className, delay = 0 }: ScrollRevealPro
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIsVisible(true);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
 
