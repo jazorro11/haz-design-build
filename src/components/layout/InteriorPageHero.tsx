@@ -1,14 +1,15 @@
 import type { ReactNode } from 'react';
+import type { StaticImageData } from 'next/image';
 import { OptimizedImage } from '@/components/OptimizedImage';
 import { cn } from '@/lib/utils';
-import heroImage from '@/assets/portada-1.png';
 
 type InteriorPageHeroProps = {
   title: string;
   description?: ReactNode;
   children?: ReactNode;
-  /** Applied to the text wrapper (e.g. max-w-3xl on About). */
   textClassName?: string;
+  /** Si se pasa, muestra una foto de fondo a sangre (sin overlay). Para usarse con precaución: el texto debe contrastar por sí solo. */
+  bgImage?: StaticImageData | string;
 };
 
 export function InteriorPageHero({
@@ -16,32 +17,44 @@ export function InteriorPageHero({
   description,
   children,
   textClassName,
+  bgImage,
 }: InteriorPageHeroProps) {
-  return (
-    <section
-      className={cn(
-        'relative overflow-hidden border-b border-border',
-        'min-h-[max(11rem,min(26dvh,17rem))]'
-      )}
-    >
-      <div className="absolute inset-0 z-0">
-        <OptimizedImage
-          src={heroImage}
-          alt="Arquitectura moderna - HAZ Arquitectura"
-          sizes="100vw"
-          className="image-cover"
-          eager
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/30" />
-      </div>
+  if (bgImage) {
+    return (
+      <section className="relative overflow-hidden border-b border-border min-h-[max(14rem,min(30dvh,22rem))]">
+        <div className="absolute inset-0 z-0">
+          <OptimizedImage
+            src={bgImage}
+            alt=""
+            sizes="100vw"
+            className="image-cover"
+            eager
+          />
+          {/* Overlay mínimo solo para legibilidad — sin gradiente decorativo */}
+          <div className="absolute inset-0 bg-background/75" />
+        </div>
+        <div className="relative z-10 container-wide py-12 md:py-16">
+          <div className={cn('max-w-2xl', textClassName)}>
+            <h1 className="text-display-md font-light tracking-[-0.01em] mb-3">{title}</h1>
+            {description != null && (
+              <div className="text-body-lg text-muted-foreground">{description}</div>
+            )}
+            {children != null && <div className="mt-4">{children}</div>}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
-      <div className="relative z-10 container-wide py-8 md:py-10 lg:py-12">
-        <div className={cn('max-w-2xl', textClassName)}>
-          <h1 className="text-display-md font-semibold mb-3">{title}</h1>
-          {description != null ? (
+  return (
+    <section className="bg-card border-b border-border">
+      <div className="container-wide py-12 md:py-16">
+        <div className={cn('max-w-2xl border-l-2 border-accent pl-6', textClassName)}>
+          <h1 className="text-display-md font-light tracking-[-0.01em] mb-3">{title}</h1>
+          {description != null && (
             <div className="text-body-lg text-muted-foreground">{description}</div>
-          ) : null}
-          {children != null ? <div className="mt-4">{children}</div> : null}
+          )}
+          {children != null && <div className="mt-4">{children}</div>}
         </div>
       </div>
     </section>

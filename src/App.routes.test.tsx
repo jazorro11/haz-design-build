@@ -38,8 +38,8 @@ describe("Rutas MVP (páginas)", () => {
   });
 
   it.each([
-    [Index, /HAZ Arquitectura/i],
-    [Projects, /^Proyectos destacados$/],
+    [Index, /Diseño que/i],
+    [Projects, /^Proyectos$/],
     [Services, /^Servicios$/],
     [About, /^Sobre HAZ$/],
     [Contact, /^Contacto$/],
@@ -76,6 +76,23 @@ describe("Rutas MVP (páginas)", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: /^Aposentos$/ }),
     ).toBeInTheDocument();
+  });
+
+  it("ruta /proyectos/:id — InteriorPageHero no incluye imagen de fondo (sin cover duplicado)", () => {
+    const project = getProjectById("aposentos");
+    expect(project).toBeDefined();
+    render(
+      <AppTestShell>
+        <ProjectDetail project={project!} />
+      </AppTestShell>,
+    );
+
+    // InteriorPageHero without bgImage renders bg-card section; must have no <img>
+    const heroSection = document
+      .querySelector("section.bg-card.border-b");
+    expect(heroSection).toBeTruthy();
+    const imgs = heroSection?.querySelectorAll("img") ?? [];
+    expect(imgs.length).toBe(0);
   });
 
   it("ruta /proyectos/:id inválida muestra estado no encontrado", () => {

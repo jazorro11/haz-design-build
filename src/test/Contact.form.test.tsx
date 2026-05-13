@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import { AppTestShell } from "@/test/wrapAppShell";
 import Contact from "@/views/Contact";
 
@@ -90,5 +90,50 @@ describe("Contact — formulario", () => {
       { timeout: 4000 },
     );
     expect(screen.getByText("Error del servidor")).toBeInTheDocument();
+  });
+
+  it("el Select de tipo de proyecto muestra el placeholder tras envío exitoso", async () => {
+    vi.mocked(globalThis.fetch).mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ ok: true }),
+    } as Response);
+
+    render(
+      <AppTestShell>
+        <Contact />
+      </AppTestShell>,
+    );
+
+    // Open the Radix Select and choose "Comercial"
+    const trigger = screen.getByRole("combobox");
+    await act(async () => { fireEvent.click(trigger); });
+
+    const option = screen.queryByRole("option", { name: /Comercial/i });
+    if (option) {
+      await act(async () => { fireEvent.click(option); });
+    }
+
+    fireEvent.change(screen.getByLabelText(/^Nombre/i), {
+      target: { value: "Usuario prueba" },
+    });
+    fireEvent.change(screen.getByLabelText(/^Correo electrónico/i), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText(/^Mensaje/i), {
+      target: { value: "Mensaje de prueba" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /Enviar mensaje/i }));
+
+    await waitFor(
+      () => {
+        expect(screen.getByText("Mensaje enviado")).toBeInTheDocument();
+      },
+      { timeout: 4000 },
+    );
+
+    // After success, Select must show placeholder (controlled state reset to "")
+    expect(screen.getByRole("combobox")).toHaveTextContent(
+      "Seleccione una opción",
+    );
   });
 });

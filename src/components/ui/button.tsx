@@ -10,20 +10,20 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 active:scale-[0.98]",
+          "bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground active:scale-[0.98]",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // Custom HAZ variants
-        hero: "bg-primary text-primary-foreground shadow-md hover:shadow-lg hover:bg-primary/90 active:scale-[0.98] text-base px-8 py-6",
+        hero: "bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground active:scale-[0.98] text-base px-8 py-6",
         "hero-outline": "border-2 border-foreground text-foreground bg-transparent hover:bg-foreground hover:text-background active:scale-[0.98] text-base px-8 py-6",
         subtle: "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground",
-        cta: "bg-primary text-primary-foreground shadow-sm hover:shadow-md hover:bg-primary/90 font-semibold tracking-wide",
+        cta: "bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground font-semibold tracking-wide",
       },
       size: {
         default: "h-10 px-4 py-2",

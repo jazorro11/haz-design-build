@@ -27,26 +27,17 @@ describe("Services — sección Cómo trabajamos", () => {
     }
   });
 
-  it("la sección incluye imagen de fondo maqueta", () => {
+  it("la sección proceso usa fondo bg-card sin imagen decorativa", () => {
     render(
       <AppTestShell>
         <Services />
       </AppTestShell>,
     );
 
-    const title = screen.getByRole("heading", {
-      level: 2,
-      name: "Cómo trabajamos",
-    });
-    const section = title.closest("section");
-    expect(section).toBeTruthy();
-
-    // Imagen decorativa (alt="") no expone rol img accesible; comprobamos el DOM.
+    const section = screen.getByTestId("services-process-section");
+    expect(section.className).toMatch(/bg-card/);
     const imgs = (section as HTMLElement).querySelectorAll("img");
-    const hasMaqueta = [...imgs].some((img) =>
-      (img.getAttribute("src") ?? "").toLowerCase().includes("maqueta"),
-    );
-    expect(hasMaqueta).toBe(true);
+    expect(imgs.length).toBe(0);
   });
 
   it("expone anclas de prueba para la sección proceso", () => {
@@ -61,7 +52,7 @@ describe("Services — sección Cómo trabajamos", () => {
     expect(screen.getByTestId("services-process-footnote")).toBeInTheDocument();
   });
 
-  it("superpone gradientes de lectura sobre la imagen de fondo", () => {
+  it("la sección proceso no tiene overlay de gradiente decorativo", () => {
     render(
       <AppTestShell>
         <Services />
@@ -69,20 +60,10 @@ describe("Services — sección Cómo trabajamos", () => {
     );
 
     const section = screen.getByTestId("services-process-section");
-    const backdrop = section.querySelector("[aria-hidden='true']");
-    expect(backdrop).toBeTruthy();
-
-    const gradientEls = (backdrop as HTMLElement).querySelectorAll(
+    const gradientEls = (section as HTMLElement).querySelectorAll(
       "div[class*='bg-gradient-to-']",
     );
-    expect(gradientEls.length).toBeGreaterThanOrEqual(1);
-    const horizontal = [...gradientEls].find((el) =>
-      el.className.includes("bg-gradient-to-r"),
-    );
-    expect(horizontal).toBeTruthy();
-    expect(horizontal?.className).toMatch(/from-background\/95/);
-    expect(horizontal?.className).toMatch(/via-background\/70/);
-    expect(horizontal?.className).toMatch(/to-background\/30/);
+    expect(gradientEls.length).toBe(0);
   });
 
   it("prioriza gradientes y sombras de texto sin panel vidrio en intro y nota", () => {
